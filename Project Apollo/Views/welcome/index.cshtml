@@ -1,0 +1,31 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_app.cshtml";
+    ViewBag.Title = "Welcome to Ohio";
+}
+
+<div class="landing-bg page-bg">
+    <div class="header">
+        <img id="logo" src="~/Public/assets/images/logo-white.png" width="60" />
+        <button id="login-btn">Login</button>
+    </div>
+
+    <div class="content">
+        <h1 class="section-title">Where the projects happens.</h1>
+        <p>
+            Create project, choose between project managers, gather a team and
+            getting you stuff done
+        </p>
+
+        <button class="btn-primary" id="signup-btn">Get started for free</button>
+    </div>
+
+</div>
+
+<div class="popup-container">
+    <!-- LOGIN FORM -->
+    @Html.Partial("_loginForm");
+
+    <!--  SIGN UP FORM -->
+    @Html.Partial("_SignUpForm");
+</div>

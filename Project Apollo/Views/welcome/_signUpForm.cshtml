@@ -1,0 +1,14 @@
+﻿<div class="form" id="signup-form">
+    <button class="close">
+        <i class="material-icons danger-icon">close</i>
+    </button>
+
+    <h2 class="headline">Create a new account</h2>
+
+    @Components.InputField("signup-name", "Name", "text")
+    @Components.InputField("signup-email", "Email", "text")
+    @Components.InputField("signup-password", "Password", "password")
+    @Components.InputField("signup-repassword", "Repeat your password", "password")
+
+    <button class="btn-primary">Create account</button>
+</div>

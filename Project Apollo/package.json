@@ -1,0 +1,22 @@
+{
+  "name": "project-apollo",
+  "version": "0.0.1",
+  "description": "Online project managment",
+  "main": "index.js",
+  "author": "Muhammad",
+  "license": "MIT",
+  "scripts": {
+    "build-css": "node-sass --include-path scss ./Styles/style.scss ./Public/style.min.css --output-style compressed",
+    "bundle": "concurrently --kill-others  \"webpack -w\" \"nodemon -e scss -x npm run build-css\""
+  },
+  "devDependencies": {
+    "babel-core": "^6.5.1",
+    "babel-loader": "^6.2.2",
+    "babel-preset-es2015": "^6.5.0",
+    "concurrently": "^3.4.0",
+    "jquery": "^2.2.1",
+    "node-sass": "^4.5.0",
+    "nodemon": "^1.11.0",
+    "webpack": "^2.4.1"
+  }
+}

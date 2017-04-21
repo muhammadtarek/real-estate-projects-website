@@ -1,0 +1,84 @@
+header {
+	background-color: #fff;
+	padding: 7px 100px;
+	position: fixed;
+	width: 100%;
+	cursor: default;
+
+	@include box-shadow(1px, 0px, 8px, rgba(70, 70, 73, 0.4), false);
+
+	&.no-bottom-padding {
+		padding-bottom: 0 !important;
+	}
+
+	img {
+		position: relative;
+		top: 3px;
+	}
+
+	.tab {
+		margin-right: 5px;
+		display: inline-block;
+		margin-top: 2px;
+		cursor: default;
+
+		a {
+			font-family: $font;
+			font-size: $small-body;
+			color: $dark-gray-color !important;
+			font-weight: $semi-bold;
+			padding: 12px;
+
+			@include rounded();
+
+			&.tab-picture {
+				padding-left: 44px;
+				position: relative;
+			}
+
+			img {
+				max-width: 25px;
+				max-height: 25px;
+				position: relative;
+				top: 8px;
+				left: -4px;
+
+				@include rounded();
+			}
+
+			&:hover {
+				color: #fff;
+				background-color: rgba(0, 0, 0, 0.07);
+			}
+		}
+	}
+
+	.logout-btn {
+		background-image: url("assets/icons/logout.svg");
+		height: 30px !important;
+		width: 30px !important;
+		background-color: transparent !important;
+		background-size: 18px;
+		background-position: center;
+		background-repeat: no-repeat;
+		padding: 20px !important;
+		position: relative;
+		top: -5px;
+		margin-left: 10px;
+
+		&:hover {
+			background-color: rgba(0, 0, 0, 0.07) !important;
+		}
+
+		&:before {
+			background-color: $medium-gray-color;
+			content:"";
+			display:block;
+			position:absolute;
+			width: 1px;
+			height: 25px;
+			left: -9px;
+			top: 8px;
+		}
+	}
+}

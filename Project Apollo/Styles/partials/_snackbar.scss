@@ -1,0 +1,53 @@
+.snackbar {
+   position: absolute;
+   bottom: -70px;
+   left: 45px;
+   display: none;
+   padding-right: 16px;
+   padding-left: 16px;
+   height: 40px;
+   background-color: $medium-gray-color;
+
+   @include rounded;
+   @include noselect;
+   @include transition(bottom 200ms ease);
+
+   label {
+      margin-right: 24px;
+      margin-bottom: 0;
+      padding: 8px;
+      color: $darker-gray-color;
+      font-weight: $light;
+      font-size: $default;
+      font-family: $font;
+
+      @include noselect;
+   }
+
+   button {
+      padding-right: 16px;
+      padding-left: 16px;
+      min-width: 20px;
+      height: 40px;
+      background-color: transparent;
+      text-transform: uppercase;
+      font-weight: $medium;
+      font-size: $default !important;
+
+      &:hover {
+         background-color: rgba(0,0,0, 0.1);
+      }
+   }
+
+   &.snackbar--undo {
+      button {
+         color: $success-color;
+      }
+   }
+
+   &.snackbar--retry {
+      button {
+         color: $danger-color;
+      }
+   }
+}

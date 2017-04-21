@@ -1,0 +1,66 @@
+h1,
+h2,
+h3,
+h4,
+p {
+   color: $darker-gray-color;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+   font-family: $font;
+}
+
+//Links
+a {
+   color: $primary-color;
+   cursor: pointer;
+
+   &:hover,
+   &:focus,
+   &:visited {
+      color: $primary-color-dark;
+   }
+}
+
+//Font sizes
+.section-title {
+   font-size: $section-title;
+}
+
+.heading {
+   font-size: $heading;
+}
+
+//Font weights
+.light {
+   font-weight: $light;
+}
+
+.medium {
+   font-weight: $medium;
+}
+
+.semi-bold {
+   font-weight: $semi-bold;
+}
+
+.bold {
+   font-weight: $bold;
+}
+
+//Spacing
+h1,
+h2 {
+   margin-top: 24px;
+   margin-bottom: 16px;
+}
+
+h3,
+h4 {
+   margin-top: 16px;
+   margin-bottom: 8px;
+}

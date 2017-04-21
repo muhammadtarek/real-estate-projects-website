@@ -1,0 +1,37 @@
+﻿<header @{if (ViewBag.showNav == true) { <text>class="no-bottom-padding"</text> } }>
+    <div>
+        <img src="~/Public/assets/images/logo-dark.png" width="40" />
+
+        <div class="right-part">
+            <div class="tab">
+                <a>Home</a>
+            </div>
+
+            <div class="tab tab-picture">
+                <a>
+                    <img src="~/Public/assets/images/picture.jpg" width="25" />
+                    <span>Tarek</span>
+                </a>
+            </div>
+
+            <button class="logout-btn"></button>
+        </div>
+    </div>
+
+    @if (ViewBag.showNav == true) {
+        <div class="nav-container">
+            <ul class="nav nav-top">
+                @{
+                    var counter = 0;
+                    foreach (var tab in ViewBag.tabs)
+                    {
+                        <li @{if (counter == 0) { <text> class="tab-active" </text>  } }>
+                            @tab
+                        </li>
+                        counter++;
+                    }
+                }
+            </ul>
+        </div>
+    }
+</header>

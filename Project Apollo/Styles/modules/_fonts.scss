@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+//Fonts family
+$font: 'Open Sans', sans-serif;
+
+//Fonts weight
+$light: 300;
+$medium: 400;
+$semi-bold: 700;
+$bold: 900;
+
+//Font sizes
+$section-title: 2.4em; //Sections titles
+$heading: 1.6em; //Headings and sub-headings
+$body: 1.25em; //Lage body copy
+$default: 1em; //Normal body
+$small-body: 0.8em; //Body copy and input hints
+
+//Letter spacing
+$very-small-spacing: -2px;
+$small-spacing: -1px;
+$medium-spacing: -0.5px;
+$wide-spacing: 1px;

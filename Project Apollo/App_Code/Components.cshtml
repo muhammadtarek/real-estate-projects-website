@@ -1,0 +1,9 @@
+﻿<!-- INPUT FIELD COMPONENT -->
+@helper InputField(string id, string inputName, string type) {
+    <div class="input-field">
+        <label>@inputName</label>
+        <input id="@id" type="@type" />
+        <i class="material-icons danger-icon">error_outline</i>
+        <label class="error-message">Error Message</label>
+    </div>
+}
