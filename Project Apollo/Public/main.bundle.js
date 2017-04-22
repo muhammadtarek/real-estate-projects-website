@@ -80,7 +80,6 @@
 "use strict";
 
 
-/* FUNCTIONS */
 $(window).load(function () {
 	var formHeight = 0;
 
@@ -90,6 +89,7 @@ $(window).load(function () {
 	$(loginForm).css("margin-top", "-435px");
 	$(signUpForm).css("margin-top", "-639px");
 
+	/* FUNCTIONS */
 	function showForm(formId) {
 		//Getting form height
 		var form = "#" + formId;

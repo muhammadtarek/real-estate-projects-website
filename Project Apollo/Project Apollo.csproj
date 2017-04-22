@@ -113,8 +113,6 @@
     <Content Include="Public\assets\images\picture.jpg" />
     <Content Include="Public\main.bundle.js" />
     <Content Include="Public\style.min.css" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Styles\bootstrap.min.css" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -122,11 +120,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\homeController.cs" />
     <Compile Include="Controllers\profileController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\welcomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704221138495_InitialCreate.cs" />
+    <Compile Include="Migrations\201704221138495_InitialCreate.Designer.cs">
+      <DependentUpon>201704221138495_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comments.cs" />
     <Compile Include="Models\DBase.cs" />
     <Compile Include="Models\Feedback.cs" />
@@ -171,11 +173,6 @@
     <Content Include="Styles\pages\_base.scss" />
     <Content Include="Styles\pages\_landing-page.scss" />
     <Content Include="Styles\_global.scss" />
-    <Content Include="Views\Users\Create.cshtml" />
-    <Content Include="Views\Users\Delete.cshtml" />
-    <Content Include="Views\Users\Details.cshtml" />
-    <Content Include="Views\Users\Edit.cshtml" />
-    <Content Include="Views\Users\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -189,6 +186,11 @@
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\Components\" />
     <Folder Include="Scripts\Pages\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201704221138495_InitialCreate.resx">
+      <DependentUpon>201704221138495_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
