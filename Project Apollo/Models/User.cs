@@ -7,11 +7,11 @@ using System.Web;
 namespace Project_Apollo.Models
 {
     public enum userRole{
-        admin,
-        customer,
-        projectManager,
-        teamLeader,
-        juniorEngineer
+        admin = 0,
+        customer = 1,
+        projectManager = 2,
+        teamLeader = 3,
+        juniorEngineer = 4
     }
     public class User
     {

@@ -24,14 +24,12 @@ namespace Project_Apollo.Models
         public String Description { get; set; }
         [ScaffoldColumn(false)]
         public status status { get; set; }
-        [Required]
         public int price { get; set; }
-        [Required]
+        public DateTime createDate { get; set; } = DateTime.Now;
         public DateTime startDate { get; set; }
-        [Required]
         public DateTime endDate { get; set; }
-        public ICollection<User> users { get; set; }
-        public ICollection<Comments> Comments { get; set; }
+        public ICollection<User> workers { get; set; }
+        public ICollection<Comments> comments { get; set; }
 
     }
 }
