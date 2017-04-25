@@ -26,7 +26,6 @@ namespace Project_Apollo.Models
         public status status { get; set; }
         [Required]
         public int price { get; set; }
-        public DateTime createDate { get; } = System.DateTime.Now;
         [Required]
         public DateTime startDate { get; set; }
         [Required]
