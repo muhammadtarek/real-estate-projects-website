@@ -1,4 +1,5 @@
-﻿using Project_Apollo.Models;
+﻿using Newtonsoft.Json;
+using Project_Apollo.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace Project_Apollo.Controllers
 
             if (data.Length != 0 && password.Equals(data[0].Password)) // if email & password TRUE
             {
-                return new
+                return JsonConvert.SerializeObject(new
                 {
                     Result = new
                     {
@@ -38,10 +39,10 @@ namespace Project_Apollo.Controllers
                         userRole = data[0].UserRole,
                         userPhoto = data[0].Photo
                     }
-                };
+                });
             }else if (data.Length != 0 && !password.Equals(data[0].Password)) // Email is true password is wrong
                 {
-                return new
+                return JsonConvert.SerializeObject(new
                 {
                     Result = new
                     {
@@ -55,10 +56,10 @@ namespace Project_Apollo.Controllers
                         userRole = "",
                         userPhoto = ""
                     }
-                };
+                });
             }else if(data.Length == 0)  // email is wrong
             {
-                return new
+                return JsonConvert.SerializeObject(new
                 {
                     Result = new
                     {
@@ -72,7 +73,7 @@ namespace Project_Apollo.Controllers
                         userRole = "",
                         userPhoto = ""
                     }
-                };
+                });
             }
             return null;             
             }
