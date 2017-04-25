@@ -25,6 +25,7 @@ namespace Project_Apollo.Models
         public String Mobile { get; set; }
         [RegularExpression("\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*"), Required]
         public String Email { get; set; }
+        public String Password { get; set; }
 
         public userRole UserRole { get; set; }
         public ICollection<Project> Projects { get; set; }
