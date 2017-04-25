@@ -1,4 +1,5 @@
-﻿using Project_Apollo.Models;
+﻿using Newtonsoft.Json;
+using Project_Apollo.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace Project_Apollo.Controllers
             ViewBag.tabs = new string[4] { "Home", "Profile", "FAQ", "Contact us" };
             return View();
         }
-        public JsonResult ResultdeleteProject(int id)
+        public object deleteProject(int id)
         {
             Project p = db.ProjectTable.Find(id);
 
@@ -26,18 +27,19 @@ namespace Project_Apollo.Controllers
                 db.ProjectTable.Remove(p);
                 db.SaveChanges();
 
-                return Json(new { opertaion = false });
+                return JsonConvert.SerializeObject(new { opertaion = true });
+                //new { opertaion = false }
             }
-            return Json(new { opertaion = false });
+            return JsonConvert.SerializeObject(new { opertaion = false });
         }
         [HttpPost]
-        public JsonResult updateProject(string projectName, string projectDescription, int projectId)
+        public object updateProject(string projectName, string projectDescription, int projectId)
         {
             Project p = db.ProjectTable.Find(projectId);
             p.Name = projectName;
             p.Description = projectDescription;
             db.SaveChanges();
-            return Json(new
+            return JsonConvert.SerializeObject(new
             {
                 postingTime = p.createDate,
                 projectName = p.Name,

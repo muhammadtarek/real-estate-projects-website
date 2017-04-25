@@ -19,6 +19,7 @@ namespace Project_Apollo.Models
         public DbSet<Project> ProjectTable { get; set; }
         public DbSet<Feedback> FeedbackTable { get; set; }
         public DbSet<Comments> CommentsTable { get; set; }
+        public DbSet<ApplyProject> ApplyProjectTable { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
