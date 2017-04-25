@@ -8,9 +8,9 @@ namespace Project_Apollo.Models
 {
     public enum status
     {
-        waiting,
-        inProgress,
-        deliverd
+        waiting = 0,
+        inProgress = 1,
+        deliverd = 2
     }
     public class Project
     {
