@@ -23,7 +23,7 @@ namespace Project_Apollo.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Project>().
-              HasMany(c => c.users).
+              HasMany(c => c.workers).
               WithMany(p => p.Projects).
               Map(
                m =>
