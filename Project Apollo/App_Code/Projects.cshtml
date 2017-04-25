@@ -1,0 +1,54 @@
+﻿<!-- UN_ASSIGNED PROJECT COMPONENT -->
+@helper Unassigned(string userPhoto, string customerName, int userType, string postingTime, string projectName, string projectDescription)
+{
+    <div class="project-cotnainer">
+        <div class="project">
+            <div class="owner-container">
+                <div class="owner-info">
+                    <img src="@userPhoto" width="40" />
+
+                    <div>
+                        <a class="name">@customerName</a>
+                        <label class="time">@postingTime</label>
+                    </div>
+                </div>
+
+                <div class="project-controls">
+                    @{
+                        if (userType == 0) {
+                            <button class="apply-btn">Apply</button>
+                        } else  {
+                            <button class="edit-btn"></button>
+                            <button class="delete-btn"></button>
+                        }
+                    }
+                    
+                    
+                </div>
+            </div>
+            
+
+            <div class="details">
+                <h4>@projectName</h4>
+                <p>@projectDescription</p>
+            </div>
+        </div>
+
+        <div class="comments-container">
+            @{
+                if (userType == 0) {
+                    <div class="comment-input">
+                        <img src="@userPhoto" width="35" />
+                        <input placeholder="Write a comment..." />
+                    </div>
+                }
+            }
+            
+            @Components.Comment("1", @userPhoto, "Muhamamd Tarek", "This is a comment")
+            @Components.Comment("1", @userPhoto, "Muhamamd Tarek", "This is a comment")
+            @Components.Comment("1", @userPhoto, "Muhamamd Tarek", "This is a comment")
+            @Components.Comment("1", @userPhoto, "Muhamamd Tarek", "This is a comment")
+
+        </div>
+    </div>
+} 

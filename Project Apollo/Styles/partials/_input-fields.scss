@@ -148,7 +148,7 @@ $input-width: 400px;
       max-width: 350px;
       color: $danger-color;
       font-weight: $medium;
-      font-size: $small-body;
+      font-size: $default;
       font-family: $font;
 
       @include transition(all 125ms ease-in-out);

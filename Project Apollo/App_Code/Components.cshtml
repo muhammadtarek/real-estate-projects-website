@@ -7,3 +7,17 @@
         <label class="error-message">Error Message</label>
     </div>
 }
+
+<!-- COMMENT COMPONENT -->
+@helper Comment(string id, string userPhoto, string userName, string comment)
+{
+    <div class="comment">
+        <img src="@userPhoto" width="35" />
+
+        <div class="details">
+            <label class="name">Muhammad Tarek</label>
+            <label class="comment-text">I want in, with 3000$</label>
+        </div>
+        
+    </div>
+}

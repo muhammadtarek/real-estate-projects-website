@@ -111,9 +111,10 @@
     <Content Include="Public\assets\images\logo-dark.png" />
     <Content Include="Public\assets\images\logo-white.png" />
     <Content Include="Public\assets\images\picture.jpg" />
-    <Content Include="Public\main.bundle.js" />
-    <Content Include="Public\style.min.css" />
-    <Content Include="Styles\bootstrap.min.css" />
+    <Content Include="Scripts\Components\InputField.js" />
+    <Content Include="Scripts\Pages\HomePage.js" />
+    <Content Include="Scripts\Pages\LandingPage.js" />
+    <Content Include="Scripts\Validation.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -173,6 +174,12 @@
     <Content Include="Styles\pages\_base.scss" />
     <Content Include="Styles\pages\_landing-page.scss" />
     <Content Include="Styles\_global.scss" />
+    <Content Include="App_Code\Projects.cshtml" />
+    <Content Include="Views\home\_createProjectForm.cshtml" />
+    <Content Include="Styles\components\_page-container.scss" />
+    <Content Include="Styles\components\_project.scss" />
+    <Content Include="Styles\components\_card.scss" />
+    <Content Include="Styles\components\_project-post.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -184,8 +191,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\Components\" />
-    <Folder Include="Scripts\Pages\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201704221138495_InitialCreate.resx">

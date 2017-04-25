@@ -1,4 +1,4 @@
-﻿<header @{if (ViewBag.showNav == true) { <text>class="no-bottom-padding"</text> } }>
+﻿<header class="@(@ViewBag.showNav == true ? "no-bottom-padding" : "")">
     <div>
         <img src="~/Public/assets/images/logo-dark.png" width="40" />
 
@@ -9,8 +9,8 @@
 
             <div class="tab tab-picture">
                 <a>
-                    <img src="~/Public/assets/images/picture.jpg" width="25" />
-                    <span>Tarek</span>
+                    <img src="@ViewBag.userPhoto" width="25" />
+                    <span>@ViewBag.userName</span>
                 </a>
             </div>
 

@@ -4,3 +4,25 @@
 }
 
 @Html.Partial("_header")
+
+<div class="page-container" style="margin-top: 101px">
+    <div class="col-md-4 no-padding">
+        @Html.Partial("_createProjectForm")
+    </div>
+
+    <div class="col-md-6" style="padding-bottom: 40px;">
+        @Projects.Unassigned(ViewBag.userPhoto, "Muhammad Tarek", 0, "Today, 1:00PM", 
+                            "College Building PRoject", "Text")
+        @Projects.Unassigned(ViewBag.userPhoto, "Muhammad Tarek", 0, "Today, 1:00PM",
+                            "College Building PRoject", "Text")
+        @Projects.Unassigned(ViewBag.userPhoto, "Muhammad Tarek", 0, "Today, 1:00PM",
+                            "College Building PRoject", "Text")
+        @Projects.Unassigned(ViewBag.userPhoto, "Muhammad Tarek", 0, "Today, 1:00PM",
+                            "College Building PRoject", "Text")
+    </div>
+</div>
+
+<!-- REQUIRED JS FILES -->
+<script src="~/Scripts/Validation.js"></script>
+<script src="~/Scripts/Components/InputField.js"></script>
+<script src="~/Scripts/Pages/HomePage.js"></script>
