@@ -24,7 +24,7 @@ namespace Project_Apollo.Models
         public String Description { get; set; }
         [ScaffoldColumn(false)]
         public status status { get; set; }
-        public int price { get; set; }
+        public Double price { get; set; }
         public DateTime createDate { get; set; } = DateTime.Now;
         public DateTime startDate { get; set; }
         public DateTime endDate { get; set; }
