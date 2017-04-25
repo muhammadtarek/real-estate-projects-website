@@ -1,9 +1,7 @@
 ﻿@{
-    Layout = "~/Views/Shared/_app.cshtml";
+    Layout = "~/Views/Shared/_homeLayout.cshtml";
     ViewBag.Title = "Home";
 }
-
-@Html.Partial("_header")
 
 <div class="page-container" style="margin-top: 101px">
     <div class="col-md-4 no-padding">
@@ -12,17 +10,6 @@
 
     <div class="col-md-6" style="padding-bottom: 40px;">
         @Projects.Unassigned(ViewBag.userPhoto, "Muhammad Tarek", 0, "Today, 1:00PM", 
-                            "College Building PRoject", "Text")
-        @Projects.Unassigned(ViewBag.userPhoto, "Muhammad Tarek", 0, "Today, 1:00PM",
-                            "College Building PRoject", "Text")
-        @Projects.Unassigned(ViewBag.userPhoto, "Muhammad Tarek", 0, "Today, 1:00PM",
-                            "College Building PRoject", "Text")
-        @Projects.Unassigned(ViewBag.userPhoto, "Muhammad Tarek", 0, "Today, 1:00PM",
-                            "College Building PRoject", "Text")
+                            "College Building Project", "Text")
     </div>
 </div>
-
-<!-- REQUIRED JS FILES -->
-<script src="~/Scripts/Validation.js"></script>
-<script src="~/Scripts/Components/InputField.js"></script>
-<script src="~/Scripts/Pages/HomePage.js"></script>

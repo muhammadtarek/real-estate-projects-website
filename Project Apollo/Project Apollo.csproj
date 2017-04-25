@@ -157,7 +157,7 @@
     <Content Include="Styles\partials\_typography.scss" />
     <Content Include="Styles\style.scss" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_app.cshtml" />
+    <Content Include="Views\Shared\_welcomeLayout.cshtml" />
     <Content Include="Views\welcome\index.cshtml" />
     <Content Include="Views\welcome\_loginForm.cshtml" />
     <Content Include="Views\welcome\_signUpForm.cshtml" />
@@ -180,6 +180,8 @@
     <Content Include="Styles\components\_project.scss" />
     <Content Include="Styles\components\_card.scss" />
     <Content Include="Styles\components\_project-post.scss" />
+    <Content Include="Views\Shared\_homeLayout.cshtml" />
+    <Content Include="Views\Shared\_highProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

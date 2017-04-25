@@ -11,6 +11,7 @@ namespace Project_Apollo.Controllers
         // GET: welcome
         public ActionResult Index()
         {
+			ViewBag.currentPage = 0;
             return View();
         }
     }
