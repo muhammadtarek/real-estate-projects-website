@@ -10,7 +10,7 @@ namespace Project_Apollo.Models
     {
         public DBase(): base("DBase")
         {
-            //Database.SetInitializer<DBase>(new MigrateDatabaseToLatestVersion<DBase, Project_Apollo.Migrations.Configuration>());
+            Database.SetInitializer<DBase>(new MigrateDatabaseToLatestVersion<DBase, Project_Apollo.Migrations.Configuration>());
         }
         public DbSet<User> userTable { get; set; }
         public DbSet<Requests> RequestsTable { get; set; }
@@ -19,11 +19,12 @@ namespace Project_Apollo.Models
         public DbSet<Project> ProjectTable { get; set; }
         public DbSet<Feedback> FeedbackTable { get; set; }
         public DbSet<Comments> CommentsTable { get; set; }
+        public DbSet<ApplyProject> ApplyProjectTable { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Project>().
-              HasMany(c => c.users).
+              HasMany(c => c.workers).
               WithMany(p => p.Projects).
               Map(
                m =>

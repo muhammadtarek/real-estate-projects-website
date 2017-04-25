@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Project_Apollo.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +10,7 @@ namespace Project_Apollo.Controllers
 {
     public class HomeController : Controller
     {
+        DBase db = new DBase();
         // GET: Home
         public ActionResult Index()
         {
@@ -16,6 +19,35 @@ namespace Project_Apollo.Controllers
             ViewBag.userPhoto = "/Public/assets/images/picture.jpg";
             ViewBag.userName = "Muhammad Tarek";
             return View();
+        }
+        public object deleteProject(int id)
+        {
+            Project p = db.ProjectTable.Find(id);
+
+            if (p != null)
+            {
+                db.ProjectTable.Remove(p);
+                db.SaveChanges();
+
+                return JsonConvert.SerializeObject(new { opertaion = true });
+                //new { opertaion = false }
+            }
+            return JsonConvert.SerializeObject(new { opertaion = false });
+        }
+        [HttpPost]
+        public object updateProject(string projectName, string projectDescription, int projectId)
+        {
+            Project p = db.ProjectTable.Find(projectId);
+            p.Name = projectName;
+            p.Description = projectDescription;
+            db.SaveChanges();
+            return JsonConvert.SerializeObject(new
+            {
+                postingTime = p.createDate,
+                projectName = p.Name,
+                projectDescription = p.Description,
+                projectId = p.ID
+            });
         }
     }
 }

@@ -7,11 +7,11 @@ using System.Web;
 namespace Project_Apollo.Models
 {
     public enum userRole{
-        admin,
-        customer,
-        projectManager,
-        teamLeader,
-        juniorEngineer
+        admin = 0,
+        customer = 1,
+        projectManager = 2,
+        teamLeader = 3,
+        juniorEngineer = 4
     }
     public class User
     {
@@ -25,6 +25,7 @@ namespace Project_Apollo.Models
         public String Mobile { get; set; }
         [RegularExpression("\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*"), Required]
         public String Email { get; set; }
+        public String Password { get; set; }
 
         public userRole UserRole { get; set; }
         public ICollection<Project> Projects { get; set; }
