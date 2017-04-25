@@ -2,15 +2,18 @@
 var glob = require("glob");
 
 module.exports = {
-   entry: [].concat(glob.sync('./Scripts/**/*.js')),
-   plugins: [
-       new webpack.DefinePlugin({
-           'process.env.NODE_ENV': JSON.stringify('development')
-       })
-   ],
+    entry: [].concat(glob.sync('./Scripts/**/*.js')),
+    plugins: [
+        // Minify assets.
+        /*new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false // https://github.com/webpack/webpack/issues/1496
+            }
+        })*/
+    ],
     output: {
         path: __dirname,
-        filename: './Public/main.bundle.js'
+        filename: './Public/app.min.js'
     },
     module: {
         loaders: [
@@ -19,7 +22,7 @@ module.exports = {
                 query: {
                     presets: ['es2015']
                 },
-                test: /\.js?$/,
+                test: /\.jsx?$/,
                 exclude: /(node_modules | bower_components)/
             }
         ]
