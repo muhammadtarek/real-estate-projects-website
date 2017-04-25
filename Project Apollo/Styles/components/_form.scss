@@ -1,54 +1,58 @@
 .form {
-	margin: 35px auto;
-	padding: 0;
-	padding-bottom: 25px;
-	width: 500px;
-	background-color: #fff;
-	overflow: hidden;
-	text-align:center;
-	position: relative;
-	display: none;
+  margin: 35px auto;
+  padding: 0;
+  padding-bottom: 25px;
+  width: 500px;
+  background-color: #fff;
+  overflow: hidden;
+  text-align: center;
+  position: relative;
+  display: none;
 
-	@include rounded();
-	@include transition(all 275ms ease-in);
+  @include rounded();
+  @include transition(all 275ms ease-in);
 
-	.headline {
-		width: 100%;
-		text-align: center;
-		color: #fff !important;
-		background-color: $primary-color !important;
-		padding-top: 25px;
-		padding-bottom: 25px;
-		font-weight: $light;
-		margin: 0;
-		margin-bottom: 20px;
-	}
+  .headline {
+    width: 100%;
+    text-align: center;
+    color: #fff !important;
+    background-color: $primary-color !important;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    font-weight: $light;
+    margin: 0;
+    margin-bottom: 20px;
+  }
 
-	.close {
-		position: absolute;
-		top: 25px;
-		right: 15px;
-		background: transparent;
-		padding: 5px !important;
-		color: #fff;
-		height: 35px;
+  .close {
+    position: absolute;
+    top: 25px;
+    right: 15px;
+    background: transparent;
+    padding: 5px !important;
+    color: #fff;
+    height: 35px;
+    opacity: 1 !important;
+    font-weight: $medium;
 
-		&:hover {
-			background-color: rgba(255, 255, 255, 0.2);
-		}
-	}
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      opacity: 1 !important;
+      color: #fff;
+    }
+  }
 
-	.input-field {
-		position: relative;
-		left: 75px;
+  .input-field {
+    position: relative;
+    left: 75px;
 
-		label,
-		.error-message {
-			text-align: left !important;
-		}
-	}
+    label,
+    .error-message {
+      text-align: left !important;
+    }
+  }
 
-	.btn-primary {
-		margin-top: 5px;
-	}
+  .btn-primary {
+    margin-top: 5px;
+  }
 }
