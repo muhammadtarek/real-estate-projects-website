@@ -11,6 +11,7 @@ namespace Project_Apollo.Models
         public Project project { get; set; }
         public User projectManager { get; set; }
         public int price { get; set; }
+        public String applyingLetter { get; set; }
         public DateTime startDate { get; set; }
         public DateTime endDate { get; set; }
     }
