@@ -10,7 +10,7 @@ namespace Project_Apollo.Models
     {
         public DBase(): base("DBase")
         {
-            //Database.SetInitializer<DBase>(new MigrateDatabaseToLatestVersion<DBase, Project_Apollo.Migrations.Configuration>());
+            Database.SetInitializer<DBase>(new MigrateDatabaseToLatestVersion<DBase, Project_Apollo.Migrations.Configuration>());
         }
         public DbSet<User> userTable { get; set; }
         public DbSet<Requests> RequestsTable { get; set; }
