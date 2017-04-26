@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build-css": "node-sass --include-path scss ./Styles/style.scss ./Public/style.min.css --output-style compressed",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\"",
     "bundle": "concurrently --kill-others  \"webpack -w\" \"nodemon -e scss -x npm run build-css\""
   },
   "devDependencies": {

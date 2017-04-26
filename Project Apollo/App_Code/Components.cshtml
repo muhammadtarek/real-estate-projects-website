@@ -1,9 +1,49 @@
 ﻿<!-- INPUT FIELD COMPONENT -->
-@helper InputField(string id, string inputName, string type) {
+@helper InputField(string id, string inputName, string type, string validationType) {
     <div class="input-field">
         <label>@inputName</label>
-        <input id="@id" type="@type" />
+        <input id="@id" type="@type" validation-type="@validationType"/>
         <i class="material-icons danger-icon">error_outline</i>
         <label class="error-message">Error Message</label>
+    </div>
+}
+
+<!-- TEXTAREA FIELD COMPONENT -->
+@helper TextArea(string id, string inputName) {
+    <div class="input-field">
+        <label>@inputName</label>
+        <textarea id="@id" placeholder="Describe here..."></textarea>
+        <label class="error-message">Error Message</label>
+    </div>
+}
+
+<!-- DROPDOWN COMPONENT -->
+@helper DropdownField(string id, string inputName, string placeholder, params string[] items) {
+    <div class="input-field">
+        <label>@inputName</label>
+        <input class="dropdown-input" id="@id" type="text" placeholder="@placeholder" readonly />
+        <i class="material-icons dropdown-arrow">arrow_drop_down</i>
+        <ul class="dropdown">
+            @{ 
+                foreach (var item in items) {
+                    <li>@item</li>
+                }
+            }
+        </ul>
+        <label class="error-message">Error Message</label>
+    </div>
+}
+
+<!-- COMMENT COMPONENT -->
+@helper Comment(string id, string userPhoto, string userName, string comment)
+{
+    <div class="comment">
+        <img src="@userPhoto" width="35" />
+
+        <div class="details">
+            <label class="name">Muhammad Tarek</label>
+            <label class="comment-text">I want in, with 3000$</label>
+        </div>
+        
     </div>
 }
