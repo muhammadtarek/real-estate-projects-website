@@ -77,6 +77,18 @@ namespace Project_Apollo.Controllers
             }    
         }
 
+
+        public object getProject(int projectId)
+        {
+            Project p = db.ProjectTable.Find(projectId);
+            return JsonConvert.SerializeObject(new
+            {
+                projectName = p.Name,
+                projectDescription = p.Description,
+                projectId = p.ID
+            });
+        }
+
         public object writeComment(int userId, int projectId, String comment)
         {
             var data = (from apply in db.ApplyProjectTable   // query to get the project status before apply
@@ -103,6 +115,5 @@ namespace Project_Apollo.Controllers
                 });
             }
         }
-
     }
 }
