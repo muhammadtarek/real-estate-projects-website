@@ -77,6 +77,7 @@ namespace Project_Apollo.Controllers
             }    
         }
 
+
         public object getProject(int projectId)
         {
             Project p = db.ProjectTable.Find(projectId);
@@ -86,6 +87,33 @@ namespace Project_Apollo.Controllers
                 projectDescription = p.Description,
                 projectId = p.ID
             });
+        }
+
+        public object writeComment(int userId, int projectId, String comment)
+        {
+            var data = (from apply in db.ApplyProjectTable   // query to get the project status before apply
+                        where apply.project.ID == projectId
+                        select apply).ToArray();
+            if (data.Length > 0)
+            {
+                Comments comm = new Comments();
+                comm.comment = comment;
+                comm.project.ID = projectId;
+                comm.projectManager.ID = userId;
+                db.CommentsTable.Add(comm);
+                db.SaveChanges();
+                return JsonConvert.SerializeObject(new
+                {
+                    operation = true
+                });
+            }
+            else
+            {
+                return JsonConvert.SerializeObject(new
+                {
+                    operation = false
+                });
+            }
         }
     }
 }
