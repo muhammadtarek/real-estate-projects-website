@@ -14,7 +14,10 @@ function validateEmail(email) {
 
 //Phone number
 function validatePhoneNumber(phoneNumber) {
-
+  console.log(phoneNumber.length != 11);
+  if (phoneNumber.length != 11 || isNaN(phoneNumber)) {
+    return false;
+  }
 }
 
 //Password
