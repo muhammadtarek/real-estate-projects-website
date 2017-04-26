@@ -1,5 +1,5 @@
 .form {
-  margin: 35px auto;
+  margin: 0 auto;
   padding: 0;
   padding-bottom: 25px;
   width: 500px;
@@ -8,6 +8,8 @@
   text-align: center;
   position: relative;
   display: none;
+  top: 35px;
+  margin-bottom: 35px;
 
   @include rounded();
   @include transition(all 275ms ease-in);

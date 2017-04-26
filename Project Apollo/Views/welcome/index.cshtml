@@ -24,8 +24,11 @@
 
 <div class="popup-container">
     <!-- LOGIN FORM -->
-    @Html.Partial("_loginForm");
+    @Html.Partial("_loginForm")
 
     <!--  SIGN UP FORM -->
-    @Html.Partial("_SignUpForm");
+    <div class="scrollable">
+        @Html.Partial("_SignUpForm")
+    </div>
+    
 </div>

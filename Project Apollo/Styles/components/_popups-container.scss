@@ -1,16 +1,34 @@
 .popup-container {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5);
-	overflow: hidden;
-	display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  display: none;
 
-	@include rounded($medium-border);
+  @include rounded($medium-border);
 
-	.scrollable {
-		height: 100%;
-	}
+  .scrollable {
+    height: 100%;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: none;
+      border-radius: 100px;
+      background-color: transparent;
+    }
+
+    &::-webkit-scrollbar {
+      width: 8px;
+      background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+      background-color: $light-gray-color;
+    }
+  }
 }

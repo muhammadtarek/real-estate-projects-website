@@ -5,10 +5,19 @@
 
     <h2 class="headline">Create a new account</h2>
 
+    <div class="photo-picker">
+        <img id="photo-preview"/>
+        <input type="file" name="userPhoto" id="signup-photo" />
+        <label for="signup-photo"></label>
+    </div>
+
     @Components.InputField("signup-name", "Name", "text")
     @Components.InputField("signup-email", "Email", "text")
+    @Components.InputField("signup-phone", "Phone Number", "text")
     @Components.InputField("signup-password", "Password", "password")
     @Components.InputField("signup-repassword", "Repeat your password", "password")
+    @Components.DropdownField("signup-userrole", "Role", "Choose your role...", "Customer", "Project Manager", "Team Leader", "Jenior Engineer")
+    @Components.TextArea("signup-bio", "Write about yourself")
 
     <button class="btn-primary">Create account</button>
 </div>
