@@ -47,5 +47,35 @@ namespace Project_Apollo.Controllers
                 projectId = p.ID
             });
         }
+
+        public object applyToProject(int userId, int projectId, String applyingLetter, double price, DateTime startDate, DateTime endDate)
+        {
+            var data = (from proj in db.ProjectTable   // query to get the project status before apply
+                       where proj.ID == projectId
+                       select new { proj.status }).ToArray();
+            if ((int)data[0].status == 0) // if project isn't assigned to anyone yet (Waiting)
+            {
+                ApplyProject apply = new ApplyProject();
+                apply.applyingLetter = applyingLetter;
+                apply.endDate = endDate;
+                apply.price = price;
+                apply.project.ID = projectId;
+                apply.projectManager.ID = userId;
+                apply.startDate = startDate;
+                db.ApplyProjectTable.Add(apply);
+                db.SaveChanges();
+                return JsonConvert.SerializeObject(new
+                {
+                    operation = true
+                });
+            }else
+            {
+                return JsonConvert.SerializeObject(new
+                {
+                    operation = false
+                });
+            }    
+        }
+
     }
 }

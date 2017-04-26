@@ -134,6 +134,7 @@
       <DependentUpon>201704221138495_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ApplyProject.cs" />
     <Compile Include="Models\Comments.cs" />
     <Compile Include="Models\DBase.cs" />
     <Compile Include="Models\Feedback.cs" />
