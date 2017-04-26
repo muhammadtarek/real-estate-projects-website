@@ -77,5 +77,15 @@ namespace Project_Apollo.Controllers
             }    
         }
 
+        public object getProject(int projectId)
+        {
+            Project p = db.ProjectTable.Find(projectId);
+            return JsonConvert.SerializeObject(new
+            {
+                projectName = p.Name,
+                projectDescription = p.Description,
+                projectId = p.ID
+            });
+        }
     }
 }
