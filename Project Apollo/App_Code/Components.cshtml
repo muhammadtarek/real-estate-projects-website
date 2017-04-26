@@ -8,6 +8,32 @@
     </div>
 }
 
+<!-- TEXTAREA FIELD COMPONENT -->
+@helper TextArea(string id, string inputName) {
+    <div class="input-field">
+        <label>@inputName</label>
+        <textarea id="@id" placeholder="Describe here..."></textarea>
+        <label class="error-message">Error Message</label>
+    </div>
+}
+
+<!-- DROPDOWN COMPONENT -->
+@helper DropdownField(string id, string inputName, string placeholder, params string[] items) {
+    <div class="input-field">
+        <label>@inputName</label>
+        <input class="dropdown-input" id="@id" type="text" placeholder="@placeholder" readonly />
+        <i class="material-icons dropdown-arrow">arrow_drop_down</i>
+        <ul class="dropdown">
+            @{ 
+                foreach (var item in items) {
+                    <li>@item</li>
+                }
+            }
+        </ul>
+        <label class="error-message">Error Message</label>
+    </div>
+}
+
 <!-- COMMENT COMPONENT -->
 @helper Comment(string id, string userPhoto, string userName, string comment)
 {
