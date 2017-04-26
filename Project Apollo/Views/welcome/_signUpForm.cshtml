@@ -11,11 +11,11 @@
         <label for="signup-photo"></label>
     </div>
 
-    @Components.InputField("signup-name", "Name", "text")
-    @Components.InputField("signup-email", "Email", "text")
-    @Components.InputField("signup-phone", "Phone Number", "text")
-    @Components.InputField("signup-password", "Password", "password")
-    @Components.InputField("signup-repassword", "Repeat your password", "password")
+    @Components.InputField("signup-name", "Name", "text", "text")
+    @Components.InputField("signup-email", "Email", "text", "email")
+    @Components.InputField("signup-phone", "Phone Number", "text", "phone")
+    @Components.InputField("signup-password", "Password", "password", "password")
+    @Components.InputField("signup-repassword", "Repeat your password", "password", "repassword")
     @Components.DropdownField("signup-userrole", "Role", "Choose your role...", "Customer", "Project Manager", "Team Leader", "Jenior Engineer")
     @Components.TextArea("signup-bio", "Write about yourself")
 
