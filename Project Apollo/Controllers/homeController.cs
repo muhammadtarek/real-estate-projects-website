@@ -49,5 +49,73 @@ namespace Project_Apollo.Controllers
                 projectId = p.ID
             });
         }
+
+        public object applyToProject(int userId, int projectId, String applyingLetter, double price, DateTime startDate, DateTime endDate)
+        {
+            var data = (from proj in db.ProjectTable   // query to get the project status before apply
+                       where proj.ID == projectId
+                       select new { proj.status }).ToArray();
+            if ((int)data[0].status == 0) // if project isn't assigned to anyone yet (Waiting)
+            {
+                ApplyProject apply = new ApplyProject();
+                apply.applyingLetter = applyingLetter;
+                apply.endDate = endDate;
+                apply.price = price;
+                apply.project.ID = projectId;
+                apply.projectManager.ID = userId;
+                apply.startDate = startDate;
+                db.ApplyProjectTable.Add(apply);
+                db.SaveChanges();
+                return JsonConvert.SerializeObject(new
+                {
+                    operation = true
+                });
+            }else
+            {
+                return JsonConvert.SerializeObject(new
+                {
+                    operation = false
+                });
+            }    
+        }
+
+
+        public object getProject(int projectId)
+        {
+            Project p = db.ProjectTable.Find(projectId);
+            return JsonConvert.SerializeObject(new
+            {
+                projectName = p.Name,
+                projectDescription = p.Description,
+                projectId = p.ID
+            });
+        }
+
+        public object writeComment(int userId, int projectId, String comment)
+        {
+            var data = (from apply in db.ApplyProjectTable   // query to get the project status before apply
+                        where apply.project.ID == projectId
+                        select apply).ToArray();
+            if (data.Length > 0)
+            {
+                Comments comm = new Comments();
+                comm.comment = comment;
+                comm.project.ID = projectId;
+                comm.projectManager.ID = userId;
+                db.CommentsTable.Add(comm);
+                db.SaveChanges();
+                return JsonConvert.SerializeObject(new
+                {
+                    operation = true
+                });
+            }
+            else
+            {
+                return JsonConvert.SerializeObject(new
+                {
+                    operation = false
+                });
+            }
+        }
     }
 }
