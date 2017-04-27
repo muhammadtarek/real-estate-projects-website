@@ -161,5 +161,17 @@ namespace Project_Apollo.Controllers
                 });
             }
         }
-    }
+
+		public String getUser(int userId)
+		{
+			User u = db.userTable.Find(userId);
+			return JsonConvert.SerializeObject(new
+			{
+				userPhoto = u.Photo,
+				userName = u.name,
+				userBio = u.Description,
+				userRole = Enum.GetName(typeof(userRole), u.UserRole)
+			}, Formatting.Indented);
+		}
+	}
 }
