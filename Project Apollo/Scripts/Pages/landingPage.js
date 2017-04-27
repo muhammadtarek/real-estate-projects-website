@@ -55,4 +55,62 @@
         reader.readAsDataURL(file);
       }
     });
+    $("#btn-signup").click(signUp);
+    $("#btn-login").click(login);
 });
+
+/* Ajax signUp */
+function signUp() {
+    var email = getInputValue("signup-email");
+    var name = getInputValue("signup-name");
+    var phone = getInputValue("signup-phone");
+    var password = getInputValue("signup-password");
+    var userrole = getInputValue("signup-userrole");
+    var bio = getInputValue("signup-bio");
+    var datasend = {
+        userPicture: null,
+        name: name,
+        email: email,
+        password: password,
+        phoneNumber: phone,
+        Desciption: bio,
+        userType : userrole
+    }
+    $.post("/welcome/signUp", datasend, function (data) {
+        rec = JSON.parse(data);
+        console.log(rec);
+        if (rec.result.email !== true) {
+            markInputAs("signup-email", DANGER, rec.result.email);
+        }
+        else {
+            markInputAs("signup-email", SUCCESS, "");
+            var url = "/home/Index?id=" + rec.user.id + "&name=" + rec.user.name + "&userRole=" + rec.user.userRole;
+            window.location.href = url;
+        }
+    });
+}
+
+/* Ajax login */
+function login() {
+    var email = getInputValue("login-email");
+    var password = getInputValue("login-password");
+    var datasend = {
+        email: email,
+        password: password,
+    }
+    $.post("/welcome/login", datasend, function (data) {
+        rec = JSON.parse(data);
+        if(rec.Result.Email !== true){
+            markInputAs("login-email", DANGER, rec.Result.Email);
+        }
+        else if (rec.Result.password !== true) {
+            markInputAs("login-password", DANGER, rec.Result.password);
+        }
+        else{
+            markInputAs("login-email", SUCCESS);
+            markInputAs("login-password", SUCCESS);
+            var url = "/home/Index?id=" + rec.user.id + "&name=" + rec.user.name + "&userRole=" + rec.user.userRole;
+            window.location.href = url;
+        }
+    });
+}

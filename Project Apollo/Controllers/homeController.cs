@@ -12,12 +12,13 @@ namespace Project_Apollo.Controllers
     {
         DBase db = new DBase();
         // GET: Home
-        public ActionResult Index()
+        public ActionResult Index(int id , String name , int userRole , byte[] userPhoto )
         {
+
             ViewBag.showNav = true;
             ViewBag.tabs = new string[4] { "Home", "Profile", "FAQ", "Contact us" };
             ViewBag.userPhoto = "/Public/assets/images/picture.jpg";
-            ViewBag.userName = "Muhammad Tarek";
+            ViewBag.userName = name;
             return View();
         }
         public object deleteProject(int id)
