@@ -55,6 +55,8 @@
         reader.readAsDataURL(file);
       }
     });
+
+    /*Click button ajax part*/
     $("#btn-signup").click(signUp);
     $("#btn-login").click(login);
 });
@@ -67,8 +69,10 @@ function signUp() {
     var password = getInputValue("signup-password");
     var userrole = getInputValue("signup-userrole");
     var bio = getInputValue("signup-bio");
+    var filesSelected = $("#photo-preview").attr('src');
+   //console.log(atob(filesSelected.replace(/^data:image\/[a-z]+;base64,/, "")));
     var datasend = {
-        userPicture: null,
+        userPicture: filesSelected,
         name: name,
         email: email,
         password: password,

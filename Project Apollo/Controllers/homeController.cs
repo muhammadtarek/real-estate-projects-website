@@ -22,7 +22,15 @@ namespace Project_Apollo.Controllers
                 ViewBag.userPhoto = "/Public/assets/images/picture.jpg";
             }
             else
-                ViewBag.userPhoto = user.UserRole;
+            {
+                var img = "";
+                if (user.Photo != null)
+                {
+                    var base64 = Convert.ToBase64String(user.Photo);
+                    img = String.Format("data:image/gif;base64,{0}", base64);
+                }
+                ViewBag.userPhoto = img;
+            }
             ViewBag.userName = user.name;
             return View();
         }

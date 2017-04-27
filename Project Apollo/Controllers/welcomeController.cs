@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 namespace Project_Apollo.Controllers
@@ -82,13 +83,13 @@ namespace Project_Apollo.Controllers
             return null;
         }
 
-        public object signUp(HttpPostedFileBase userPicture, string name, string email, string password, string phoneNumber, string Desciption, int userType = 1)
+        public object signUp(string userPicture, string name, string email, string password, string phoneNumber, string Desciption, int userType = 1)
         {
-
+    
             var v = (from a in db.userTable
                      where a.Email == email
                      select a.Email);
-
+            userPicture = new Regex("^data:image\\/[a-z]+;base64,").Replace(userPicture, "");
             if (v.Count() > 0)
             {
                 return JsonConvert.SerializeObject(new
@@ -115,31 +116,9 @@ namespace Project_Apollo.Controllers
                 user.Mobile = phoneNumber;
                 user.UserRole = (userRole)userType;
                 user.Description = Desciption;
-
-                if (userPicture != null)
-                {
-                    using (MemoryStream ms = new MemoryStream())
-                    {
-                        userPicture.InputStream.CopyTo(ms);
-                        byte[] arr = ms.GetBuffer();
-                        user.Photo = arr;
-                    }
-                }
+                user.Photo = System.Convert.FromBase64String(userPicture);
                 db.userTable.Add(user);
                 db.SaveChanges();
-
-                var img = "";
-                if (user.Photo != null)
-                {
-                    var base64 = Convert.ToBase64String(user.Photo);
-                    img = String.Format("data:image/gif;base64,{0}", base64);
-                }
-
-                ViewBag.userPhoto = img;
-                ViewBag.userName = user.name;
-                ViewBag.userID = user.ID;
-                ViewBag.userRole = user.UserRole;
-
 
                 return JsonConvert.SerializeObject(new
                 {
@@ -152,7 +131,7 @@ namespace Project_Apollo.Controllers
                         id = user.ID,
                         name = user.name,
                         userRole = userType,
-                        userPhoto = img
+                        userPhoto = user.Photo
                     }
                 });
             }
