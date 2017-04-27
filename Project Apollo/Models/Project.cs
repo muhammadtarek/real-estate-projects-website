@@ -10,7 +10,8 @@ namespace Project_Apollo.Models
     {
         waiting = 0,
         inProgress = 1,
-        deliverd = 2
+        deliverd = 2,
+        pending = 3
     }
     public class Project
     {
