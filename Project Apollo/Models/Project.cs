@@ -26,8 +26,8 @@ namespace Project_Apollo.Models
         public status status { get; set; }
         public Double price { get; set; }
         public DateTime createDate { get; set; } = DateTime.Now;
-        public DateTime startDate { get; set; }
-        public DateTime endDate { get; set; }
+        public DateTime? startDate { get; set; }
+        public DateTime? endDate { get; set; }
         public ICollection<User> workers { get; set; }
         public ICollection<Comments> comments { get; set; }
 
