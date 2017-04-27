@@ -27,6 +27,10 @@ namespace Project_Apollo.Controllers
 
             if (data.Length != 0 && password.Equals(data[0].Password)) // if email & password TRUE
             {
+                ViewBag.id = data[0].ID;
+                ViewBag.name = data[0].name;
+                ViewBag.userRole = data[0].UserRole;
+                ViewBag.userPhoto = data[0].Photo;
                 return JsonConvert.SerializeObject(new
                 {
                     Result = new
