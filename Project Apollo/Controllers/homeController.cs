@@ -79,8 +79,26 @@ namespace Project_Apollo.Controllers
             }    
         }
 
+		[HttpPost]
+		public string createProject(string projectName, string projectDescription, int userId)
+		{
+			Project project = db.ProjectTable.Add(new Project()
+			{
+				Name = projectName,
+				Description = projectDescription,
+				customer = db.userTable.Find(userId),
+			});
+			db.SaveChanges();
+			return JsonConvert.SerializeObject(new
+			{
+				postingTime = project.createDate,
+				projectName = project.Name,
+				projectDescription = project.Description,
+				projectId = project.ID
+			}, Formatting.Indented);
+		}
 
-        public object getProject(int projectId)
+	    public object getProject(int projectId)
         {
             Project p = db.ProjectTable.Find(projectId);
             return JsonConvert.SerializeObject(new
