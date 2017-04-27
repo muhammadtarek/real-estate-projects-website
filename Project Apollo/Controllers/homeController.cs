@@ -87,8 +87,8 @@ namespace Project_Apollo.Controllers
 				Name = projectName,
 				Description = projectDescription,
 				customer = db.userTable.Find(userId),
-				createDate = DateTime.Now
 			});
+			db.SaveChanges();
 			return JsonConvert.SerializeObject(new
 			{
 				postingTime = project.createDate,
