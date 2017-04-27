@@ -84,7 +84,7 @@ function signUp() {
         }
         else {
             markInputAs("signup-email", SUCCESS, "");
-            var url = "/home/Index?id=" + rec.user.id + "&name=" + rec.user.name + "&userRole=" + rec.user.userRole;
+            var url = "/home/Index?id=" + rec.user.id;
             window.location.href = url;
         }
     });
@@ -109,7 +109,7 @@ function login() {
         else{
             markInputAs("login-email", SUCCESS);
             markInputAs("login-password", SUCCESS);
-            var url = "/home/Index?id=" + rec.user.id + "&name=" + rec.user.name + "&userRole=" + rec.user.userRole;
+            var url = "/home/Index?id=" + rec.user.id;
             window.location.href = url;
         }
     });
