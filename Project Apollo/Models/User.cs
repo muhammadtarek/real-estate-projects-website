@@ -17,13 +17,9 @@ namespace Project_Apollo.Models
     {
         public int ID { get; set; }
         public Byte[] Photo { get; set; }
-        [Required]
         public String Description { get; set; }
-        [Required]
         public String name { get; set; }
-        [StringLength(11), Required]
         public String Mobile { get; set; }
-        [RegularExpression("\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*"), Required]
         public String Email { get; set; }
         public String Password { get; set; }
 
