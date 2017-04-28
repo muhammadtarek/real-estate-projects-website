@@ -8,16 +8,19 @@ namespace Project_Apollo.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.Comments",
+                "dbo.ApplyProjects",
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
-                        comment = c.String(),
+                        price = c.Double(nullable: false),
+                        applyingLetter = c.String(),
+                        startDate = c.DateTime(nullable: false),
+                        endDate = c.DateTime(nullable: false),
                         project_ID = c.Int(),
                         projectManager_ID = c.Int(),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Projects", t => t.project_ID)
+                .ForeignKey("dbo.Projects", t => t.project_ID, cascadeDelete: true)
                 .ForeignKey("dbo.Users", t => t.projectManager_ID)
                 .Index(t => t.project_ID)
                 .Index(t => t.projectManager_ID);
@@ -30,9 +33,10 @@ namespace Project_Apollo.Migrations
                         Name = c.String(nullable: false),
                         Description = c.String(nullable: false),
                         status = c.Int(nullable: false),
-                        price = c.Int(nullable: false),
-                        startDate = c.DateTime(nullable: false),
-                        endDate = c.DateTime(nullable: false),
+                        price = c.Double(),
+                        createDate = c.DateTime(nullable: false),
+                        startDate = c.DateTime(),
+                        endDate = c.DateTime(),
                         customer_ID = c.Int(),
                         projectManager_ID = c.Int(),
                         teamLeader_ID = c.Int(),
@@ -46,6 +50,21 @@ namespace Project_Apollo.Migrations
                 .Index(t => t.teamLeader_ID);
             
             CreateTable(
+                "dbo.Comments",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        comment = c.String(),
+                        projectManager_ID = c.Int(),
+                        project_ID = c.Int(),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Users", t => t.projectManager_ID)
+                .ForeignKey("dbo.Projects", t => t.project_ID, cascadeDelete: true)
+                .Index(t => t.projectManager_ID)
+                .Index(t => t.project_ID);
+            
+            CreateTable(
                 "dbo.Users",
                 c => new
                     {
@@ -55,6 +74,7 @@ namespace Project_Apollo.Migrations
                         name = c.String(nullable: false),
                         Mobile = c.String(nullable: false, maxLength: 11),
                         Email = c.String(nullable: false),
+                        Password = c.String(),
                         UserRole = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID);
@@ -99,20 +119,20 @@ namespace Project_Apollo.Migrations
                     {
                         ID = c.Int(nullable: false, identity: true),
                         requestType = c.String(),
-                        project_ID = c.Int(),
                         reciever_ID = c.Int(),
                         sender_ID = c.Int(),
                         User_ID = c.Int(),
+                        project_ID = c.Int(),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Projects", t => t.project_ID)
                 .ForeignKey("dbo.Users", t => t.reciever_ID)
                 .ForeignKey("dbo.Users", t => t.sender_ID)
                 .ForeignKey("dbo.Users", t => t.User_ID)
-                .Index(t => t.project_ID)
+                .ForeignKey("dbo.Projects", t => t.project_ID, cascadeDelete: true)
                 .Index(t => t.reciever_ID)
                 .Index(t => t.sender_ID)
-                .Index(t => t.User_ID);
+                .Index(t => t.User_ID)
+                .Index(t => t.project_ID);
             
             CreateTable(
                 "dbo.Reports",
@@ -148,48 +168,53 @@ namespace Project_Apollo.Migrations
         {
             DropForeignKey("dbo.Reports", "projectManager_ID", "dbo.Users");
             DropForeignKey("dbo.Reports", "customer_ID", "dbo.Users");
-            DropForeignKey("dbo.Comments", "projectManager_ID", "dbo.Users");
             DropForeignKey("dbo.WorksFor", "UserId", "dbo.Users");
             DropForeignKey("dbo.WorksFor", "ProjectId", "dbo.Projects");
             DropForeignKey("dbo.Projects", "teamLeader_ID", "dbo.Users");
+            DropForeignKey("dbo.Requests", "project_ID", "dbo.Projects");
             DropForeignKey("dbo.Projects", "projectManager_ID", "dbo.Users");
             DropForeignKey("dbo.Projects", "customer_ID", "dbo.Users");
+            DropForeignKey("dbo.Comments", "project_ID", "dbo.Projects");
+            DropForeignKey("dbo.Comments", "projectManager_ID", "dbo.Users");
             DropForeignKey("dbo.Requests", "User_ID", "dbo.Users");
             DropForeignKey("dbo.Requests", "sender_ID", "dbo.Users");
             DropForeignKey("dbo.Requests", "reciever_ID", "dbo.Users");
-            DropForeignKey("dbo.Requests", "project_ID", "dbo.Projects");
             DropForeignKey("dbo.Qualifications", "user_ID", "dbo.Users");
             DropForeignKey("dbo.Feedbacks", "User_ID", "dbo.Users");
             DropForeignKey("dbo.Feedbacks", "teamLeader_ID", "dbo.Users");
             DropForeignKey("dbo.Feedbacks", "projectManager_ID", "dbo.Users");
             DropForeignKey("dbo.Feedbacks", "juniorEngineering_ID", "dbo.Users");
-            DropForeignKey("dbo.Comments", "project_ID", "dbo.Projects");
+            DropForeignKey("dbo.ApplyProjects", "projectManager_ID", "dbo.Users");
+            DropForeignKey("dbo.ApplyProjects", "project_ID", "dbo.Projects");
             DropIndex("dbo.WorksFor", new[] { "UserId" });
             DropIndex("dbo.WorksFor", new[] { "ProjectId" });
             DropIndex("dbo.Reports", new[] { "projectManager_ID" });
             DropIndex("dbo.Reports", new[] { "customer_ID" });
+            DropIndex("dbo.Requests", new[] { "project_ID" });
             DropIndex("dbo.Requests", new[] { "User_ID" });
             DropIndex("dbo.Requests", new[] { "sender_ID" });
             DropIndex("dbo.Requests", new[] { "reciever_ID" });
-            DropIndex("dbo.Requests", new[] { "project_ID" });
             DropIndex("dbo.Qualifications", new[] { "user_ID" });
             DropIndex("dbo.Feedbacks", new[] { "User_ID" });
             DropIndex("dbo.Feedbacks", new[] { "teamLeader_ID" });
             DropIndex("dbo.Feedbacks", new[] { "projectManager_ID" });
             DropIndex("dbo.Feedbacks", new[] { "juniorEngineering_ID" });
+            DropIndex("dbo.Comments", new[] { "project_ID" });
+            DropIndex("dbo.Comments", new[] { "projectManager_ID" });
             DropIndex("dbo.Projects", new[] { "teamLeader_ID" });
             DropIndex("dbo.Projects", new[] { "projectManager_ID" });
             DropIndex("dbo.Projects", new[] { "customer_ID" });
-            DropIndex("dbo.Comments", new[] { "projectManager_ID" });
-            DropIndex("dbo.Comments", new[] { "project_ID" });
+            DropIndex("dbo.ApplyProjects", new[] { "projectManager_ID" });
+            DropIndex("dbo.ApplyProjects", new[] { "project_ID" });
             DropTable("dbo.WorksFor");
             DropTable("dbo.Reports");
             DropTable("dbo.Requests");
             DropTable("dbo.Qualifications");
             DropTable("dbo.Feedbacks");
             DropTable("dbo.Users");
-            DropTable("dbo.Projects");
             DropTable("dbo.Comments");
+            DropTable("dbo.Projects");
+            DropTable("dbo.ApplyProjects");
         }
     }
 }

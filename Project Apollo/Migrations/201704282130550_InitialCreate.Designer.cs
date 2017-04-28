@@ -13,7 +13,7 @@ namespace Project_Apollo.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201704221138495_InitialCreate"; }
+            get { return "201704282130550_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source
