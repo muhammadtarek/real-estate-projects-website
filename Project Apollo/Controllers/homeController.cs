@@ -12,12 +12,26 @@ namespace Project_Apollo.Controllers
     {
         DBase db = new DBase();
         // GET: Home
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
+            User user = db.userTable.Find(id);
             ViewBag.showNav = true;
             ViewBag.tabs = new string[4] { "Home", "Profile", "FAQ", "Contact us" };
-            ViewBag.userPhoto = "/Public/assets/images/picture.jpg";
-            ViewBag.userName = "Muhammad Tarek";
+            if (user.Photo == null)
+            {
+                ViewBag.userPhoto = "/Public/assets/images/picture.jpg";
+            }
+            else
+            {
+                var img = "";
+                if (user.Photo != null)
+                {
+                    var base64 = Convert.ToBase64String(user.Photo);
+                    img = String.Format("data:image/gif;base64,{0}", base64);
+                }
+                ViewBag.userPhoto = img;
+            }
+            ViewBag.userName = user.name;
             return View();
         }
         public object deleteProject(int id)
