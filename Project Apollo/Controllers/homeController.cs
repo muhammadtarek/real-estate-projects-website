@@ -159,6 +159,11 @@ namespace Project_Apollo.Controllers
             var arr = db.ProjectTable.Where(x => ((int)x.status) == 1).ToList();
             return View(arr);
         }
+        public object loadFinishedProjects()
+        {
+            var arr = db.ProjectTable.Where(x => ((int)x.status) == 2).ToList();
+            return View(arr);
+        }
 
     }
 }
