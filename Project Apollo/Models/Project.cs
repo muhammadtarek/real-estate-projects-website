@@ -16,9 +16,9 @@ namespace Project_Apollo.Models
     public class Project
     {
         public int ID { get; set; }
-        public User customer { get; set; }
-        public User projectManager { get; set; }
-        public User teamLeader { get; set; }
+        public virtual User customer { get; set; }
+        public virtual User projectManager { get; set; }
+        public virtual User teamLeader { get; set; }
         [Required]
         public String Name { get; set; }
         [Required]
@@ -29,8 +29,8 @@ namespace Project_Apollo.Models
         public DateTime createDate { get; set; } = DateTime.Now;
         public DateTime? startDate { get; set; }
         public DateTime? endDate { get; set; }
-        public ICollection<User> workers { get; set; }
-        public ICollection<Comments> comments { get; set; }
+        public virtual ICollection<User> workers { get; set; }
+        public virtual ICollection<Comments> comments { get; set; }
 
     }
 }
