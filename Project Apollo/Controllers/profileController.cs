@@ -14,6 +14,12 @@ namespace Project_Apollo.Controllers
             return View();
         }
 
+
+        public void declineProject(int projectID)
+        {
+            var Result = new HomeController().deleteProject(projectID);
+        }
+
        
     }
 
