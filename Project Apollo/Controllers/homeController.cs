@@ -154,9 +154,9 @@ namespace Project_Apollo.Controllers
             var arr = db.ProjectTable.Where(x => ((int)x.status) == 0).ToList();
             return View(arr);
         }
-        public object loadAssignedProjects()
+        public object loadAssignedProjects(int userId)
         {
-            var arr = db.ProjectTable.Where(x => ((int)x.status) == 1).ToList();
+            var arr = db.ProjectTable.Where(x => ((int)x.status) == 1 && x.projectManager.ID == userId).ToList();
             return View(arr);
         }
 
