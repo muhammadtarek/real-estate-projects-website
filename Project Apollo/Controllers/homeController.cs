@@ -151,6 +151,11 @@ namespace Project_Apollo.Controllers
         }
         public object loadUnassignedProjects()
         {
+            var arr = db.ProjectTable.Where(x => ((int)x.status) == 0).ToList();
+            return View(arr);
+        }
+        public object loadAssignedProjects()
+        {
             var arr = db.ProjectTable.Where(x => ((int)x.status) == 1).ToList();
             return View(arr);
         }
