@@ -10,9 +10,7 @@ namespace Project_Apollo.Models
     {
         public int ID { get; set; }
         public virtual User user { get; set; }
-        [Required]
         public String qialificationName { get; set; }
-        [Required]
         public int percentage { get; set; }
         
     }
