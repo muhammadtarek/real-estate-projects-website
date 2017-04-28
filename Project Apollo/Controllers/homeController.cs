@@ -165,5 +165,13 @@ namespace Project_Apollo.Controllers
             return View(arr);
         }
 
+        public ActionResult getUsers()
+        {
+            var data = (from usr in db.userTable
+                        select usr).ToList();
+           return View(data);
+        }
+
+
     }
 }
