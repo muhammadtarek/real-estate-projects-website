@@ -149,89 +149,11 @@ namespace Project_Apollo.Controllers
                 });
             }
         }
-        public object loadProjects(int projectStatus)
+        public object loadUnassignedProjects()
         {
-            var projectData = (from proj in db.ProjectTable   // query to get all of the projects with the wanted status
-                               join usr in db.userTable on proj.customer.ID equals usr.ID
-                               where (int)proj.status == projectStatus
-                               select new { proj.ID, proj.Description, proj.Name, proj.createDate, usr.Photo, usr.name }).ToList();
-
-            ICollection<object> allProjects = new List<object>(); // this array should be returned
-
-            int i = 0;
-            if (projectStatus == 0 || projectStatus == 1 || projectStatus == 2) //Waiting or inProgress or finished
-            {
-                
-                foreach (var x in projectData)
-                {
-                    List<int> managersID = new List<int>();
-                    if (projectStatus == 0) //GET DATA FROM ApplyProjectTable (waiting)
-                    {                       
-                       var ManagerData = (from appProj in db.ApplyProjectTable   // query to get all of the applied Managers for specific project
-                                       where appProj.project.ID == x.ID
-                                       select new { appProj.projectManager.ID }).ToArray();
-                        foreach (var y in ManagerData)
-                        {
-                            managersID.Add(y.ID);  // for waiting it will have many records
-                        }
-                    }
-                    else //GET DATA FROM projectTable (inProgress & finished)
-                    {
-                        var ManagerData = (from appProj in db.ProjectTable  // query to get the applied Managers for specific project
-                                       where appProj.ID == x.ID
-                                       select new { appProj.projectManager.ID }).ToArray();
-                        foreach (var y in ManagerData)
-                        {
-                            managersID.Add(y.ID);  // for inProgress & finished it will have only one record
-                        }
-                    }
-
-                    ICollection<object> commentsArr = new List<object>();
-                    
-                    List<String> finalResultofIDs = new List<String>();
-                    
-                    var result = String.Join(",", managersID);
-                    
-                    finalResultofIDs = result.Split(',').ToList();
-                    //finalResultofIDs = result.Split(',').Select(int.Parse).ToList(); // split the string by ( , ) to INT LIST 
-
-                    if (projectStatus == 0) // if it was waiting so it will have comments
-                    {
-                        var commentData = (from comm in db.CommentsTable   // query to get all of the comments
-                                           where comm.project.ID == x.ID
-                                           select new { comm.projectManager.name, comm.projectManager.Photo, comm.comment }).ToArray();
-                        foreach (var y in commentData)
-                        {
-                            commentsArr.Add(new
-                            {
-                                userPhoto = y.Photo,
-                                userName = y.name,
-                                userComment = y.comment
-                            });
-                        }
-                    }
-                    else // if it was inProgress or finished it willn't have comments anymore
-                    {
-                        commentsArr.Add("");
-                    }
-
-                    allProjects.Add(
-                        new
-                        {
-                            userPhoto = projectData[i].Photo,
-                            userName = projectData[i].name,
-                            postingTime = projectData[i].createDate,
-                            projectName = projectData[i].Name,
-                            projectDescription = projectData[i].Description,
-                            projectId = projectData[i].ID,
-                            appliedProjectManagers = finalResultofIDs,
-                            userComment = commentsArr
-                        });
-                    i++;
-                }
-                return JsonConvert.SerializeObject(allProjects);
-            }
-            return null;
+            var arr = db.ProjectTable.Where(x => ((int)x.status) == 1).ToList();
+            return View(arr);
         }
+
     }
 }
