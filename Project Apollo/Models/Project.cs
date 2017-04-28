@@ -8,30 +8,30 @@ namespace Project_Apollo.Models
 {
     public enum status
     {
-        waiting,
-        inProgress,
-        deliverd
+        waiting = 0,
+        inProgress = 1,
+        deliverd = 2,
+        pending = 3
     }
     public class Project
     {
         public int ID { get; set; }
-        public User customer { get; set; }
-        public User projectManager { get; set; }
-        public User teamLeader { get; set; }
+        public virtual User customer { get; set; }
+        public virtual User projectManager { get; set; }
+        public virtual User teamLeader { get; set; }
         [Required]
         public String Name { get; set; }
         [Required]
         public String Description { get; set; }
         [ScaffoldColumn(false)]
         public status status { get; set; }
-        [Required]
-        public int price { get; set; }
-        [Required]
-        public DateTime startDate { get; set; }
-        [Required]
-        public DateTime endDate { get; set; }
-        public ICollection<User> users { get; set; }
-        public ICollection<Comments> Comments { get; set; }
+        public Double price { get; set; }
+        public DateTime createDate { get; set; } = DateTime.Now;
+        public DateTime? startDate { get; set; }
+        public DateTime? endDate { get; set; }
+        public virtual ICollection<User> workers { get; set; }
+        public virtual ICollection<Comments> comments { get; set; }
+        public virtual ICollection<ApplyProject> applied { get; set; }
 
     }
 }

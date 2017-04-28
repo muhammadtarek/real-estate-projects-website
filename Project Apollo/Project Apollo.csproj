@@ -59,6 +59,9 @@
     <Reference Include="Migrations, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Migrations.1.0.1.0\lib\net40-Client\Migrations.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -111,22 +114,26 @@
     <Content Include="Public\assets\images\logo-dark.png" />
     <Content Include="Public\assets\images\logo-white.png" />
     <Content Include="Public\assets\images\picture.jpg" />
-    <Content Include="Public\main.bundle.js" />
-    <Content Include="Public\style.min.css" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <Content Include="Styles\bootstrap.min.css" />
+    <Content Include="Scripts\Components\InputField.js" />
+    <Content Include="Scripts\Pages\HomePage.js" />
+    <Content Include="Scripts\Pages\LandingPage.js" />
+    <Content Include="Scripts\Validation.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\homeController.cs" />
     <Compile Include="Controllers\profileController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\welcomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704221138495_InitialCreate.cs" />
+    <Compile Include="Migrations\201704221138495_InitialCreate.Designer.cs">
+      <DependentUpon>201704221138495_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ApplyProject.cs" />
     <Compile Include="Models\Comments.cs" />
     <Compile Include="Models\DBase.cs" />
     <Compile Include="Models\Feedback.cs" />
@@ -147,14 +154,13 @@
     <Content Include="Styles\modules\_dropshadows.scss" />
     <Content Include="Styles\modules\_fonts.scss" />
     <Content Include="Styles\modules\_mixins.scss" />
-    <Content Include="Styles\partials\_base.scss" />
-    <Content Include="Styles\partials\_buttons.scss" />
-    <Content Include="Styles\partials\_input-fields.scss" />
-    <Content Include="Styles\partials\_snackbar.scss" />
-    <Content Include="Styles\partials\_typography.scss" />
+    <Content Include="Styles\components\_buttons.scss" />
+    <Content Include="Styles\components\_input-fields.scss" />
+    <Content Include="Styles\components\_snackbar.scss" />
+    <Content Include="Styles\components\_typography.scss" />
     <Content Include="Styles\style.scss" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_app.cshtml" />
+    <Content Include="Views\Shared\_welcomeLayout.cshtml" />
     <Content Include="Views\welcome\index.cshtml" />
     <Content Include="Views\welcome\_loginForm.cshtml" />
     <Content Include="Views\welcome\_signUpForm.cshtml" />
@@ -171,11 +177,15 @@
     <Content Include="Styles\pages\_base.scss" />
     <Content Include="Styles\pages\_landing-page.scss" />
     <Content Include="Styles\_global.scss" />
-    <Content Include="Views\Users\Create.cshtml" />
-    <Content Include="Views\Users\Delete.cshtml" />
-    <Content Include="Views\Users\Details.cshtml" />
-    <Content Include="Views\Users\Edit.cshtml" />
-    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="App_Code\Projects.cshtml" />
+    <Content Include="Views\home\_createProjectForm.cshtml" />
+    <Content Include="Styles\components\_page-container.scss" />
+    <Content Include="Styles\components\_project.scss" />
+    <Content Include="Styles\components\_card.scss" />
+    <Content Include="Styles\components\_project-post.scss" />
+    <Content Include="Views\Shared\_homeLayout.cshtml" />
+    <Content Include="Views\Shared\_highProfile.cshtml" />
+    <Content Include="Views\Shared\_lowProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -187,8 +197,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\Components\" />
-    <Folder Include="Scripts\Pages\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201704221138495_InitialCreate.resx">
+      <DependentUpon>201704221138495_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,194 @@
+﻿.project-cotnainer {
+    overflow: hidden;
+    max-width: 550px !important;
+    margin-bottom: 15px;
+
+    @include box-shadow(1px, 1px, 1px, rgba(70, 70, 73, 0.15), false);
+    @include rounded(4px 4px 0px 0px);
+
+    .project {
+        width: 100%;
+        background-color: #fff;
+        padding: 20px;
+        padding-bottom: 15px;
+
+        .owner-container {
+            .owner-info {
+                display: inline-block !important;
+                max-height: 40px;
+
+                img {
+                    display: inline-grid;
+
+                    @include rounded(2);
+                }
+
+                div {
+                    display: inline-grid;
+                    position: relative;
+                    top: -10px;
+                    left: 10px;
+                    min-width: 150px;
+                    max-width: 300px;
+                    max-height: 40px;
+
+                    .name,
+                    .time {
+                        display: block !important;
+                        width: 100%;
+                        position: relative;
+                    }
+
+                    .name {
+                        font-size: $body;
+                        font-weight: $semi-bold;
+                        color: $primary-color-dark;
+                        margin-bottom: 3px;
+                    }
+
+                    .time {
+                        font-size: $default;
+                        font-weight: $light;
+                        color: $medium-gray-color;
+                        margin-bottom: 0;
+                    }
+                }
+            }
+
+            .project-controls {
+                display: inline-block !important;
+                float: right;
+
+                button {
+                    position: relative;
+                    background: transparent;
+                    border: 1px solid transparent !important;
+
+                    &.apply-btn {
+                        padding: 8px 15px !important;
+                        color: $medium-gray-color !important;
+                        font-size: 14px !important;
+
+                        &:hover {
+                            border-color: $medium-gray-color !important;
+                        }
+
+                        &:disabled {
+                            color: #fff !important;
+                            background-color: $primary-color;
+                            border-color: $primary-color;
+
+                            &:hover {
+                                border-color: $primary-color !important;
+                            }
+                        }
+                    }
+
+                    &.delete-btn,
+                    &.edit-btn {
+                        padding: 8px !important;
+                        font-size: $default;
+                        height: 34px;
+                        width: 34px;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: 18px;
+                    }
+
+                    &.edit-btn {
+                        background-image: url(assets/icons/edit.svg);
+                        margin-right: 4px;
+
+                        &:hover {
+                            border-color: $medium-gray-color !important;
+                        }
+                    }
+
+                    &.delete-btn {
+                        background-image: url(assets/icons/delete.svg);
+
+                        &:hover {
+                            border-color: $danger-color !important;
+                        }
+                    }
+                }
+            }
+        }
+
+        .details {
+            h4 {
+                font-size: $sub-heading;
+                color: $darker-gray-color;
+                font-size: $semi-bold;
+                margin-top: 15px;
+            }
+
+            p {
+                font-size: $body;
+                color: $dark-gray-color;
+                margin: 0 !important;
+            }
+        }
+    }
+
+    .comments-container {
+        background-color: rgba(144,146,165, 0.06);
+        overflow: hidden;
+
+        .comment-input {
+            padding: 4px 20px !important;
+            margin-bottom: 3px;
+
+            input {
+                position: relative;
+                left: 5px;
+                top: 2px;
+                height: 35px;
+                width: 460px;
+                padding: 7px;
+                outline: none;
+
+                @include rounded(2);
+                @include transition(all 150ms ease);
+
+                @include placeholder {
+                    color: $dark-gray-color;
+                    font-weight: $light;
+                }
+            }
+        }
+
+        .comment {
+            padding: 4px 20px;
+            display: block;
+            overflow: hidden;
+
+            img {
+                float: left;
+            }
+
+            .details {
+                float: left;
+                position: relative;
+                top: -3px;
+                left: 10px;
+
+                label {
+                    font-size: 14px;
+                    display: block;
+                    margin-bottom: 0 !important;
+                }
+
+                .name {
+                    color: $darker-gray-color;
+                    font-weight: $semi-bold;
+                }
+
+                .comment-text {
+                    color: $dark-gray-color;
+                    font-weight: $medium;
+                }
+            }
+        }
+    }
+}

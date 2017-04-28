@@ -9,9 +9,9 @@ namespace Project_Apollo.Models
     public class Requests
     {
         public int ID { get; set; }
-        public User sender { get; set; }
-        public User reciever { get; set; }
-        public Project project { get; set; }
+        public virtual User sender { get; set; }
+        public virtual User reciever { get; set; }
+        public virtual Project project { get; set; }
         [ScaffoldColumn(false)]
         public string requestType { get; set; }
     }

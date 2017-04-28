@@ -5,12 +5,12 @@
 	margin-bottom: 0px;
 
 	li {
-		display: inline-block;
+		display: inline-block !important;
 		cursor: pointer;
 		font-family: $font;
 		color: $medium-gray-color;
 		padding: 15px 15px 13px 15px;
-		font-size: $default;
+		font-size: $body;
 		border-bottom: 2px solid transparent;
 
 		@include transition(all 150ms ease-in);

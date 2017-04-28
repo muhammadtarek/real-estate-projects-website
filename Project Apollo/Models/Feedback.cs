@@ -10,9 +10,9 @@ namespace Project_Apollo.Models
     {
         public int ID { get; set; }
 
-        public User teamLeader { get; set; }
-        public User projectManager { get; set; }
-        public User juniorEngineering { get; set; }
+        public virtual User teamLeader { get; set; }
+        public virtual User projectManager { get; set; }
+        public virtual User juniorEngineering { get; set; }
         [Required]
         public string feedBack { get; set; }
     }

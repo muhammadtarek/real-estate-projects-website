@@ -55,3 +55,65 @@
 		}
 	}
 }
+
+#signup-form {
+
+  .photo-picker {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    background-color: $light-gray-color;
+    margin-bottom: 15px;
+    margin-left: 175px;
+    position: relative;
+
+    @include rounded();
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    input {
+      width: 0.1px;
+      height: 0.1px;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: -1;
+      display: none;
+    }
+
+    label {
+      background-color: rgba(0, 0, 0, 0.2);
+      display: inline-block;
+      z-index: 99;
+      position: absolute;
+      top: 0;
+      left: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+      border: 4px solid transparent;
+      background-image: url(assets/icons/camera.svg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 50px;
+
+      @include transition(all 150ms ease-in);
+    }
+
+    label:hover {
+      border-color: $primary-color;
+      background-image: url(assets/icons/camera-hover.svg);
+    }
+  }
+
+  .input-field {
+    .dropdown {
+      max-height: 150px;
+      overflow: auto;
+    }
+  }
+}
