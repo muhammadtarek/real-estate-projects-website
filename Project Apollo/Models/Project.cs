@@ -31,6 +31,7 @@ namespace Project_Apollo.Models
         public DateTime? endDate { get; set; }
         public virtual ICollection<User> workers { get; set; }
         public virtual ICollection<Comments> comments { get; set; }
+        public virtual ICollection<ApplyProject> applied { get; set; }
 
     }
 }
