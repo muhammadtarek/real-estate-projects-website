@@ -13,7 +13,6 @@ namespace Project_Apollo.Models
         public virtual User teamLeader { get; set; }
         public virtual User projectManager { get; set; }
         public virtual User juniorEngineering { get; set; }
-        [Required]
         public string feedBack { get; set; }
     }
 }

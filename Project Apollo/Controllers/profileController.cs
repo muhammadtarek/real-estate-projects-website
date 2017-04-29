@@ -9,8 +9,8 @@ namespace Project_Apollo.Controllers
 {
     public class profileController : Controller
     {
-        private DBase db = new DBase();
-
+        DBase db = new DBase();
+        
         // GET: profile
         public ActionResult Index()
         {
@@ -42,6 +42,13 @@ namespace Project_Apollo.Controllers
             User u = db.userTable.Find(userId);
             p.workers.Remove(u);
             db.SaveChanges();
+        }
+
+        public object loadPendingProjects()
+        {
+            int status = 3;
+            List<Project> projects = db.ProjectTable.Where(x => ((int)x.status) == status).ToList();
+            return View(projects);
         }
 
     }
