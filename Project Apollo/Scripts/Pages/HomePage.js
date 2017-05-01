@@ -1,4 +1,4 @@
-﻿$(window).ready(function() {
+﻿$(window).ready(function () {
     var selectedPostId;
 
     //Deleting a project post
@@ -19,12 +19,43 @@
         var projectContainer = $(this).parent().parent().parent().parent();
         selectedPostId = $(projectContainer).attr("id");
         $("#customer-form").attr("formAction", "edit");
+        $("#call-to-action").html("Update Project");
+        $("#customer-form").attr("formaction", "edit");
 
-        //Getting project details
-        $.post("/home/getProject", {projectId : selectedPostId }, function (projectData) {
-            projectDetails = JSON.parse(projectData);
-            $("#project-name").val(projectDetails.Name);
-            $("#project-description").val(projectDetails.Description);
-        });
+        var projectName = $(projectContainer).find("h4.name")[0].innerHTML;
+        var projectDescription = $(projectContainer).find("p.description")[0].innerHTML;
+
+        $("#project-name").val(projectName);
+        $("#project-description").val(projectDescription);
+    });
+
+    //Creating or updating project
+    $("#call-to-action").click(function () {
+        var projectName = $("#project-name").val();
+        var projectDescription = $("#project-description").val();
+
+        //Creating new project
+        if ($("#customer-form").attr("formaction") === "create") {
+            $.post("/home/createProject",
+            );
+        } //Updating project
+        else {
+            $.post("/home/updateProject", {
+                projectName: projectName,
+                projectDescription: projectDescription,
+                projectId: selectedPostId
+            },
+                function () {
+                    var projectName = $("#project-name").val();
+                    var projectDescription = $("#project-description").val();
+                    $("#project-name").val("");
+                    $("#project-description").val("");
+                    $("#call-to-action").html("Create Project");
+                    $("#customer-form").attr("formaction", "create");
+
+                    $("#" + selectedPostId).find("h4.name")[0].innerHTML = projectName;
+                    $("#" + selectedPostId).find("p.description")[0].innerHTML = projectDescription;
+                });
+        }
     });
 });
