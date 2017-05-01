@@ -10,7 +10,7 @@ namespace Project_Apollo.Controllers {
 	public class HomeController : Controller {
 		DBase db = new DBase();
 		// GET: Home
-		public ActionResult Index(int id = 3) {
+		public ActionResult Index(int id = 4) {
 			User user = db.userTable.Find(id);
 			ViewBag.showNav = true;
 			ViewBag.tabs = new string[4] { "Home", "Profile", "FAQ", "Contact us" };
@@ -104,8 +104,7 @@ namespace Project_Apollo.Controllers {
 			Project p = db.ProjectTable.Find(projectId);
 			return JsonConvert.SerializeObject(new {
 				projectName = p.Name,
-				projectDescription = p.Description,
-				projectId = p.ID
+				projectDescription = p.Description
 			});
 		}
 
