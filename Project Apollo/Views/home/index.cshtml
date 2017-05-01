@@ -6,7 +6,7 @@
 <div class="page-container" style="margin-top: 101px">
     <div class="col-md-5 no-padding">
         @{
-            if ((int)ViewBag.userRole == 0 || (int)ViewBag.userRole == 1) {
+            if (ViewBag.userRole == 0 || ViewBag.userRole == 1) {
                 @Html.Partial("_createProjectForm")
             } else {
                 @Html.Partial("_applyToProjectForm")
@@ -16,7 +16,7 @@
     </div>
 
     <div class="col-md-6" style="padding-bottom: 40px;">
-        @Projects.Unassigned(ViewBag.userPhoto, "Muhammad Tarek", 0, "Today, 1:00PM", 
+        @Projects.Unassigned(ViewBag.userPhoto, "Muhammad Tarek", @ViewBag.userRole, "Today, 1:00PM", 
                             "College Building Project", "Text")
     </div>
 </div>

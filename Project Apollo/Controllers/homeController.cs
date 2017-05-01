@@ -16,7 +16,7 @@ namespace Project_Apollo.Controllers {
 			ViewBag.tabs = new string[4] { "Home", "Profile", "FAQ", "Contact us" };
 
 			//TESTING ONLY
-			ViewBag.userRole = user.UserRole;
+			ViewBag.userRole = (int)user.UserRole;
 
 			if (user.Photo == null) {
 				ViewBag.userPhoto = "/Public/assets/images/picture.jpg";

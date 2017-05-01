@@ -15,14 +15,13 @@
 
                 <div class="project-controls">
                     @{
-                        if (userType == 0) {
+                        if (userType == 2) {
                             <button class="apply-btn">Apply</button>
-                        } else  {
+                        } else if (userType == 0 || userType == 1) {
                             <button class="edit-btn"></button>
                             <button class="delete-btn"></button>
                         }
                     }
-                    
                     
                 </div>
             </div>
@@ -36,7 +35,7 @@
 
         <div class="comments-container">
             @{
-                if (userType == 0) {
+                if (userType == 2) {
                     <div class="comment-input">
                         <img src="@userPhoto" width="35" />
                         <input placeholder="Write a comment..." />
