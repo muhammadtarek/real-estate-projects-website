@@ -11,7 +11,6 @@ namespace Project_Apollo.Models
         public int ID { get; set; }
         public virtual User projectManager { get; set; }
         public virtual User customer { get; set; }
-        [Required]
         public string report { get; set; }
     }
 }
