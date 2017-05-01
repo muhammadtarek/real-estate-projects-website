@@ -137,6 +137,7 @@
     <Compile Include="Models\Comments.cs" />
     <Compile Include="Models\DBase.cs" />
     <Compile Include="Models\Feedback.cs" />
+    <Compile Include="Models\ImageConverter.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\Qualifications.cs" />
     <Compile Include="Models\Reports.cs" />
