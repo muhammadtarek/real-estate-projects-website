@@ -59,7 +59,7 @@ $("input[type=text], input[type=password]").blur(function () {
     //Checking if the input is empty
     if (inputValue.length === 0) {
         validationResult = false;
-        errorMessage = "Input cann't be empty!";
+        errorMessage = "Input is required!";
         markInputAs(inputId, DANGER, errorMessage);
         return;
     }
