@@ -1,5 +1,6 @@
 ﻿<!-- UN_ASSIGNED PROJECT COMPONENT -->
-@helper Unassigned(string userPhoto, string customerName, int userType, string postingTime, string projectName, string projectDescription, int projectId, int ownerId, int userId)
+@helper Unassigned(string userPhoto, string customerName, int userType, string postingTime, string projectName, 
+                   string projectDescription, int projectId, int ownerId, int userId, IEnumerable<Project_Apollo.Models.Comments> comments)
 {
     <div class="project-cotnainer" id="@projectId" ownderId="@ownerId">
         <div class="project">
@@ -34,20 +35,16 @@
         </div>
 
         <div class="comments-container">
-            @{
-                if (userType == 2) {
+            @{  if (userType == 2) {
                     <div class="comment-input">
                         <img src="@userPhoto" width="35" />
                         <input placeholder="Write a comment..." />
-                    </div>
-                }
+                    </div>}
             }
-            
-            @Components.Comment("1", @userPhoto, "Muhamamd Tarek", "This is a comment")
-            @Components.Comment("1", @userPhoto, "Muhamamd Tarek", "This is a comment")
-            @Components.Comment("1", @userPhoto, "Muhamamd Tarek", "This is a comment")
-            @Components.Comment("1", @userPhoto, "Muhamamd Tarek", "This is a comment")
 
+            @foreach (var comment in comments) {
+                @Components.Comment(comment.projectManager.ID, @userPhoto, comment.projectManager.name, comment.comment)
+            }
         </div>
     </div>
 } 

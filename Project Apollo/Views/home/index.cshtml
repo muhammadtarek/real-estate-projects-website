@@ -1,12 +1,12 @@
-﻿@{
+﻿@model IEnumerable<Project_Apollo.Models.Project>
+@{
     Layout = "~/Views/Shared/_homeLayout.cshtml";
     ViewBag.Title = "Home";
 }
 
 <div class="page-container" style="margin-top: 101px">
     <div class="col-md-5 no-padding">
-        @{
-            if (ViewBag.userRole == 0 || ViewBag.userRole == 1) {
+        @{  if (ViewBag.userRole == 0 || ViewBag.userRole == 1) {
                 @Html.Partial("_createProjectForm")
             } else {
                 @Html.Partial("_applyToProjectForm")
@@ -16,7 +16,11 @@
     </div>
 
     <div class="col-md-6" style="padding-bottom: 40px;">
-        @Projects.Unassigned(ViewBag.userPhoto, "Muhammad Tarek", @ViewBag.userRole, "Today, 1:00PM", 
-                            "College Building Project", "Text", 1, 1, 1)
+        @{  foreach (var project in Model) {
+                @Projects.Unassigned(ViewBag.userPhoto, project.customer.name, ViewBag.userRole, project.createDate.ToString(),
+                                     project.Name, project.Description, project.ID, project.customer.ID, ViewBag.userId, project.comments)
+            }
+        }
+
     </div>
 </div>
