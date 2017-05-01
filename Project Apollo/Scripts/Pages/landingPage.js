@@ -7,27 +7,6 @@
     $(loginForm).css("top", "-435px");
     $(signUpForm).css("top", "-639px");
 
-    /* FUNCTIONS */
-    function showForm(formId) {
-        //Getting form height
-        var form = "#" + formId;
-
-        $(form + ", .popup-container").css("display", "block");
-        setTimeout(function () {
-            $(form).css("top", "35px");
-
-        }, 2);
-    }
-
-    function hideForm() {
-        $(loginForm).css("top", "-435px");
-        $(signUpForm).css("top", "-639px");
-
-        setTimeout(function () {
-            $(".form, .popup-container").css("display", "none");
-        }, 260);
-    }
-
     /* ACTION LISENTERS */
     $("#login-btn").click(function () {
         showForm("login-form");
@@ -61,7 +40,27 @@
     $("#btn-login").click(login);
 });
 
-/* Ajax signUp */
+/* FUNCTIONS */
+
+function showForm(formId) {
+  var form = "#" + formId;
+
+  $(form + ", .popup-container").css("display", "block");
+  setTimeout(function () {
+    $(form).css("top", "35px");
+
+  }, 2);
+}
+
+function hideForm() {
+  $(loginForm).css("top", "-435px");
+  $(signUpForm).css("top", "-639px");
+
+  setTimeout(function () {
+    $(".form, .popup-container").css("display", "none");
+  }, 260);
+}
+
 function signUp() {
     var email = getInputValue("signup-email");
     var name = getInputValue("signup-name");
@@ -70,7 +69,7 @@ function signUp() {
     var userrole = getInputValue("signup-userrole");
     var bio = getInputValue("signup-bio");
     var filesSelected = $("#photo-preview").attr('src');
-   //console.log(atob(filesSelected.replace(/^data:image\/[a-z]+;base64,/, "")));
+
     var datasend = {
         userPicture: filesSelected,
         name: name,
@@ -94,7 +93,6 @@ function signUp() {
     });
 }
 
-/* Ajax login */
 function login() {
     var email = getInputValue("login-email");
     var password = getInputValue("login-password");
