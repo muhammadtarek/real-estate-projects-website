@@ -180,12 +180,14 @@
     <Content Include="App_Code\Projects.cshtml" />
     <Content Include="Views\home\_createProjectForm.cshtml" />
     <Content Include="Styles\components\_page-container.scss" />
-    <Content Include="Styles\components\_project.scss" />
-    <Content Include="Styles\components\_card.scss" />
     <Content Include="Styles\components\_project-post.scss" />
+    <Content Include="Styles\components\_card.scss" />
+    <Content Include="Styles\components\_project-form.scss" />
     <Content Include="Views\Shared\_homeLayout.cshtml" />
     <Content Include="Views\Shared\_highProfile.cshtml" />
     <Content Include="Views\Shared\_lowProfile.cshtml" />
+    <Content Include="Views\home\_applyToProjectForm.cshtml" />
+    <Content Include="Styles\pages\_home-page.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -214,7 +216,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>18999</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
