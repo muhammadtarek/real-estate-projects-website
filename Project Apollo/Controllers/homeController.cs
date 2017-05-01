@@ -30,7 +30,8 @@ namespace Project_Apollo.Controllers {
 			}
 
 			ViewBag.userName = user.name;
-			return View();
+			ViewBag.userId = id;
+			return View(this.loadUnassignedProjects());
 		}
 
 		public object deleteProject(int id) {
@@ -46,17 +47,11 @@ namespace Project_Apollo.Controllers {
 			return JsonConvert.SerializeObject(new { opertaion = false });
 		}
 		[HttpPost]
-		public object updateProject(string projectName, string projectDescription, int projectId) {
+		public void updateProject(string projectName, string projectDescription, int projectId) {
 			Project p = db.ProjectTable.Find(projectId);
 			p.Name = projectName;
 			p.Description = projectDescription;
 			db.SaveChanges();
-			return JsonConvert.SerializeObject(new {
-				postingTime = p.createDate,
-				projectName = p.Name,
-				projectDescription = p.Description,
-				projectId = p.ID
-			});
 		}
 
 		public object applyToProject(int userId, int projectId, String applyingLetter, double price, DateTime startDate, DateTime endDate) {
@@ -94,22 +89,9 @@ namespace Project_Apollo.Controllers {
 			db.SaveChanges();
 			return JsonConvert.SerializeObject(new {
 				postingTime = project.createDate,
-				projectName = project.Name,
-				projectDescription = project.Description,
 				projectId = project.ID
 			}, Formatting.Indented);
 		}
-
-	    public object getProject(int projectId)
-        {
-            Project p = db.ProjectTable.Find(projectId);
-            return JsonConvert.SerializeObject(new
-            {
-                projectName = p.Name,
-                projectDescription = p.Description,
-                projectId = p.ID
-            });
-        }
 
         public object writeComment(int userId, int projectId, String comment)
         {
@@ -140,17 +122,17 @@ namespace Project_Apollo.Controllers {
         public object loadUnassignedProjects()
         {
             var arr = db.ProjectTable.Where(x => ((int)x.status) == 0).ToList();
-            return View(arr);
+            return arr;
         }
         public object loadAssignedProjects(int userId)
         {
             var arr = db.ProjectTable.Where(x => ((int)x.status) == 1 && x.projectManager.ID == userId).ToList();
-            return View(arr);
+            return arr;
         }
         public object loadFinishedProjects()
         {
             var arr = db.ProjectTable.Where(x => ((int)x.status) == 2).ToList();
-            return View(arr);
+            return arr;
         }
 
         public object getUsers()
