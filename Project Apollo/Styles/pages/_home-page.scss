@@ -11,9 +11,9 @@
   .header {
     font-size: $default;
     font-weight: $semi-bold;
-    color: rgba(70,70,73, 0.8);
+    color: #fff;
     padding: 10px 15px;
-    background-color: rgba(144,146,165, 0.12);
+    background-color: $primary-color;
   }
 
   .input-field {
