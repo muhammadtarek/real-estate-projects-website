@@ -74,13 +74,17 @@ $("input[type=text], input[type=password]").blur(function () {
         if (password != repassword) {
             validationResult = false;
             errorMessage = "Passwords doesn't match";
-            console.log("Triggered");
         }
     }
 
     if (validationResult === false) {
         markInputAs(inputId, DANGER, errorMessage);
     } else {
+        if (inputValue.length === 0) {
+            validationResult = false;
+            errorMessage = "Input cann't be empty!";
+            return;
+        }
         markInputAs(inputId, SUCCESS, errorMessage);
     }
 
