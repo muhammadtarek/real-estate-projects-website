@@ -1,7 +1,7 @@
 ﻿<!-- UN_ASSIGNED PROJECT COMPONENT -->
-@helper Unassigned(string userPhoto, string customerName, int userType, string postingTime, string projectName, string projectDescription)
+@helper Unassigned(string userPhoto, string customerName, int userType, string postingTime, string projectName, string projectDescription, int projectId, int ownerId, int userId)
 {
-    <div class="project-cotnainer">
+    <div class="project-cotnainer" id="@projectId" ownderId="@ownerId">
         <div class="project">
             <div class="owner-container">
                 <div class="owner-info">
@@ -17,7 +17,7 @@
                     @{
                         if (userType == 2) {
                             <button class="apply-btn">Apply</button>
-                        } else if (userType == 0 || userType == 1) {
+                        } else if ((userType == 0 || userType == 1) && @userId == @ownerId) {
                             <button class="edit-btn"></button>
                             <button class="delete-btn"></button>
                         }
