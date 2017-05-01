@@ -34,17 +34,19 @@
             </div>
         </div>
 
-        <div class="comments-container">
-            @{  if (userType == 2) {
-                    <div class="comment-input">
-                        <img src="@userPhoto" width="35" />
-                        <input placeholder="Write a comment..." />
-                    </div>}
-            }
+        @if (comments.Count() != 0) {
+            <div class="comments-container">
+                @{  if (userType == 2) {
+                        <div class="comment-input">
+                            <img src="@userPhoto" width="35" />
+                            <input placeholder="Write a comment..." />
+                        </div>}
+                }
 
-            @foreach (var comment in comments) {
-                @Components.Comment(comment.projectManager.ID, @userPhoto, comment.projectManager.name, comment.comment)
-            }
-        </div>
+                @foreach (var comment in comments) {
+                    @Components.Comment(comment.projectManager.ID, @userPhoto, comment.projectManager.name, comment.comment)
+}
+            </div>   }
+        
     </div>
 } 
