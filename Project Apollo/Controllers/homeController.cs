@@ -80,17 +80,13 @@ namespace Project_Apollo.Controllers {
 		}
 
 		[HttpPost]
-		public string createProject(string projectName, string projectDescription, int userId) {
+		public void createProject(string name, string description) {
 			Project project = db.ProjectTable.Add(new Project() {
-				Name = projectName,
-				Description = projectDescription,
-				customer = db.userTable.Find(userId),
+				Name = name,
+				Description = description,
+				customer = db.userTable.Find(ViewBag.userId) //FIXME
 			});
 			db.SaveChanges();
-			return JsonConvert.SerializeObject(new {
-				postingTime = project.createDate,
-				projectId = project.ID
-			}, Formatting.Indented);
 		}
 
         public object writeComment(int userId, int projectId, String comment)

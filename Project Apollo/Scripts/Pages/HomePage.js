@@ -36,8 +36,13 @@
 
         //Creating new project
         if ($("#customer-form").attr("formaction") === "create") {
-            $.post("/home/createProject",
-            );
+            $.post("/home/createProject", {
+                name : projectName,
+                description : projectDescription
+            }, function () {
+                    $("#project-name").val("");
+                    $("#project-description").val("");
+                });
         } //Updating project
         else {
             $.post("/home/updateProject", {
