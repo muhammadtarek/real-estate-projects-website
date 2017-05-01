@@ -1,0 +1,26 @@
+﻿#applying-form {
+  margin: 0px;
+  display: block;
+  position: static;
+  width: 450px;
+  padding-top: 0px;
+  padding-bottom: 15px;
+
+  @include box-shadow(1px, 1px, 1px, rgba(70, 70, 73, 0.15), false);
+
+  .header {
+    font-size: $default;
+    font-weight: $semi-bold;
+    color: rgba(70,70,73, 0.8);
+    padding: 10px 15px;
+    background-color: rgba(144,146,165, 0.12);
+  }
+
+  .input-field {
+    left: 50px;
+  }
+
+  button {
+    margin-top: 10px;
+  }
+}
