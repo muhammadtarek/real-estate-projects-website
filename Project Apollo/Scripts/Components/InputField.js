@@ -56,35 +56,42 @@ $("input[type=text], input[type=password]").blur(function () {
     var validationResult = true;
     var errorMessage;
 
-    if (validationType === "text") {
-        validationResult = validateText(inputValue);
-        if (validationResult === false) errorMessage = "Special characters and numbers aren't allowed";
-    } else if (validationType === "email") {
-        validationResult = validateEmail(inputValue);
-        if (validationResult === false) errorMessage = "Email isn't valid";
-    } else if (validationType === "phone") {
-        validationResult = validatePhoneNumber(inputValue);
-        if (validationResult === false) errorMessage = "Phone number isn't valid";
-    } else if (validationType === "password") {
-        validationResult = validatePassword(inputValue);
-        if (validationResult === false) errorMessage = "Password should have capital and small letters combined number or special characters";
-    } else if (validationType === "repassword") {
-        var password = getInputValue("signup-password");
-        var repassword = getInputValue("signup-repassword");
-        if (password != repassword) {
-            validationResult = false;
-            errorMessage = "Passwords doesn't match";
+    //Checking if the input is empty
+    if (inputValue.length === 0) {
+        validationResult = false;
+        errorMessage = "Input cann't be empty!";
+        markInputAs(inputId, DANGER, errorMessage);
+        return;
+    }
+
+    //Validating input values
+    if (validationResult === true) {
+        if (validationType === "text") {
+            validationResult = validateText(inputValue);
+            if (validationResult === false) errorMessage = "Special characters and numbers aren't allowed";
+        } else if (validationType === "email") {
+            validationResult = validateEmail(inputValue);
+            if (validationResult === false) errorMessage = "Email isn't valid";
+        } else if (validationType === "phone") {
+            validationResult = validatePhoneNumber(inputValue);
+            if (validationResult === false) errorMessage = "Phone number isn't valid";
+        } else if (validationType === "password") {
+            validationResult = validatePassword(inputValue);
+            if (validationResult === false) errorMessage = "Password should have capital and small letters combined number or special characters";
+        } else if (validationType === "repassword") {
+            var password = getInputValue("signup-password");
+            var repassword = getInputValue("signup-repassword");
+            if (password != repassword) {
+                validationResult = false;
+                errorMessage = "Passwords doesn't match";
+            }
         }
     }
 
     if (validationResult === false) {
         markInputAs(inputId, DANGER, errorMessage);
     } else {
-        if (inputValue.length === 0) {
-            validationResult = false;
-            errorMessage = "Input cann't be empty!";
-            return;
-        }
+        errorMessage = "";
         markInputAs(inputId, SUCCESS, errorMessage);
     }
 
