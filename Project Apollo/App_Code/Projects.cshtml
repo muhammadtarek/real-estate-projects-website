@@ -1,7 +1,8 @@
 ﻿<!-- UN_ASSIGNED PROJECT COMPONENT -->
-@helper Unassigned(string userPhoto, string customerName, int userType, string postingTime, string projectName, string projectDescription)
+@helper Unassigned(string userPhoto, string customerName, int userType, string postingTime, string projectName, 
+                   string projectDescription, int projectId, int ownerId, int userId, IEnumerable<Project_Apollo.Models.Comments> comments)
 {
-    <div class="project-cotnainer">
+    <div class="project-cotnainer" id="@projectId" ownderId="@ownerId">
         <div class="project">
             <div class="owner-container">
                 <div class="owner-info">
@@ -15,40 +16,37 @@
 
                 <div class="project-controls">
                     @{
-                        if (userType == 0) {
+                        if (userType == 2) {
                             <button class="apply-btn">Apply</button>
-                        } else  {
+                        } else if ((userType == 0 || userType == 1) && @userId == @ownerId) {
                             <button class="edit-btn"></button>
                             <button class="delete-btn"></button>
                         }
                     }
-                    
                     
                 </div>
             </div>
             
 
             <div class="details">
-                <h4>@projectName</h4>
-                <p>@projectDescription</p>
+                <h4 class="name">@projectName</h4>
+                <p class="description">@projectDescription</p>
             </div>
         </div>
 
-        <div class="comments-container">
-            @{
-                if (userType == 0) {
-                    <div class="comment-input">
-                        <img src="@userPhoto" width="35" />
-                        <input placeholder="Write a comment..." />
-                    </div>
+        @if (comments.Count() != 0) {
+            <div class="comments-container">
+                @{  if (userType == 2) {
+                        <div class="comment-input">
+                            <img src="@userPhoto" width="35" />
+                            <input placeholder="Write a comment..." />
+                        </div>}
                 }
-            }
-            
-            @Components.Comment("1", @userPhoto, "Muhamamd Tarek", "This is a comment")
-            @Components.Comment("1", @userPhoto, "Muhamamd Tarek", "This is a comment")
-            @Components.Comment("1", @userPhoto, "Muhamamd Tarek", "This is a comment")
-            @Components.Comment("1", @userPhoto, "Muhamamd Tarek", "This is a comment")
 
-        </div>
+                @foreach (var comment in comments) {
+                    @Components.Comment(comment.projectManager.ID,Project_Apollo.Models.ImageConverter.convertPhotoToString(comment.projectManager.Photo), comment.projectManager.name, comment.comment)
+}
+            </div>   }
+        
     </div>
 } 

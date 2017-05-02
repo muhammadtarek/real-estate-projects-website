@@ -1,10 +1,10 @@
-﻿<div class="card project-form" id="customer-form">
+﻿<div class="card project-form" id="customer-form" formaction="create">
     <div class="header">
         Create a new project
     </div>
 
     <div class="form-container">
-        <img src="@ViewBag.userPhoto" width="40" />
+        <img src="@Session["userPhoto"]" width="40" />
 
         <div class="project-details">
             <input type="text" placeholder="Project name" id="project-name"/>
@@ -12,9 +12,7 @@
         </div>
 
         <div class="actions">
-            <button class="btn-primary">Create project</button>
+            <button class="btn-primary" id="call-to-action">Create project</button>
         </div>
     </div>
-
-    
 </div>

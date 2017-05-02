@@ -4,7 +4,7 @@
         <label>@inputName</label>
         <input id="@id" type="@type" validation-type="@validationType"/>
         <i class="material-icons danger-icon">error_outline</i>
-        <label class="error-message">Error Message</label>
+        <label class="error-message"></label>
     </div>
 }
 
@@ -13,7 +13,7 @@
     <div class="input-field">
         <label>@inputName</label>
         <textarea id="@id" placeholder="Describe here..."></textarea>
-        <label class="error-message">Error Message</label>
+        <label class="error-message"></label>
     </div>
 }
 
@@ -30,19 +30,19 @@
                 }
             }
         </ul>
-        <label class="error-message">Error Message</label>
+        <label class="error-message"></label>
     </div>
 }
 
 <!-- COMMENT COMPONENT -->
-@helper Comment(string id, string userPhoto, string userName, string comment)
+@helper Comment(int id, string userPhoto, string userName, string comment)
 {
     <div class="comment">
         <img src="@userPhoto" width="35" />
 
         <div class="details">
-            <label class="name">Muhammad Tarek</label>
-            <label class="comment-text">I want in, with 3000$</label>
+            <label class="name">@userName</label>
+            <label class="comment-text">@comment</label>
         </div>
         
     </div>

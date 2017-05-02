@@ -1,15 +1,28 @@
-﻿@{
+﻿@model IEnumerable<Project_Apollo.Models.Project>
+@{
     Layout = "~/Views/Shared/_homeLayout.cshtml";
     ViewBag.Title = "Home";
 }
 
 <div class="page-container" style="margin-top: 101px">
-    <div class="col-md-4 no-padding">
-        @Html.Partial("_createProjectForm")
+    <div class="col-md-5 no-padding">
+        @{  if ((int)Session["userRole"] == 0 || (int)Session["userRole"] == 1) {
+                @Html.Partial("_createProjectForm")
+            } else {
+                @Html.Partial("_applyToProjectForm")
+            }
+        }
+        
     </div>
 
     <div class="col-md-6" style="padding-bottom: 40px;">
-        @Projects.Unassigned(ViewBag.userPhoto, "Muhammad Tarek", 0, "Today, 1:00PM", 
-                            "College Building Project", "Text")
+        @{ if (Model != null) { 
+            foreach (var project in Model) {
+                @Projects.Unassigned(Project_Apollo.Models.ImageConverter.convertPhotoToString(project.customer.Photo), project.customer.name, (int)Session["userRole"], project.createDate.ToString(),
+                                     project.Name, project.Description, project.ID, project.customer.ID, (int)Session["id"], project.comments)
+                }
+            }
+        }
+
     </div>
 </div>

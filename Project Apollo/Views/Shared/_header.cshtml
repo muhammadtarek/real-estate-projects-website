@@ -9,8 +9,8 @@
 
             <div class="tab tab-picture">
                 <a>
-                    <img src="@ViewBag.userPhoto" width="25" />
-                    <span>@ViewBag.userName</span>
+                    <img src=@Session["userPhoto"] width="25" />
+                    <span>@Session["userName"]</span>
                 </a>
             </div>
 

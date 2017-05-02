@@ -1,0 +1,12 @@
+﻿<div class="form" id="applying-form">
+    <div class="header">
+        Apply to project
+    </div>
+
+    @Components.InputField("project-name", "Project Name", "text", "text")
+    @Components.InputField("project-price", "Choose your price", "text", "number")
+    @Components.InputField("project-start-date", "Starting date", "text", "date")
+    @Components.InputField("project-delivery-date", "Delivering Date", "text", "date")
+
+    <button class="btn-primary" id="btn-applyToProject">Apply</button>
+</div>
