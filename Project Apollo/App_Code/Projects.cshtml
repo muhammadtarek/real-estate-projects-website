@@ -44,7 +44,7 @@
                 }
 
                 @foreach (var comment in comments) {
-                    @Components.Comment(comment.projectManager.ID, @userPhoto, comment.projectManager.name, comment.comment)
+                    @Components.Comment(comment.projectManager.ID,Project_Apollo.Models.ImageConverter.convertPhotoToString(comment.projectManager.Photo), comment.projectManager.name, comment.comment)
 }
             </div>   }
         

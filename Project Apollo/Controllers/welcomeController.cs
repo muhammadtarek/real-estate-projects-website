@@ -77,7 +77,6 @@ namespace Project_Apollo.Controllers {
 			var v = (from a in db.userTable
 					 where a.Email == email
 					 select a.Email);
-            if (userPicture !=null)
 			if (v.Count() > 0) {
 				return JsonConvert.SerializeObject(new {
 					result = new {

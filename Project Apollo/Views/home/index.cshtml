@@ -18,7 +18,7 @@
     <div class="col-md-6" style="padding-bottom: 40px;">
         @{ if (Model != null) { 
             foreach (var project in Model) {
-                @Projects.Unassigned(ViewBag.userPhoto, project.customer.name, (int)Session["userRole"], project.createDate.ToString(),
+                @Projects.Unassigned(Project_Apollo.Models.ImageConverter.convertPhotoToString(project.customer.Photo), project.customer.name, (int)Session["userRole"], project.createDate.ToString(),
                                      project.Name, project.Description, project.ID, project.customer.ID, (int)Session["id"], project.comments)
                 }
             }
