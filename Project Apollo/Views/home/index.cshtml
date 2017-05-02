@@ -6,7 +6,7 @@
 
 <div class="page-container" style="margin-top: 101px">
     <div class="col-md-5 no-padding">
-        @{  if (ViewBag.userRole == 0 || ViewBag.userRole == 1) {
+        @{  if ((int)Session["userRole"] == 0 || (int)Session["userRole"] == 1) {
                 @Html.Partial("_createProjectForm")
             } else {
                 @Html.Partial("_applyToProjectForm")
@@ -18,8 +18,8 @@
     <div class="col-md-6" style="padding-bottom: 40px;">
         @{ if (Model != null) { 
             foreach (var project in Model) {
-                @Projects.Unassigned(ViewBag.userPhoto, project.customer.name, ViewBag.userRole, project.createDate.ToString(),
-                                     project.Name, project.Description, project.ID, project.customer.ID, ViewBag.userId, project.comments)
+                @Projects.Unassigned(ViewBag.userPhoto, project.customer.name, (int)Session["userRole"], project.createDate.ToString(),
+                                     project.Name, project.Description, project.ID, project.customer.ID, (int)Session["id"], project.comments)
                 }
             }
         }

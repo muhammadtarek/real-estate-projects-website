@@ -15,22 +15,21 @@ namespace Project_Apollo.Controllers {
 			ViewBag.showNav = true;
 			ViewBag.tabs = new string[4] { "Home", "Profile", "FAQ", "Contact us" };
 
-			//TESTING ONLY
-			ViewBag.userRole = (int)user.UserRole;
+            //TESTING ONLY
+            Session["userRole"] = (int)user.UserRole;
 
 			if (user.Photo == null) {
-				ViewBag.userPhoto = "/Public/assets/images/picture.jpg";
+                Session["userPhoto"] = "/Public/assets/images/picture.jpg";
 			} else {
 				var img = "";
 				if (user.Photo != null) {
 					var base64 = Convert.ToBase64String(user.Photo);
 					img = String.Format("data:image/gif;base64,{0}", base64);
 				}
-				ViewBag.userPhoto = img;
+                Session["userPhoto"] = img;
 			}
 
-			ViewBag.userName = user.name;
-			ViewBag.userId = (int)Session["id"];
+            Session["userName"] = user.name;
 			return View(this.loadUnassignedProjects());
         }
 

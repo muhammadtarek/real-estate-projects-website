@@ -74,7 +74,6 @@ namespace Project_Apollo.Controllers {
 		}
 
 		public object signUp(string userPicture, string name, string email, string password, string phoneNumber, string Desciption, int userType = 1) {
-
 			var v = (from a in db.userTable
 					 where a.Email == email
 					 select a.Email);
