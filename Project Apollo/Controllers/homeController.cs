@@ -21,11 +21,7 @@ namespace Project_Apollo.Controllers {
 			if (user.Photo == null) {
                 Session["userPhoto"] = "/Public/assets/images/picture.jpg";
 			} else {
-				var img = "";
-				if (user.Photo != null) {
-					var base64 = Convert.ToBase64String(user.Photo);
-					img = String.Format("data:image/gif;base64,{0}", base64);
-				}
+                var img = ImageConverter.convertPhotoToString(user.Photo);
                 Session["userPhoto"] = img;
 			}
 

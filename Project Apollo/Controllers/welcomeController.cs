@@ -78,7 +78,6 @@ namespace Project_Apollo.Controllers {
 					 where a.Email == email
 					 select a.Email);
             if (userPicture !=null)
-			    userPicture = new Regex("^data:image\\/[a-z]+;base64,").Replace(userPicture, "");
 			if (v.Count() > 0) {
 				return JsonConvert.SerializeObject(new {
 					result = new {
@@ -99,7 +98,7 @@ namespace Project_Apollo.Controllers {
 				user.Mobile = phoneNumber;
 				user.UserRole = (userRole)userType;
 				user.Description = Desciption;
-				user.Photo = userPicture !=null ? System.Convert.FromBase64String(userPicture):null;
+				user.Photo = userPicture !=null ? ImageConverter.convertPhotoToBytes(userPicture):null;
 				db.userTable.Add(user);
 				db.SaveChanges();
                 Session["id"] = user.ID;
