@@ -10,8 +10,8 @@ namespace Project_Apollo.Controllers {
 	public class HomeController : Controller {
 		DBase db = new DBase();
 		// GET: Home
-		public ActionResult Index(int id = 4) {
-			User user = db.userTable.Find(id);
+		public ActionResult Index() {
+			User user = db.userTable.Find((int)Session["id"]);
 			ViewBag.showNav = true;
 			ViewBag.tabs = new string[4] { "Home", "Profile", "FAQ", "Contact us" };
 
@@ -30,9 +30,9 @@ namespace Project_Apollo.Controllers {
 			}
 
 			ViewBag.userName = user.name;
-			ViewBag.userId = id;
+			ViewBag.userId = (int)Session["id"];
 			return View(this.loadUnassignedProjects());
-		}
+        }
 
 		public object deleteProject(int id) {
 			Project p = db.ProjectTable.Find(id);

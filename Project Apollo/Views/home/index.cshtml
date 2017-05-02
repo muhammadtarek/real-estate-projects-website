@@ -16,9 +16,11 @@
     </div>
 
     <div class="col-md-6" style="padding-bottom: 40px;">
-        @{  foreach (var project in Model) {
+        @{ if (Model != null) { 
+            foreach (var project in Model) {
                 @Projects.Unassigned(ViewBag.userPhoto, project.customer.name, ViewBag.userRole, project.createDate.ToString(),
                                      project.Name, project.Description, project.ID, project.customer.ID, ViewBag.userId, project.comments)
+                }
             }
         }
 

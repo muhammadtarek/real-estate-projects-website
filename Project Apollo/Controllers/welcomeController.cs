@@ -28,7 +28,8 @@ namespace Project_Apollo.Controllers {
 				ViewBag.name = data[0].name;
 				ViewBag.userRole = data[0].UserRole;
 				ViewBag.userPhoto = data[0].Photo;
-				return JsonConvert.SerializeObject(new {
+                Session["id"] = data[0].ID;
+                return JsonConvert.SerializeObject(new {
 					Result = new {
 						Email = true,
 						password = true
@@ -77,7 +78,8 @@ namespace Project_Apollo.Controllers {
 			var v = (from a in db.userTable
 					 where a.Email == email
 					 select a.Email);
-			userPicture = new Regex("^data:image\\/[a-z]+;base64,").Replace(userPicture, "");
+            if (userPicture !=null)
+			    userPicture = new Regex("^data:image\\/[a-z]+;base64,").Replace(userPicture, "");
 			if (v.Count() > 0) {
 				return JsonConvert.SerializeObject(new {
 					result = new {
@@ -98,11 +100,11 @@ namespace Project_Apollo.Controllers {
 				user.Mobile = phoneNumber;
 				user.UserRole = (userRole)userType;
 				user.Description = Desciption;
-				user.Photo = System.Convert.FromBase64String(userPicture);
+				user.Photo = userPicture !=null ? System.Convert.FromBase64String(userPicture):null;
 				db.userTable.Add(user);
 				db.SaveChanges();
-
-				return JsonConvert.SerializeObject(new {
+                Session["id"] = user.ID;
+                return JsonConvert.SerializeObject(new {
 					result = new {
 						email = true
 					},
