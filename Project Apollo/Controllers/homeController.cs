@@ -10,29 +10,24 @@ namespace Project_Apollo.Controllers {
 	public class HomeController : Controller {
 		DBase db = new DBase();
 		// GET: Home
-		public ActionResult Index(int id = 4) {
-			User user = db.userTable.Find(id);
+		public ActionResult Index() {
+			User user = db.userTable.Find((int)Session["id"]);
 			ViewBag.showNav = true;
 			ViewBag.tabs = new string[4] { "Home", "Profile", "FAQ", "Contact us" };
 
-			//TESTING ONLY
-			ViewBag.userRole = (int)user.UserRole;
+            //TESTING ONLY
+            Session["userRole"] = (int)user.UserRole;
 
 			if (user.Photo == null) {
-				ViewBag.userPhoto = "/Public/assets/images/picture.jpg";
+                Session["userPhoto"] = "/Public/assets/images/picture.jpg";
 			} else {
-				var img = "";
-				if (user.Photo != null) {
-					var base64 = Convert.ToBase64String(user.Photo);
-					img = String.Format("data:image/gif;base64,{0}", base64);
-				}
-				ViewBag.userPhoto = img;
+                var img = ImageConverter.convertPhotoToString(user.Photo);
+                Session["userPhoto"] = img;
 			}
 
-			ViewBag.userName = user.name;
-			ViewBag.userId = id;
+            Session["userName"] = user.name;
 			return View(this.loadUnassignedProjects());
-		}
+        }
 
 		public object deleteProject(int id) {
 			Project p = db.ProjectTable.Find(id);

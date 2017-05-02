@@ -79,6 +79,7 @@ function signUp() {
             Desciption: bio,
             userType: userrole
         }
+        $.ajaxSetup({async: false});
         $.post("/welcome/signUp", datasend, function (data) {
             rec = JSON.parse(data);
             console.log(rec);
