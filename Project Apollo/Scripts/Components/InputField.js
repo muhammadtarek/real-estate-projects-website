@@ -4,7 +4,6 @@
  Adapt text area height to the munmber of lines
 */
 function auto_grow(element) {
-    element.style.height = "40px";
     element.style.height = (element.scrollHeight) + "px";
 }
 
@@ -57,7 +56,7 @@ $("input[type=text], input[type=password]").blur(function () {
     var errorMessage;
 
     //Checking if the input is empty
-    if (inputValue.length === 0) {
+    if (inputValue.length === 0 && !inputParent.hasClass("skip")) {
         validationResult = false;
         errorMessage = "Input is required!";
         markInputAs(inputId, DANGER, errorMessage);
@@ -108,6 +107,7 @@ $(".dropdown li").click(function () {
     var inputParent = $(this).parent().parent();
     $(inputParent).children('input').val($(this).text());
     hideDropdown(inputParent);
+    markInputAs(inputParent, SUCCESS, errorMessage)
 });
 
 /*
