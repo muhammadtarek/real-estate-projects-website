@@ -110,14 +110,17 @@
     <Content Include="Public\assets\icons\logout.svg" />
     <Content Include="Public\assets\icons\radio_button_checked.svg" />
     <Content Include="Public\assets\icons\radio_button_unchecked.svg" />
+    <Content Include="Public\assets\images\default-user.jpg" />
     <Content Include="Public\assets\images\landing-bg.jpg" />
     <Content Include="Public\assets\images\logo-dark.png" />
     <Content Include="Public\assets\images\logo-white.png" />
     <Content Include="Public\assets\images\picture.jpg" />
+    <Content Include="Public\style.min.css" />
     <Content Include="Scripts\Components\InputField.js" />
     <Content Include="Scripts\Pages\HomePage.js" />
     <Content Include="Scripts\Pages\LandingPage.js" />
     <Content Include="Scripts\Validation.js" />
+    <Content Include="Scripts\Components\Snackbar.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -128,9 +131,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201704221138495_InitialCreate.cs" />
-    <Compile Include="Migrations\201704221138495_InitialCreate.Designer.cs">
-      <DependentUpon>201704221138495_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201704282130550_InitialCreate.cs" />
+    <Compile Include="Migrations\201704282130550_InitialCreate.Designer.cs">
+      <DependentUpon>201704282130550_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplyProject.cs" />
@@ -189,6 +192,9 @@
     <Content Include="Views\Shared\_lowProfile.cshtml" />
     <Content Include="Views\home\_applyToProjectForm.cshtml" />
     <Content Include="Styles\pages\_home-page.scss" />
+    <Content Include="Views\profile\_userCard.cshtml" />
+    <Content Include="Views\profile\_statisticalDiagram.cshtml" />
+    <Content Include="Views\Shared\_snackbar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -202,8 +208,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704221138495_InitialCreate.resx">
-      <DependentUpon>201704221138495_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704282130550_InitialCreate.resx">
+      <DependentUpon>201704282130550_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
