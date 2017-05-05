@@ -62,6 +62,7 @@
 /* FUNCTIONS */
 function signUp() {
     if (checkForEmptyFields("signup") && checkForDangerFields()) {
+        $("#btn-signup").disable(true);
         var email = getInputValue("signup-email");
         var name = getInputValue("signup-name");
         var phone = getInputValue("signup-phone");
@@ -79,12 +80,13 @@ function signUp() {
             Desciption: bio,
             userType: userrole
         }
-        $.ajaxSetup({async: false});
+
         $.post("/welcome/signUp", datasend, function (data) {
             rec = JSON.parse(data);
             console.log(rec);
             if (rec.result.email !== true) {
                 markInputAs("signup-email", DANGER, rec.result.email);
+                $("#btn-signup").disable(false);
             }
             else {
                 markInputAs("signup-email", SUCCESS, "");
@@ -97,6 +99,7 @@ function signUp() {
 
 function login() {
     if (checkForEmptyFields("login") && checkForDangerFields()) {
+        $("#btn-login").disable(true);
         var email = getInputValue("login-email");
         var password = getInputValue("login-password");
         var datasend = {
@@ -107,9 +110,11 @@ function login() {
             rec = JSON.parse(data);
             if (rec.Result.Email !== true) {
                 markInputAs("login-email", DANGER, rec.Result.Email);
+                $("#btn-login").disable(false);
             }
             else if (rec.Result.password !== true) {
                 markInputAs("login-password", DANGER, rec.Result.password);
+                $("#btn-login").disable(false);
             }
             else {
                 markInputAs("login-email", SUCCESS);
