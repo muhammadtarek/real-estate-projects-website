@@ -11,7 +11,7 @@ namespace Project_Apollo.Controllers {
 		DBase db = new DBase();
 		// GET: Home
 		public ActionResult Index() {
-			User user = db.userTable.Find((int)Session["id"]);
+			User user = db.userTable.Find(Session["id"]);
 			ViewBag.showNav = true;
 			ViewBag.tabs = new string[4] { "Home", "Profile", "FAQ", "Contact us" };
 
@@ -19,7 +19,7 @@ namespace Project_Apollo.Controllers {
             Session["userRole"] = (int)user.UserRole;
 
 			if (user.Photo == null) {
-                Session["userPhoto"] = "/Public/assets/images/picture.jpg";
+                Session["userPhoto"] = "/Public/assets/images/default-user.jpg";
 			} else {
                 var img = ImageConverter.convertPhotoToString(user.Photo);
                 Session["userPhoto"] = img;
