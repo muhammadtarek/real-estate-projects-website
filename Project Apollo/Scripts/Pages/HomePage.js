@@ -30,6 +30,7 @@
 
         $("#project-name").val(projectName);
         $("#project-description").val(projectDescription);
+        auto_grow(document.getElementById("project-description"));
     });
 
     //Creating or updating project
@@ -71,6 +72,8 @@
                     showSnackbar("Project updated successfully");
                 });
         }
+
+        $("#project-description").css("height", "48px");
     });
 
     //Writing comment on posh
