@@ -1,3 +1,9 @@
 ﻿@{ 
-
+    if ((int)Session["userRole"] < 2) {
+        //Admin, project manager or customer
+        Layout = "~/Views/Shared/Layouts/_HighProfile.cshtml";
+    } else {
+        //Team leader and junior enginner
+        Layout = "~/Views/Shared/Layouts/_LowProfile.cshtml";
+    }
 }

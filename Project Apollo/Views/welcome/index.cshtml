@@ -1,7 +1,5 @@
-﻿
-@{
-    Layout = "~/Views/Shared/_welcomeLayout.cshtml";
-    ViewBag.Title = "Welcome to Ohio";
+﻿@{
+    Layout = "~/Views/Shared/Layouts/_WelcomeLayout.cshtml";
 }
 
 <div class="landing-bg page-bg">
@@ -24,7 +22,7 @@
 
 <div class="popup-container">
     <!-- LOGIN FORM -->
-    @Html.Partial("_loginForm")
+    @Html.Partial("_LoginForm")
 
     <!--  SIGN UP FORM -->
     <div class="scrollable">

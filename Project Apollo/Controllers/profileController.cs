@@ -11,7 +11,8 @@ namespace Project_Apollo.Controllers {
 
 		// GET: profile
 		public ActionResult Index() {
-			if ((int)Session["id"] < 2) {
+			Session["userRole"] = 3;
+			if ((int)Session["userRole"] < 2) {
 				//If the user is admin, customer or project manager
 				ViewBag.showNav = false;
 			} else {

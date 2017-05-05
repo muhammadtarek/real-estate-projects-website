@@ -9,7 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 namespace Project_Apollo.Controllers {
 
-	public class welcomeController : Controller {
+	public class WelcomeController : Controller {
 		public DBase db = new DBase();
 		// GET: welcome
 		public ActionResult Index() {

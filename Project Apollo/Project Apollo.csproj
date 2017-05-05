@@ -125,9 +125,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\homeController.cs" />
-    <Compile Include="Controllers\profileController.cs" />
-    <Compile Include="Controllers\welcomeController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\WelcomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -164,15 +164,15 @@
     <Content Include="Styles\components\_typography.scss" />
     <Content Include="Styles\style.scss" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_welcomeLayout.cshtml" />
-    <Content Include="Views\welcome\index.cshtml" />
-    <Content Include="Views\welcome\_loginForm.cshtml" />
-    <Content Include="Views\welcome\_signUpForm.cshtml" />
+    <Content Include="Views\Shared\Layouts\_WelcomeLayout.cshtml" />
+    <Content Include="Views\Welcome\Index.cshtml" />
+    <Content Include="Views\Welcome\_LoginForm.cshtml" />
+    <Content Include="Views\Welcome\_SignUpForm.cshtml" />
     <Content Include="App_Code\Components.cshtml" />
-    <Content Include="Views\profile\index.cshtml" />
-    <Content Include="Views\home\index.cshtml" />
-    <Content Include="Views\Shared\_footer.cshtml" />
-    <Content Include="Views\Shared\_header.cshtml" />
+    <Content Include="Views\Profile\index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Components\_Footer.cshtml" />
+    <Content Include="Views\Shared\Components\_Header.cshtml" />
     <Content Include="Styles\components\_base.scss" />
     <Content Include="Styles\components\_form.scss" />
     <Content Include="Styles\components\_header.scss" />
@@ -182,19 +182,20 @@
     <Content Include="Styles\pages\_landing-page.scss" />
     <Content Include="Styles\_global.scss" />
     <Content Include="App_Code\Projects.cshtml" />
-    <Content Include="Views\home\_createProjectForm.cshtml" />
+    <Content Include="Views\Home\_CreateProjectForm.cshtml" />
     <Content Include="Styles\components\_page-container.scss" />
     <Content Include="Styles\components\_project-post.scss" />
     <Content Include="Styles\components\_card.scss" />
     <Content Include="Styles\components\_project-form.scss" />
-    <Content Include="Views\Shared\_homeLayout.cshtml" />
-    <Content Include="Views\Shared\_highProfile.cshtml" />
-    <Content Include="Views\Shared\_lowProfile.cshtml" />
-    <Content Include="Views\home\_applyToProjectForm.cshtml" />
+    <Content Include="Views\Shared\Layouts\_HomeLayout.cshtml" />
+    <Content Include="Views\Shared\Layouts\_HighProfile.cshtml" />
+    <Content Include="Views\Shared\Layouts\_LowProfile.cshtml" />
+    <Content Include="Views\Home\_ApplyToProjectForm.cshtml" />
     <Content Include="Styles\pages\_home-page.scss" />
-    <Content Include="Views\profile\_userCard.cshtml" />
-    <Content Include="Views\profile\_statisticalDiagram.cshtml" />
-    <Content Include="Views\Shared\_snackbar.cshtml" />
+    <Content Include="Views\Profile\_userCard.cshtml" />
+    <Content Include="Views\Profile\_statisticalDiagram.cshtml" />
+    <Content Include="Views\Shared\Components\_Snackbar.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

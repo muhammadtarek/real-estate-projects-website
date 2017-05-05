@@ -11,7 +11,7 @@ namespace Project_Apollo.Controllers {
 		DBase db = new DBase();
 		// GET: Home
 		public ActionResult Index() {
-			User user = db.userTable.Find(Session["id"]);
+			User user = db.userTable.Find((int)Session["id"]);
 			ViewBag.showNav = true;
 			ViewBag.tabs = new string[4] { "Home", "Profile", "FAQ", "Contact us" };
 

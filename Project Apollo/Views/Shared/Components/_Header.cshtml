@@ -22,13 +22,15 @@
         <div class="nav-container">
             <ul class="nav nav-top">
                 @{
-                    var counter = 0;
-                    foreach (var tab in ViewBag.tabs)
-                    {
-                        <li @{if (counter == 0) { <text> class="tab-active" </text>  } }>
-                            @tab
-                        </li>
-                        counter++;
+                    if (ViewBag.showNav == true) {
+                        var counter = 0;
+                        foreach (var tab in ViewBag.tabs)
+                        {
+                            <li @{if (counter == 0) { <text> class="tab-active" </text>  } }>
+                                @tab
+                            </li>
+                            counter++;
+                        }
                     }
                 }
             </ul>
