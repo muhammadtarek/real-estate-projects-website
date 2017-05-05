@@ -62,7 +62,7 @@
 /* FUNCTIONS */
 function signUp() {
     if (checkForEmptyFields("signup") && checkForDangerFields()) {
-        $("#btn-signup").disable(true);
+        $("#btn-signup").prop("disabled", true);
         var email = getInputValue("signup-email");
         var name = getInputValue("signup-name");
         var phone = getInputValue("signup-phone");
@@ -86,7 +86,7 @@ function signUp() {
             console.log(rec);
             if (rec.result.email !== true) {
                 markInputAs("signup-email", DANGER, rec.result.email);
-                $("#btn-signup").disable(false);
+                $("#btn-signup").prop("disabled", false);
             }
             else {
                 markInputAs("signup-email", SUCCESS, "");
@@ -99,7 +99,7 @@ function signUp() {
 
 function login() {
     if (checkForEmptyFields("login") && checkForDangerFields()) {
-        $("#btn-login").disable(true);
+        $("#btn-login").prop("disabled", true);
         var email = getInputValue("login-email");
         var password = getInputValue("login-password");
         var datasend = {
@@ -110,11 +110,11 @@ function login() {
             rec = JSON.parse(data);
             if (rec.Result.Email !== true) {
                 markInputAs("login-email", DANGER, rec.Result.Email);
-                $("#btn-login").disable(false);
+                $("#btn-login").prop("disabled", false);
             }
             else if (rec.Result.password !== true) {
                 markInputAs("login-password", DANGER, rec.Result.password);
-                $("#btn-login").disable(false);
+                $("#btn-login").prop("disabled", false);
             }
             else {
                 markInputAs("login-email", SUCCESS);
