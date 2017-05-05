@@ -1,53 +1,51 @@
-.snackbar {
-   position: absolute;
-   bottom: -70px;
-   left: 45px;
-   display: none;
-   padding-right: 16px;
-   padding-left: 16px;
-   height: 40px;
-   background-color: $medium-gray-color;
+.snackbar-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 
-   @include rounded;
-   @include noselect;
-   @include transition(bottom 200ms ease);
+  .snackbar {
+    position: absolute;
+    top: 110%;
+    left: 100px;
+    padding-right: 16px;
+    padding-left: 16px;
+    height: 50px;
+    background-color: $dark-gray-color;
 
-   label {
+    @include rounded;
+    @include noselect;
+    @include transition(top 200ms ease);
+
+    label {
       margin-right: 24px;
       margin-bottom: 0;
       padding: 8px;
-      color: $darker-gray-color;
-      font-weight: $light;
-      font-size: $default;
+      color: #fff;
+      font-weight: $medium;
+      font-size: $body;
       font-family: $font;
+      margin-top: 5px;
 
       @include noselect;
-   }
+    }
 
-   button {
-      padding-right: 16px;
-      padding-left: 16px;
-      min-width: 20px;
-      height: 40px;
+    button {
+      padding: 7px 15px !important;
       background-color: transparent;
       text-transform: uppercase;
       font-weight: $medium;
-      font-size: $default !important;
+      color: #fff;
+      font-size: $body !important;
+      margin-top: 7px;
 
+      @include rounded(2px);
       &:hover {
-         background-color: rgba(0,0,0, 0.1);
+        background-color: rgba(255,255,255, 0.3);
       }
-   }
-
-   &.snackbar--undo {
-      button {
-         color: $success-color;
-      }
-   }
-
-   &.snackbar--retry {
-      button {
-         color: $danger-color;
-      }
-   }
+    }
+  }
 }
