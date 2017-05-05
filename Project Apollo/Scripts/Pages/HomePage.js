@@ -9,8 +9,11 @@
         //Deleting from database
         $.post("/home/deleteProject", { id: projectId }, function (operationResults) {
             success = JSON.parse(operationResults);
-            if (success.opertaion)
+            if (success.opertaion) {
                 $("#" + projectId).remove();
+                showSnackbar("Project deleted successfully");
+            }
+                
         });
     });
 
@@ -31,18 +34,23 @@
 
     //Creating or updating project
     $("#call-to-action").click(function () {
-        var projectName = $("#project-name").val();
-        var projectDescription = $("#project-description").val();
+        var projectName = getInputValue("project-name");
+        var projectDescription = getInputValue("project-description");
 
         //Creating new project
         if ($("#customer-form").attr("formaction") === "create") {
-            $.post("/home/createProject", {
-                name : projectName,
-                description : projectDescription
-            }, function () {
+            if (projectName === "" && projectDescription === "") {
+                showSnackbar("Couldn't add empty project");
+            } else {
+                $.post("/home/createProject", {
+                    name: projectName,
+                    description: projectDescription
+                }, function () {
                     $("#project-name").val("");
                     $("#project-description").val("");
+                    showSnackbar("Project created successfully");
                 });
+            }
         } //Updating project
         else {
             $.post("/home/updateProject", {
@@ -60,7 +68,18 @@
 
                     $("#" + selectedPostId).find("h4.name")[0].innerHTML = projectName;
                     $("#" + selectedPostId).find("p.description")[0].innerHTML = projectDescription;
+                    showSnackbar("Project updated successfully");
                 });
         }
     });
+
+    //Writing comment on posh
+    // TODO
+
+    //Apply to project
+    // TODO
 });
+
+function createComment(comment) {
+    // TODO
+}
