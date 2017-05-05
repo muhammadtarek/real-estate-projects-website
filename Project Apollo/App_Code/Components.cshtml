@@ -19,7 +19,7 @@
 
 <!-- DROPDOWN COMPONENT -->
 @helper DropdownField(string id, string inputName, string placeholder, params string[] items) {
-    <div class="input-field">
+    <div class="input-field skip">
         <label>@inputName</label>
         <input class="dropdown-input" id="@id" type="text" placeholder="@placeholder" readonly />
         <i class="material-icons dropdown-arrow">arrow_drop_down</i>
