@@ -1,1 +1,11 @@
-﻿
+﻿<div class="user-card">
+    <div class="photo-container">
+        <img src="@Session["userPhoto"]" width="100"/>
+    </div>
+    <div class="user-details card">
+        <h2>@Session["userName"]</h2>
+        <h4>@Session["userEmail"]</h4>
+        <h4>@Session["userPhoneNumber"]</h4>
+        <p>@Session["userDescription"]</p>
+    </div>
+</div>

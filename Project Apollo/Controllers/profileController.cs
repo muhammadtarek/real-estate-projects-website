@@ -11,7 +11,15 @@ namespace Project_Apollo.Controllers {
 
 		// GET: profile
 		public ActionResult Index() {
-			Session["userRole"] = 3;
+			Session["id"] = 1;
+			User user = db.userTable.Find((int)Session["id"]);
+
+			//TESTING ONLY
+			Session["userRole"] = (int)user.UserRole;
+			Session["userPhoneNumber"] = user.Mobile;
+			Session["userEmail"] = user.Email;
+			Session["userDescription"] = user.Description;
+
 			if ((int)Session["userRole"] < 2) {
 				//If the user is admin, customer or project manager
 				ViewBag.showNav = false;
@@ -19,6 +27,16 @@ namespace Project_Apollo.Controllers {
 				//If the user is team leader or jenior engineer
 				ViewBag.showNav = true;
 			}
+			
+
+			if (user.Photo == null) {
+				Session["userPhoto"] = "/Public/assets/images/default-user.jpg";
+			} else {
+				var img = ImageConverter.convertPhotoToString(user.Photo);
+				Session["userPhoto"] = img;
+			}
+
+			Session["userName"] = user.name;
 			return View();
 		}
 
