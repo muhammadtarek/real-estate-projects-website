@@ -20,6 +20,7 @@ namespace Project_Apollo.Controllers {
 			Session["userEmail"] = user.Email;
 			Session["userDescription"] = user.Description;
 
+			//Choosing layout depends on user role
 			if ((int)Session["userRole"] < 2) {
 				//If the user is admin, customer or project manager
 				ViewBag.showNav = false;
@@ -27,6 +28,13 @@ namespace Project_Apollo.Controllers {
 				//If the user is team leader or jenior engineer
 				ViewBag.showNav = true;
 			}
+
+			//Loading tabs depends on user role
+			switch ((int)Session["userRole"]) {
+				case 0:
+					ViewBag.tabs = new string[2] {"Profile", "User Managment"};
+					break;
+			}			
 			
 
 			if (user.Photo == null) {

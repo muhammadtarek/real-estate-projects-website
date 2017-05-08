@@ -192,11 +192,13 @@
     <Content Include="Views\Shared\Layouts\_LowProfile.cshtml" />
     <Content Include="Views\Home\_ApplyToProjectForm.cshtml" />
     <Content Include="Styles\pages\_home-page.scss" />
-    <Content Include="Views\Profile\_userCard.cshtml" />
-    <Content Include="Views\Profile\_statisticalDiagram.cshtml" />
+    <Content Include="Views\Profile\_UserCard.cshtml" />
+    <Content Include="Views\Profile\_StatisticalDiagram.cshtml" />
     <Content Include="Views\Shared\Components\_Snackbar.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Styles\components\_user-card.scss" />
+    <Content Include="Views\Profile\_SideMenu.cshtml" />
+    <Content Include="Styles\components\_side-menu.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

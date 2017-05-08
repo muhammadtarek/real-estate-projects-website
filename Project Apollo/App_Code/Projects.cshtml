@@ -50,3 +50,28 @@
         
     </div>
 } 
+
+<!- ASSIGNED PROJECT COMPONENT---> 
+@helper Assigned(string userPhoto, string customerName, string postingTime, string projectName,
+                   string projectDescription, int projectId, string managerPhoto, string leaderPhoto, string[] engineersPhotos) {
+    <div class="project-cotnainer" id="@projectId">
+        <div class="project">
+            <div class="owner-container">
+                <div class="owner-info">
+                    <img src="@userPhoto" width="40" />
+
+                    <div>
+                        <a class="name">@customerName</a>
+                        <label class="time">@postingTime</label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="details">
+                <h4 class="name">@projectName</h4>
+                <p class="description">@projectDescription</p>
+            </div>
+        </div>
+    </div>
+} 

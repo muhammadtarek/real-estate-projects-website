@@ -1,0 +1,20 @@
+﻿.side-menu {
+  list-style: none;
+  width: 100%;
+  padding-left: 0px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+
+  li {
+    padding: 7px;
+    cursor: pointer;
+
+    @include rounded(4px);
+
+    &:hover,
+    &.tab-active {
+      background-color: $primary-color;
+      color: #fff;
+    }
+  }
+}
