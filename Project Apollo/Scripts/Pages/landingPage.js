@@ -67,7 +67,18 @@ function signUp() {
         var name = getInputValue("signup-name");
         var phone = getInputValue("signup-phone");
         var password = getInputValue("signup-password");
-        var userrole = getInputValue("signup-userrole");
+        var userrolestring = getInputValue("signup-userrole");
+        var userrole = 0;
+        if (userrolestring === "Admin")
+            userrole = 0;
+        else if (userrolestring === "Customer")
+            userrole = 1;
+        else if (userrolestring === "Project Manager")
+            userrole = 2;
+        else if (userrolestring === "Team Leader")
+            userrole = 3;
+        else
+            userrole = 4;
         var bio = getInputValue("signup-bio");
         var filesSelected = $("#photo-preview").attr('src');
 
@@ -90,7 +101,7 @@ function signUp() {
             }
             else {
                 markInputAs("signup-email", SUCCESS, "");
-                var url = "/home/Index?id=" + rec.user.id;
+                var url = "/home/Index";
                 window.location.href = url;
             }
         });
@@ -119,7 +130,7 @@ function login() {
             else {
                 markInputAs("login-email", SUCCESS);
                 markInputAs("login-password", SUCCESS);
-                var url = "/home/Index?id=" + rec.user.id;
+                var url = "/home/Index";
                 window.location.href = url;
             }
         });

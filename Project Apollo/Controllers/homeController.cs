@@ -76,11 +76,12 @@ namespace Project_Apollo.Controllers {
 
 		[HttpPost]
 		public void createProject(string name, string description) {
-			Project project = db.ProjectTable.Add(new Project() {
-				Name = name,
-				Description = description,
-				customer = db.userTable.Find(ViewBag.userId) //FIXME
-			});
+            Project project = db.ProjectTable.Add(new Project() {
+                Name = name,
+                Description = description,
+                customer = db.userTable.Find((int)Session["id"]),
+                status = (int)Session["userRole"] == 0 ? status.waiting :status.pending
+            });
 			db.SaveChanges();
 		}
 
