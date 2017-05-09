@@ -50,6 +50,8 @@
                     $("#project-name").val("");
                     $("#project-description").val("");
                     showSnackbar("Project created successfully");
+                    var url = "/home/Index";
+                    window.location.href = url;
                 });
             }
         } //Updating project
