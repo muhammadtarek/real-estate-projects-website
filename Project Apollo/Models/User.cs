@@ -19,8 +19,8 @@ namespace Project_Apollo.Models
         {
             Projects = new List<Project>();
             Qualifications = new List<Qualifications>();
-            Requests = new List<Requests>();
-            Feedback = new List<Feedback>();
+            Requestsrecive = new List<Requests>();
+            Requestssent = new List<Requests>();
             ownProject = new List<Project>();
             manageProject = new List<Project>();
             leadProject = new List<Project>();
@@ -40,8 +40,8 @@ namespace Project_Apollo.Models
         public virtual ICollection<Project> leadProject { get; set; }// TeamLeader -> pm M->1
         public virtual ICollection<ApplyProject> Applyer { get; set; } // Pm -> applytoproject 1 -> M
         public virtual ICollection<Qualifications> Qualifications { get; set; }
-        public virtual ICollection<Requests> Requests { get; set; }
-        public virtual ICollection<Feedback> Feedback { get; set; }
+        public virtual ICollection<Requests> Requestsrecive { get; set; }
+        public virtual ICollection<Requests> Requestssent { get; set; }
 
     }
 }
