@@ -75,7 +75,62 @@ namespace Project_Apollo.Controllers {
 			List<Project> projects = db.ProjectTable.Where(x => ((int)x.status) == status).ToList();
 			return View(projects);
 		}
+        public void deleteUser(int id)
+        {
+            User u = db.userTable.Find(id);
+            if (u.UserRole == (userRole)1) // customer
+            {
+                foreach (Project p in u.ownProject.ToList())
+                {
+                    db.ProjectTable.Remove(p);
+                }
+            }
+            else if (u.UserRole == (userRole)2)//projectManager
+            {
+                foreach (Project p in u.manageProject.ToList())
+                {
+                    db.Entry(p).Reference("projectManager").CurrentValue = null;
+                }
+            }
+            else if (u.UserRole == (userRole)3)//teamLeader
+            {
+                foreach (Project p in u.leadProject.ToList())
+                {
+                    db.Entry(p).Reference("teamLeader").CurrentValue = null;
+                }
+            }
+            else if (u.UserRole == (userRole)3)//juniorEngineer
+            {
 
-	}
+            }
+            foreach (Qualifications q in u.Qualifications.ToList())
+            {
+                db.qualificationsTable.Remove(q);
+            }
+            db.SaveChanges();
+        }
+        public void requestTeamLeader(int projectid = 2, int teamLeaderId = 1)
+        {
+            db.RequestsTable.Add(new Requests
+            {
+                project = db.ProjectTable.Find(projectid),
+                sender = db.userTable.Find((int)Session["id"]),
+                reciever = db.userTable.Find(teamLeaderId),
+                requestType = (request)0
+            });
+            db.SaveChanges();
+        }
+        public void requestJuniorEngineer(int projectid = 2, int JuniorId = 1)
+        {
+            db.RequestsTable.Add(new Requests
+            {
+                project = db.ProjectTable.Find(projectid),
+                sender = db.userTable.Find((int)Session["id"]),
+                reciever = db.userTable.Find(JuniorId),
+                requestType = (request)1
+            });
+            db.SaveChanges();
+        }
+    }
 
 }
