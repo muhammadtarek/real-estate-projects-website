@@ -1,36 +1,38 @@
 ﻿<header class="@(@ViewBag.showNav == true ? "no-bottom-padding" : "")">
-    <div>
-        <img src="~/Public/assets/images/logo-dark.png" width="40" />
+    <div class="container-width">
+        <div class="col-sm-12">
+            <img src="~/Public/assets/images/logo-dark.png" width="40" />
 
-        <div class="right-part">
-            <div class="tab">
-                <a>Home</a>
+            <div class="right-part">
+                <div class="tab">
+                    <a>Home</a>
+                </div>
+
+                <div class="tab tab-picture">
+                    <a>
+                        <img src=@Session["userPhoto"] width="25" />
+                        <span>@Session["userName"]</span>
+                    </a>
+                </div>
+
+                <button class="logout-btn"></button>
             </div>
-
-            <div class="tab tab-picture">
-                <a>
-                    <img src=@Session["userPhoto"] width="25" />
-                    <span>@Session["userName"]</span>
-                </a>
-            </div>
-
-            <button class="logout-btn"></button>
         </div>
-    </div>
 
-    @if (ViewBag.showNav == true) {
+        @if (ViewBag.showNav == true) {
         <div class="nav-container">
             <ul class="nav nav-top">
                 @if (ViewBag.showNav == true) {
                     var counter = 0;
                     foreach (var tab in ViewBag.tabs) {
-                        <li @{if (counter == 0) { <text> class="tab-active" </text>   } }>
-                            @tab
-                        </li>
+                    <li @{if (counter == 0) { <text> class="tab-active" </text>     } }>
+                        @tab
+                    </li>
                     counter++;
                     }
                 }
             </ul>
         </div>
-    }
+        }
+    </div>
 </header>
