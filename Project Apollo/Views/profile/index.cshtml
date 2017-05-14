@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<Project_Apollo.Models.Project>
+@{
     if ((int)Session["userRole"] < 2) {
         //Admin, project manager or customer
         Layout = "~/Views/Shared/Layouts/_HighProfile.cshtml";
@@ -9,5 +10,9 @@
 }
 
 @Html.Partial("_userCard")
-@Projects.Assigned((String)@Session["userPhoto"], (String)@Session["userName"], "Today at 7:00 PM", "Ay 5rara",
-                   "M3 ta7yat Morta", 1, (String)@Session["userPhoto"], (String)@Session["userPhoto"])
+@{foreach(Project_Apollo.Models.Project p in Model) {
+        //@List<String>
+        @Projects.Assigned(Project_Apollo.Models.ImageConverter.convertPhotoToString(p.customer.Photo), p.customer.name, p.createDate.ToString(), p.Name,
+                p.Description, p.ID, (int)p.status, p.startDate.ToString(), p.endDate.ToString(), Project_Apollo.Models.ImageConverter.convertPhotoToString(p.projectManager.Photo), Project_Apollo.Models.ImageConverter.convertPhotoToString(p.teamLeader.Photo),p.workers.ToList());
+            }
+        }

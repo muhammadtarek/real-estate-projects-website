@@ -54,7 +54,7 @@
 
 <!- ASSIGNED PROJECT COMPONENT--->
 @helper Assigned(string userPhoto, string customerName, string postingTime, string projectName,
-                   string projectDescription, int projectId, string managerPhoto, string leaderPhoto) {
+                   string projectDescription, int projectId,int Status ,String stratDate,String endDate ,string managerPhoto, string leaderPhoto , List<Project_Apollo.Models.User> memberPhotos) {
     <div class="project-cotnainer" id="@projectId">
         <div class="project">
             <div class="owner-container">
@@ -76,17 +76,17 @@
                 <div class="about">
                     <div class="row">
                         <label>Project Status:</label>
-                        <span>In Progress</span>
+                        <span>@Status</span>
                     </div>
 
                     <div class="row">
                         <label>Start Date:</label>
-                        <span>In Progress</span>
+                        <span>@stratDate</span>
                     </div>
 
                     <div class="row">
                         <label>End Date:</label>
-                        <span>In Progress</span>
+                        <span>@endDate</span>
                     </div>
                 </div>
 
@@ -101,11 +101,9 @@
                         <img src="@leaderPhoto" width="30"/>
 
                         <div class="members">
-                            <img src="@leaderPhoto" width="30" />
-                            <img src="@leaderPhoto" width="30" />
-                            <img src="@leaderPhoto" width="30" />
-                            <img src="@leaderPhoto" width="30" />
-
+                            @{ foreach(Project_Apollo.Models.User photo in memberPhotos) { 
+                                <img src="@Project_Apollo.Models.ImageConverter.convertPhotoToString(photo.Photo)" width="30" />}
+                            }
                         </div>
                         
                     </div>

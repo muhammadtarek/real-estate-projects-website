@@ -10,8 +10,8 @@ namespace Project_Apollo.Controllers {
 		DBase db = new DBase();
 
 		// GET: profile
-		public ActionResult Index() {
-			Session["id"] = 1;
+		public ActionResult Index(int id = 1) {
+			Session["id"] = id;
 			User user = db.userTable.Find((int)Session["id"]);
 
 			//TESTING ONLY
@@ -34,7 +34,14 @@ namespace Project_Apollo.Controllers {
 				case 0:
 					ViewBag.tabs = new string[2] {"Profile", "User Managment"};
 					break;
-			}			
+                case 1:
+                    ViewBag.tabs = new string[2] { "Profile", "User Managment" };
+                    break;
+                case 2:
+                    ViewBag.tabs = new string[2] { "Profile", "User Managment" };
+                    break;
+
+            }			
 			
 
 			if (user.Photo == null) {
@@ -45,7 +52,7 @@ namespace Project_Apollo.Controllers {
 			}
 
 			Session["userName"] = user.name;
-			return View();
+			return View(this.loadAssignedProjects((int)Session["id"]));
 		}
 
 
@@ -130,6 +137,11 @@ namespace Project_Apollo.Controllers {
                 requestType = (request)1
             });
             db.SaveChanges();
+        }
+        public object loadAssignedProjects(int userId)
+        {
+            var arr = db.ProjectTable.Where(x => ((int)x.status) == 1 && (x.projectManager.ID == userId || x.teamLeader.ID == userId || x.workers.Any(ss=>ss.ID == userId)||x.customer.ID == userId)).ToList();
+            return arr;
         }
     }
 
