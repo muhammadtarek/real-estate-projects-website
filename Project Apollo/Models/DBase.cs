@@ -28,6 +28,8 @@ namespace Project_Apollo.Models
             modelBuilder.Entity<Project>().HasMany(s => s.applied).WithOptional(s => s.project).WillCascadeOnDelete(true); // delete cascade project -> appliers
             modelBuilder.Entity<Project>().HasMany(s => s.Requests).WithOptional(s => s.project).WillCascadeOnDelete(true);// delete cascade project -> requests
             //map relation on user table to project with different behavior  1 - > m
+            modelBuilder.Entity<User>().HasMany(s => s.Requestsrecive).WithOptional(s => s.reciever);
+            modelBuilder.Entity<User>().HasMany(s => s.Requestssent).WithOptional(s => s.sender);
             modelBuilder.Entity<Project>().HasOptional(s => s.customer).WithMany(s => s.ownProject); 
             modelBuilder.Entity<Project>().HasOptional(s => s.projectManager).WithMany(s => s.manageProject);
             modelBuilder.Entity<Project>().HasOptional(s => s.teamLeader).WithMany(s => s.leadProject);
@@ -42,7 +44,6 @@ namespace Project_Apollo.Models
                    m.MapRightKey("UserId");
                    m.ToTable("WorksFor");
                });
-        }
-        
+        }        
     }
 }
