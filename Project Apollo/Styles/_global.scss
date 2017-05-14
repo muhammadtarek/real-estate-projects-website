@@ -29,3 +29,14 @@ body {
 .no-padding {
     padding: 0 !important;
 }
+
+.container-width,
+.app-container {
+  width: 1000px !important;
+}
+
+.app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
