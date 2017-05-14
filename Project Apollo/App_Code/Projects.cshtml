@@ -1,5 +1,5 @@
 ﻿<!-- UN_ASSIGNED PROJECT COMPONENT -->
-@helper Unassigned(string userPhoto, string customerName, int userType, string postingTime, string projectName, 
+@helper Unassigned(string userPhoto, string customerName, int userType, string postingTime, string projectName,
                    string projectDescription, int projectId, int ownerId, int userId, IEnumerable<Project_Apollo.Models.Comments> comments)
 {
     <div class="project-cotnainer" id="@projectId" ownderId="@ownerId">
@@ -23,10 +23,10 @@
                             <button class="delete-btn"></button>
                         }
                     }
-                    
+
                 </div>
             </div>
-            
+
 
             <div class="details">
                 <h4 class="name">@projectName</h4>
@@ -44,16 +44,17 @@
                 }
 
                 @foreach (var comment in comments) {
-                    @Components.Comment(comment.projectManager.ID,Project_Apollo.Models.ImageConverter.convertPhotoToString(comment.projectManager.Photo), comment.projectManager.name, comment.comment)
-}
-            </div>   }
-        
+                    @Components.Comment(comment.projectManager.ID, Project_Apollo.Models.ImageConverter.convertPhotoToString(comment.projectManager.Photo),
+                   comment.projectManager.name,
+                   comment.comment)
+                }
+            </div>  }
     </div>
-} 
+}
 
-<!- ASSIGNED PROJECT COMPONENT---> 
+<!- ASSIGNED PROJECT COMPONENT--->
 @helper Assigned(string userPhoto, string customerName, string postingTime, string projectName,
-                   string projectDescription, int projectId, string managerPhoto, string leaderPhoto, string[] engineersPhotos) {
+                   string projectDescription, int projectId, string managerPhoto, string leaderPhoto) {
     <div class="project-cotnainer" id="@projectId">
         <div class="project">
             <div class="owner-container">
@@ -71,7 +72,45 @@
             <div class="details">
                 <h4 class="name">@projectName</h4>
                 <p class="description">@projectDescription</p>
+
+                <div class="about">
+                    <div class="row">
+                        <label>Project Status:</label>
+                        <span>In Progress</span>
+                    </div>
+
+                    <div class="row">
+                        <label>Start Date:</label>
+                        <span>In Progress</span>
+                    </div>
+
+                    <div class="row">
+                        <label>End Date:</label>
+                        <span>In Progress</span>
+                    </div>
+                </div>
+
+                <div class="people">
+                    <div class="row">
+                        <label>Project Manager:</label>
+                        <img src="@managerPhoto" width="30"/>
+                    </div>
+
+                    <div class="row">
+                        <label>Team Members:&nbsp</label>
+                        <img src="@leaderPhoto" width="30"/>
+
+                        <div class="members">
+                            <img src="@leaderPhoto" width="30" />
+                            <img src="@leaderPhoto" width="30" />
+                            <img src="@leaderPhoto" width="30" />
+                            <img src="@leaderPhoto" width="30" />
+
+                        </div>
+                        
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-} 
+}
