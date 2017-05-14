@@ -1,4 +1,4 @@
-﻿@{ 
+﻿@{
     if ((int)Session["userRole"] < 2) {
         //Admin, project manager or customer
         Layout = "~/Views/Shared/Layouts/_HighProfile.cshtml";
@@ -9,3 +9,5 @@
 }
 
 @Html.Partial("_userCard")
+@Projects.Assigned((String)@Session["userPhoto"], (String)@Session["userName"], "Today at 7:00 PM", "Ay 5rara",
+                   "M3 ta7yat Morta", 1, (String)@Session["userPhoto"], (String)@Session["userPhoto"])
