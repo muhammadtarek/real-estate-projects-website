@@ -33,17 +33,3 @@
         <label class="error-message"></label>
     </div>
 }
-
-<!-- COMMENT COMPONENT -->
-@helper Comment(int id, string userPhoto, string userName, string comment)
-{
-    <div class="comment">
-        <img src="@userPhoto" width="35" />
-
-        <div class="details">
-            <label class="name">@userName</label>
-            <label class="comment-text">@comment</label>
-        </div>
-        
-    </div>
-}
