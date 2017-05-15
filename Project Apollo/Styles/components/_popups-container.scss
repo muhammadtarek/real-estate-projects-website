@@ -7,8 +7,7 @@
   background-color: rgba(0, 0, 0, 0.5);
   overflow: hidden;
   display: none;
-
-  @include rounded($medium-border);
+  z-index: 999999;
 
   .scrollable {
     height: 100%;
