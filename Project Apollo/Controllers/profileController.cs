@@ -158,6 +158,24 @@ namespace Project_Apollo.Controllers {
             db.Entry(proj).Reference("teamLeader").CurrentValue = null;
             db.SaveChanges();
         }
+
+        public void Je_LeaveProject(int JE_ID, int projectId)
+        {
+            removeEngineerFromProject(JE_ID, projectId);
+        }
+
+        public void Te_evaluateJouniorEnginner(int engineerID, int projectID, String feedBack)
+        {
+            Project proj = db.ProjectTable.Find(projectID);
+            Feedback feedbackMessage = new Feedback();
+            feedbackMessage.feedBack = feedBack;
+            feedbackMessage.juniorEngineering = proj.workers.First(x => x.ID == engineerID);
+            feedbackMessage.projectManager = proj.projectManager;
+            feedbackMessage.teamLeader = proj.teamLeader;
+            db.FeedbackTable.Add(feedbackMessage);
+            db.SaveChanges();
+        }
+
     }
 
 }
