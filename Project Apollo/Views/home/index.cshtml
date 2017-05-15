@@ -4,7 +4,7 @@
 }
 
 <div class="app-container" style="margin-top: 125px;">
-    <div class="no-padding">
+    <div class="col-sm-12">
         <div class="col-md-5 no-padding">
             @if ((int)Session["userRole"] == 0 || (int)Session["userRole"] == 1) {
                 @Html.Partial("_CreateProjectForm")

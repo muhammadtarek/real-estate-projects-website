@@ -7,6 +7,7 @@
     @Components.InputField("project-price", "Choose your price", "text", "number")
     @Components.InputField("project-start-date", "Starting date", "text", "date")
     @Components.InputField("project-delivery-date", "Delivering Date", "text", "date")
+    @Components.TextArea("project-letter", "Any comments...")
 
     <button class="btn-primary" id="btn-applyToProject"@((int)Session["userRole"] > 2? "disabled" : "")>Apply</button>
 </div>
