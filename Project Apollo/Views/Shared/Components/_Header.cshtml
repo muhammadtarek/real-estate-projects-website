@@ -1,6 +1,6 @@
 ﻿<header class="@(@ViewBag.showNav == true ? "no-bottom-padding" : "")">
     <div class="container-width">
-        <div class="col-sm-12 no-padding">
+        <div class="col-sm-12">
             <img src="~/Public/assets/images/logo-dark.png" width="40" />
 
             <div class="right-part">
@@ -20,7 +20,7 @@
         </div>
 
         @if (ViewBag.showNav == true) {
-            <div class="nav-container">
+            <div class="nav-container col-sm-12">
                 <ul class="nav nav-top">
                     @if (ViewBag.showNav == true) {
                         var counter = 0;
