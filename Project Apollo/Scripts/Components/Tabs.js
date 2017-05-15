@@ -5,5 +5,4 @@
     var selectedTab = $(this).attr("tab");
     $(".tab-view--active").removeClass("tab-view--active");
     $(".tab-view[tab-view='" + selectedTab + "']").addClass("tab-view--active");
-    console.log(".tab-view[tab-view='" + selectedTab + "']");
 });

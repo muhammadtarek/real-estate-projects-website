@@ -10,6 +10,10 @@
 }
 
 <div class="tab-view tab-view--active" tab-view="projects">
+    @if ((int)Session["userRole"] == 0 || (int)Session["userRole"] == 2 || (int)Session["userRole"] == 3) {
+        @Html.Partial("~/Views/Profile/_UserCard.cshtml")
+    }
+
     @{foreach (Project_Apollo.Models.Project p in Model) {
             @Projects.Assigned(Project_Apollo.Models.ImageConverter.convertPhotoToString(p.customer.Photo), p.customer.name, p.createDate.ToString(), p.Name,
                 p.Description, p.ID, (int)p.status, p.startDate.ToString(), p.endDate.ToString(), Project_Apollo.Models.ImageConverter.convertPhotoToString(p.projectManager.Photo), Project_Apollo.Models.ImageConverter.convertPhotoToString(p.teamLeader.Photo), p.workers.ToList());
@@ -17,8 +21,21 @@
     }
 </div>
 
+<!-- Admin -->
 @if((int)Session["userRole"] == 0) {
     <div class="tab-view" tab-view="user-management">
-        <h1>User Managment</h1>
+        <div style="margin-bottom: 10px;">
+            <label>Current users</label>
+            <a style="float: right;">Add new user</a>
+        </div>
+
+        @Users.UserRow(1, (String)Session["userPhoto"], "Muhammad Tarek", "Admin", "muhammadtarek96@gmail.com")
+        @Users.UserRow(1, (String)Session["userPhoto"], "Muhammad Tarek", "Admin", "muhammadtarek96@gmail.com")
+        @Users.UserRow(1, (String)Session["userPhoto"], "Muhammad Tarek", "Admin", "muhammadtarek96@gmail.com")
+    </div>
+
+    <div class="popup-container">
+        @Html.Partial("~/Views/Shared/Forms/_UserControlForm.cshtml")
     </div>
 }
+

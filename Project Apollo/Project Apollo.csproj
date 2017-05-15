@@ -201,6 +201,7 @@
     <Content Include="Views\Profile\_SideMenu.cshtml" />
     <Content Include="Styles\components\_side-menu.scss" />
     <Content Include="App_Code\Users.cshtml" />
+    <Content Include="Styles\components\_user-row.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
