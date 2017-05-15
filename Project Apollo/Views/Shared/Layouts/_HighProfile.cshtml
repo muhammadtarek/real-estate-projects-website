@@ -18,6 +18,20 @@
 </div>
 @Html.Partial("~/Views/Shared/Components/_Footer.cshtml")
 
+@if ((int)Session["userRole"] == 0) {
+    <div class="popup-container">
+        <div class="scrollable">
+            @Html.Partial("~/Views/Shared/Forms/_UserControlForm.cshtml")
+        </div>
+    </div>
+}
+
+
 <!-- JavaScript Files -->
 <script src="~/Scripts/Components/Snackbar.js"></script>
 <script src="~/Scripts/Components/Tabs.js"></script>
+<script src="~/Scripts/Components/InputField.js"></script>
+<script src="~/Scripts/CreateUser.js"></script>
+<script src="~/Scripts/Pages/ProfilePage.js"></script>
+<script src="~/Scripts/Actions/Form.js"></script>
+<script src="~/Scripts/Validation.js"></script>
