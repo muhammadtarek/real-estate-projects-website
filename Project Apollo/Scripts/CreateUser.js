@@ -1,7 +1,6 @@
 ﻿function signUp() {
     if (checkForEmptyFields("signup") && checkForDangerFields()) {
         $("#btn-signup").prop("disabled", true);
-        $("#btn-sinup").html("Signing up...");
 
         var email = getInputValue("signup-email");
         var name = getInputValue("signup-name");
@@ -42,6 +41,7 @@
                 $("#btn-signup").prop("disabled", false);
             }
             else {
+                $("#btn-sinup").html("Signing up...");
                 markInputAs("signup-email", SUCCESS, "");
                 var url = "/home/Index";
                 window.location.href = url;

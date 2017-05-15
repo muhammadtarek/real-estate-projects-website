@@ -31,7 +31,6 @@
 function login() {
     if (checkForEmptyFields("login") && checkForDangerFields()) {
         $("#btn-login").prop("disabled", true);
-        $("#btn-login").html("Logging in...");
 
         var email = getInputValue("login-email");
         var password = getInputValue("login-password");
@@ -50,6 +49,7 @@ function login() {
                 $("#btn-login").prop("disabled", false);
             }
             else {
+                $("#btn-login").html("Logging in...");
                 markInputAs("login-email", SUCCESS);
                 markInputAs("login-password", SUCCESS);
                 var url = "/home/Index";
