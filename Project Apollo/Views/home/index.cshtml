@@ -8,9 +8,8 @@
         <div class="col-md-5 no-padding">
             @if ((int)Session["userRole"] == 0 || (int)Session["userRole"] == 1) {
                 @Html.Partial("_CreateProjectForm")
-                } else {
+            } else {
                    @Html.Partial("_ApplyToProjectForm")
-                }
             }
 
         </div>
