@@ -176,6 +176,26 @@ namespace Project_Apollo.Controllers {
             db.SaveChanges();
         }
 
+
+        public void Customer_assignProjectToPM(int PM_ID, int projectID)
+        {
+            User pm = db.userTable.Find(PM_ID);
+            Project proj = db.ProjectTable.Find(projectID);
+            ApplyProject applier = proj.applied.First(x => x.projectManager == pm);
+            proj.projectManager = pm;
+            proj.price = applier.price;
+            proj.startDate = applier.startDate;
+            proj.endDate = applier.endDate;
+            proj.status = (status)1;
+
+            var appliers = proj.applied.Where(x => x.project.ID == proj.ID);
+            db.ApplyProjectTable.RemoveRange(appliers);
+
+            //proj.applied.Clear();
+
+            db.SaveChanges();
+        }
+
     }
 
 }
