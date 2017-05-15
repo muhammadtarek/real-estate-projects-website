@@ -1,5 +1,6 @@
 ﻿$(window).ready(function () {
     var selectedPostId;
+    var currentActiveApplyingButton;
 
     //Deleting a project post
     $(".delete-btn").click(function deleteProject() {
@@ -34,7 +35,7 @@
     });
 
     //Creating or updating project
-    $("#call-to-action").click(function () {
+    $("#call-to-action").click(function controlProject() {
         var projectName = getInputValue("project-name");
         var projectDescription = getInputValue("project-description");
 
@@ -82,7 +83,32 @@
     // TODO
 
     //Apply to project
-    // TODO
+    $(".apply-btn").click(function applyToProject() {
+        //If he applyied on a project but never sumbited
+        $(currentActiveApplyingButton).html("Apply");
+        $(currentActiveApplyingButton).attr("disabled", false);
+
+        var projectContainer = $(this).parent().parent().parent().parent();
+        var projectName = $(projectContainer).find("h4.name")[0].innerHTML;
+        selectedPostId = $(projectContainer).attr("id");
+
+        currentActiveApplyingButton = $(projectContainer).find(".apply-btn")[0];
+        $(currentActiveApplyingButton).html("Applying...");
+        $(currentActiveApplyingButton).attr("disabled", true);
+
+        $("#project-name").val(projectName);
+        console.log(projectName);
+    });
+
+    //Sumbitting applying form
+    $("#btn-applyToProject").click(function sumbitForm() {
+        // TODO 
+        /*
+        On success add these lines
+        $(currentActiveApplyingButton).html("Applied");
+        currentActiveApplyingButton = null;
+        */
+    });
 });
 
 function createComment(comment) {
