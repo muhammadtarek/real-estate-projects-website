@@ -9,10 +9,16 @@
     }
 }
 
-@Html.Partial("_userCard")
-@{foreach(Project_Apollo.Models.Project p in Model) {
-        //@List<String>
-        @Projects.Assigned(Project_Apollo.Models.ImageConverter.convertPhotoToString(p.customer.Photo), p.customer.name, p.createDate.ToString(), p.Name,
-                p.Description, p.ID, (int)p.status, p.startDate.ToString(), p.endDate.ToString(), Project_Apollo.Models.ImageConverter.convertPhotoToString(p.projectManager.Photo), Project_Apollo.Models.ImageConverter.convertPhotoToString(p.teamLeader.Photo),p.workers.ToList());
-            }
+<div class="tab-view tab-view--active" tab-view="projects">
+    @{foreach (Project_Apollo.Models.Project p in Model) {
+            @Projects.Assigned(Project_Apollo.Models.ImageConverter.convertPhotoToString(p.customer.Photo), p.customer.name, p.createDate.ToString(), p.Name,
+                p.Description, p.ID, (int)p.status, p.startDate.ToString(), p.endDate.ToString(), Project_Apollo.Models.ImageConverter.convertPhotoToString(p.projectManager.Photo), Project_Apollo.Models.ImageConverter.convertPhotoToString(p.teamLeader.Photo), p.workers.ToList());
         }
+    }
+</div>
+
+@if((int)Session["userRole"] == 0) {
+    <div class="tab-view" tab-view="user-management">
+        <h1>User Managment</h1>
+    </div>
+}

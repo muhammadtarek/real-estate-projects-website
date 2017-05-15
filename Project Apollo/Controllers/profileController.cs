@@ -10,8 +10,8 @@ namespace Project_Apollo.Controllers {
 		DBase db = new DBase();
 
 		// GET: profile
-		public ActionResult Index(int id = 1) {
-			Session["id"] = id;
+		public ActionResult Index() {
+			//Session["id"] = 1; TESTING ONLY
 			User user = db.userTable.Find((int)Session["id"]);
 
 			//TESTING ONLY
@@ -21,7 +21,7 @@ namespace Project_Apollo.Controllers {
 			Session["userDescription"] = user.Description;
 
 			//Choosing layout depends on user role
-			if ((int)Session["userRole"] < 2) {
+			if ((int)Session["userRole"] == 0 || (int)Session["userRole"] == 2 || (int)Session["userRole"] == 3) {
 				//If the user is admin, customer or project manager
 				ViewBag.showNav = false;
 			} else {
@@ -32,16 +32,26 @@ namespace Project_Apollo.Controllers {
 			//Loading tabs depends on user role
 			switch ((int)Session["userRole"]) {
 				case 0:
-					ViewBag.tabs = new string[2] {"Profile", "User Managment"};
+					ViewBag.tabs = new string[2] {"Projects", "User Managment"};
+					ViewBag.tabAttr = new string[2] {"projects" , "user-management" };
 					break;
                 case 1:
-                    ViewBag.tabs = new string[2] { "Profile", "User Managment" };
-                    break;
+                    ViewBag.tabs = new string[2] { "Projects", "Accept requests" };
+					ViewBag.tabAttr = new string[2] { "projects", "accept-request" };
+					break;
                 case 2:
-                    ViewBag.tabs = new string[2] { "Profile", "User Managment" };
-                    break;
-
-            }			
+                    ViewBag.tabs = new string[3] { "Projects", "Send request", "Accept requests" };
+					ViewBag.tabAttr = new string[3] { "projects", "send-request", "accept-request" };
+					break;
+				case 3:
+					ViewBag.tabs = new string[] { "Projects", "Accept request" };
+					ViewBag.tabAttr = new string[2] { "projects", "accept-request" };
+					break;
+				case 4:
+					ViewBag.tabs = new string[] { "Projects", "Accept request" };
+					ViewBag.tabAttr = new string[2] { "projects", "accept-request" };
+					break;
+			}			
 			
 
 			if (user.Photo == null) {

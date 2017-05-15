@@ -8,6 +8,7 @@
     <div class="app-container" style="margin-top: 95px;">
         <div class="no-padding">
             <div class="col-md-7 col-md-offset-1">
+                @Html.Partial("~/Views/Profile/_UserCard.cshtml")
                 @RenderBody()
             </div>
             <div class="col-md-3">
@@ -17,3 +18,7 @@
     </div>
 </div>
 @Html.Partial("~/Views/Shared/Components/_Footer.cshtml")
+
+<!-- JavaScript Files -->
+<script src="~/Scripts/Components/Snackbar.js"></script>
+<script src="~/Scripts/Components/Tabs.js"></script>

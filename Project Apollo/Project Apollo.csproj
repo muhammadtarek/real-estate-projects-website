@@ -117,6 +117,7 @@
     <Content Include="Public\assets\images\picture.jpg" />
     <Content Include="Public\style.min.css" />
     <Content Include="Scripts\Components\InputField.js" />
+    <Content Include="Scripts\Components\Tabs.js" />
     <Content Include="Scripts\Pages\HomePage.js" />
     <Content Include="Scripts\Pages\LandingPage.js" />
     <Content Include="Scripts\Validation.js" />

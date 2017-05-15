@@ -3,10 +3,10 @@
         @{
             var counter = 0;
             foreach (var tab in ViewBag.tabs) {
-                <li @{if (counter == 0) { <text> class="tab-active" </text>    } }>
+                <li class='nav-tab @(counter == 0?"tab-active":"")' tab="@ViewBag.tabAttr[counter]">
                     @tab
                 </li>
-            counter++;
+                counter++;
             }
         }
     </ul>
