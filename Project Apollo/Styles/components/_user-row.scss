@@ -18,8 +18,23 @@
       display: inline-block;
       float: right;
 
-      button {
+      .delete-btn {
+        position: relative;
+        top: 5px;
+        background: transparent;
+        border: 1px solid transparent !important;
+        padding: 8px !important;
+        font-size: $default;
+        height: 34px;
+        width: 34px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 18px;
+        background-image: url(assets/icons/delete.svg);
 
+        &:hover {
+          border-color: $danger-color !important;
+        }
       }
     }
   }
