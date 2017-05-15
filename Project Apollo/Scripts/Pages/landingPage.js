@@ -63,11 +63,14 @@
 function signUp() {
     if (checkForEmptyFields("signup") && checkForDangerFields()) {
         $("#btn-signup").prop("disabled", true);
+        $("#btn-sinup").html("Signing up...");
+
         var email = getInputValue("signup-email");
         var name = getInputValue("signup-name");
         var phone = getInputValue("signup-phone");
         var password = getInputValue("signup-password");
         var userrolestring = getInputValue("signup-userrole");
+
         var userrole = 0;
         if (userrolestring === "Admin")
             userrole = 0;
@@ -79,6 +82,7 @@ function signUp() {
             userrole = 3;
         else
             userrole = 4;
+
         var bio = getInputValue("signup-bio");
         var filesSelected = $("#photo-preview").attr('src');
 
@@ -97,7 +101,7 @@ function signUp() {
             console.log(rec);
             if (rec.result.email !== true) {
                 markInputAs("signup-email", DANGER, rec.result.email);
-                $("#btn-signup").prop("disabled", false);
+                $("#btn-signup").prop("disabled", false);  
             }
             else {
                 markInputAs("signup-email", SUCCESS, "");
@@ -111,6 +115,8 @@ function signUp() {
 function login() {
     if (checkForEmptyFields("login") && checkForDangerFields()) {
         $("#btn-login").prop("disabled", true);
+        $("#btn-login").html("Loggin in...");
+
         var email = getInputValue("login-email");
         var password = getInputValue("login-password");
         var datasend = {
