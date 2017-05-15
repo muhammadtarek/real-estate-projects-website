@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Project_Apollo.Models.Project>
 @{
-    if ((int)Session["userRole"] < 2) {
+    if ((int)Session["userRole"] == 0 || (int)Session["userRole"] == 2 || (int)Session["userRole"] == 3) {
         //Admin, project manager or customer
         Layout = "~/Views/Shared/Layouts/_HighProfile.cshtml";
     } else {

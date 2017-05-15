@@ -3,8 +3,9 @@
     ViewBag.Title = "Profile";
 }
 
+@Html.Partial("~/Views/Shared/Components/_Header.cshtml")
 <div class="app">
-    <div class="app-container" style="margin-top: 95px;">
+    <div class="app-container" style="margin-top: 125px;">
         <div class="no-padding">
             <div class="col-md-7">
                 @RenderBody()
@@ -15,3 +16,4 @@
         </div>
     </div>
 </div>
+@Html.Partial("~/Views/Shared/Components/_Footer.cshtml")
