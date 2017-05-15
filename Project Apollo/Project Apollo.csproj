@@ -116,10 +116,13 @@
     <Content Include="Public\assets\images\logo-white.png" />
     <Content Include="Public\assets\images\picture.jpg" />
     <Content Include="Public\style.min.css" />
+    <Content Include="Scripts\Actions\Form.js" />
     <Content Include="Scripts\Components\InputField.js" />
     <Content Include="Scripts\Components\Tabs.js" />
+    <Content Include="Scripts\CreateUser.js" />
     <Content Include="Scripts\Pages\HomePage.js" />
     <Content Include="Scripts\Pages\LandingPage.js" />
+    <Content Include="Scripts\Pages\ProfilePage.js" />
     <Content Include="Scripts\Validation.js" />
     <Content Include="Scripts\Components\Snackbar.js" />
     <Content Include="Web.config" />
@@ -203,6 +206,7 @@
     <Content Include="App_Code\Users.cshtml" />
     <Content Include="Styles\components\_user-row.scss" />
     <Content Include="Styles\components\_footer.scss" />
+    <Content Include="Views\Profile\_UserManagment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
