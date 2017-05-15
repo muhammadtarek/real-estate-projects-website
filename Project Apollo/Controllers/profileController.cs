@@ -152,6 +152,12 @@ namespace Project_Apollo.Controllers {
             db.SaveChanges();
         }
 
+        public void Te_LeaveProject(int projectId)
+        {
+            Project proj = db.ProjectTable.Find(projectId);
+            db.Entry(proj).Reference("teamLeader").CurrentValue = null;
+            db.SaveChanges();
+        }
     }
 
 }
