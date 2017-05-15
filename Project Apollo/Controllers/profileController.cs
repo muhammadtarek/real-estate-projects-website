@@ -140,9 +140,18 @@ namespace Project_Apollo.Controllers {
         }
         public object loadAssignedProjects(int userId)
         {
-            var arr = db.ProjectTable.Where(x => ((int)x.status) == 1 && (x.projectManager.ID == userId || x.teamLeader.ID == userId || x.workers.Any(ss=>ss.ID == userId)||x.customer.ID == userId)).ToList();
+            var arr = db.ProjectTable.Where(x => ((int)x.status) == 1 && (x.projectManager.ID == userId || x.teamLeader.ID == userId || x.workers.Any(ss => ss.ID == userId) || x.customer.ID == userId)).ToList();
             return arr;
         }
+
+        public void removeEngineerFromProject(int engineerId= 2, int projectId =2)
+        {
+            Project proj = db.ProjectTable.Find(projectId);
+            var engineer = proj.workers.First(x => x.ID == engineerId);
+            proj.workers.Remove(engineer);
+            db.SaveChanges();
+        }
+
     }
 
 }
