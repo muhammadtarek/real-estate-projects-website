@@ -102,12 +102,25 @@
 
     //Sumbitting applying form
     $("#btn-applyToProject").click(function sumbitForm() {
-        // TODO 
-        /*
-        On success add these lines
-        $(currentActiveApplyingButton).html("Applied");
-        currentActiveApplyingButton = null;
-        */
+        var projectId = selectedPostId;
+        var price = $("#project-price").val();
+        var startingDate = $("#project-start-date").val();
+        var endingDate = $("#project-delivery-date").val();
+        var letter = $("#project-letter").val();
+
+        if (checkForEmptyFields("") && checkForDangerFields) {
+            $.post("/home/applyToProject", {
+                projectId: projectId,
+                applyingLetter: letter,
+                price: price,
+                startDate: startingDate,
+                endDate: endingDate
+            }, function () {
+                showSnackbar("You have applied successfully");
+                $(currentActiveApplyingButton).html("Applied");
+                currentActiveApplyingButton = null;
+            });
+        }
     });
 });
 
