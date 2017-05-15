@@ -8,5 +8,5 @@
     @Components.InputField("project-start-date", "Starting date", "text", "date")
     @Components.InputField("project-delivery-date", "Delivering Date", "text", "date")
 
-    <button class="btn-primary" id="btn-applyToProject" disabled="@((int)Session["userRole"]> 2? "disabled" : "")">Apply</button>
+    <button class="btn-primary" id="btn-applyToProject"@((int)Session["userRole"] > 2? "disabled" : "")>Apply</button>
 </div>

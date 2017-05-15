@@ -18,7 +18,7 @@
             @{ if (Model != null) {
                     foreach (var project in Model) {
                     @Projects.Unassigned(Project_Apollo.Models.ImageConverter.convertPhotoToString(project.customer.Photo), project.customer.name, (int)Session["userRole"], project.createDate.ToString(),
-                                         project.Name, project.Description, project.ID, project.customer.ID, (int)Session["id"], project.comments)
+                                         project.Name, project.Description, project.ID, project.customer.ID, (int)Session["id"], project.applied, project.comments)
                     }
                 }
             }

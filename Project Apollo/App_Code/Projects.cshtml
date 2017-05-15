@@ -2,8 +2,16 @@
     Home page projects
 -->
 @helper Unassigned(string userPhoto, string customerName, int userType, string postingTime, string projectName,
-                   string projectDescription, int projectId, int ownerId, int userId, IEnumerable<Project_Apollo.Models.Comments> comments)
-{
+                   string projectDescription, int projectId, int ownerId, int userId, IEnumerable<Project_Apollo.Models.ApplyProject> appliedManagers, 
+                   IEnumerable<Project_Apollo.Models.Comments> comments) {
+        var appliedStatus = false;
+
+        foreach (var appliedManager in appliedManagers) {
+            if (appliedManager.projectManager.ID == userId) {
+                appliedStatus = true;
+            }
+        }
+
     <div class="project-cotnainer" id="@projectId" ownderId="@ownerId">
         <div class="project">
             <div class="owner-container">
@@ -19,7 +27,7 @@
                 <div class="project-controls">
                     @{
                         if (userType == 2) {
-                            <button class="apply-btn">Apply</button>
+                            <button class="apply-btn" disabled="@appliedStatus">@(appliedStatus == true ? "Applied" : "Apply")</button>
                         } else if ((userType == 0 || userType == 1) && @userId == @ownerId) {
                             <button class="edit-btn"></button>
                             <button class="delete-btn"></button>
