@@ -1,4 +1,6 @@
-﻿<!-- UN_ASSIGNED PROJECT COMPONENT -->
+﻿<!-- 
+    Home page projects
+-->
 @helper Unassigned(string userPhoto, string customerName, int userType, string postingTime, string projectName,
                    string projectDescription, int projectId, int ownerId, int userId, IEnumerable<Project_Apollo.Models.Comments> comments)
 {
@@ -44,7 +46,7 @@
                 }
 
                 @foreach (var comment in comments) {
-                    @Components.Comment(comment.projectManager.ID, Project_Apollo.Models.ImageConverter.convertPhotoToString(comment.projectManager.Photo),
+                    @Projects.Comment(comment.projectManager.ID, Project_Apollo.Models.ImageConverter.convertPhotoToString(comment.projectManager.Photo),
                    comment.projectManager.name,
                    comment.comment)
                 }
@@ -52,7 +54,9 @@
     </div>
 }
 
-<!- ASSIGNED PROJECT COMPONENT--->
+<!--
+    Profile page projects
+-->
 @helper Assigned(string userPhoto, string customerName, string postingTime, string projectName,
                    string projectDescription, int projectId,int Status ,String stratDate,String endDate ,string managerPhoto, string leaderPhoto , List<Project_Apollo.Models.User> memberPhotos) {
     <div class="project-cotnainer" id="@projectId">
@@ -110,5 +114,20 @@
                 </div>
             </div>
         </div>
+    </div>
+}
+
+<!-- 
+    Project comment
+-->
+@helper Comment(int id, string userPhoto, string userName, string comment) {
+    <div class="comment">
+        <img src="@userPhoto" width="35" />
+
+        <div class="details">
+            <label class="name">@userName</label>
+            <label class="comment-text">@comment</label>
+        </div>
+
     </div>
 }

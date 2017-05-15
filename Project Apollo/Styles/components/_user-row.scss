@@ -1,0 +1,26 @@
+﻿.user-row {
+  cursor: default;
+  margin-bottom: 10px;
+
+  .row-container {
+    img {
+      display: inline-block;
+      vertical-align: top !important;
+    }
+
+    .about-user {
+      display: inline-block;
+      margin-left: 8px;
+      margin-top: 0px;
+    }
+
+    .user-controls {
+      display: inline-block;
+      float: right;
+
+      button {
+
+      }
+    }
+  }
+}

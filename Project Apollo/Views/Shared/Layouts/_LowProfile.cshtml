@@ -3,4 +3,15 @@
     ViewBag.Title = "Profile";
 }
 
-@RenderBody()
+<div class="app">
+    <div class="app-container" style="margin-top: 95px;">
+        <div class="no-padding">
+            <div class="col-md-7">
+                @RenderBody()
+            </div>
+            <div class="col-md-5">
+                @Html.Partial("~/Views/Profile/_UserCard.cshtml")
+            </div>
+        </div>
+    </div>
+</div>

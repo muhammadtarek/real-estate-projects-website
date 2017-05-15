@@ -117,6 +117,7 @@
     <Content Include="Public\assets\images\picture.jpg" />
     <Content Include="Public\style.min.css" />
     <Content Include="Scripts\Components\InputField.js" />
+    <Content Include="Scripts\Components\Tabs.js" />
     <Content Include="Scripts\Pages\HomePage.js" />
     <Content Include="Scripts\Pages\LandingPage.js" />
     <Content Include="Scripts\Validation.js" />
@@ -167,7 +168,7 @@
     <Content Include="Views\Shared\Layouts\_WelcomeLayout.cshtml" />
     <Content Include="Views\Welcome\Index.cshtml" />
     <Content Include="Views\Welcome\_LoginForm.cshtml" />
-    <Content Include="Views\Welcome\_SignUpForm.cshtml" />
+    <Content Include="Views\Shared\Forms\_UserControlForm.cshtml" />
     <Content Include="App_Code\Components.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -199,6 +200,8 @@
     <Content Include="Styles\components\_user-card.scss" />
     <Content Include="Views\Profile\_SideMenu.cshtml" />
     <Content Include="Styles\components\_side-menu.scss" />
+    <Content Include="App_Code\Users.cshtml" />
+    <Content Include="Styles\components\_user-row.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
