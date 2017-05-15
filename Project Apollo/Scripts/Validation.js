@@ -26,3 +26,43 @@ function validatePassword(password) {
 }
 
 // TODO date and time validation
+
+function checkForEmptyFields(form) {
+    if (form === "") {
+        var inputs = $("input")
+            .map(function () {
+                if ($(this).val().length === 0)
+                    return $(this);
+            }).get();
+    } else {
+        var inputs = $("input[id^='" + form + "-']")
+            .map(function () {
+                if ($(this).val().length === 0)
+                    return $(this);
+            }).get();
+    }
+    
+    //Returning true if all inputs have value
+    if (inputs.length == 0)
+        return true;
+
+    //Focusing on first empty field
+    var firstDangerInput = inputs[0][0].id;
+    markInputAs(firstDangerInput, DANGER, "Input is required");
+    $("#" + firstDangerInput).focus();
+}
+
+function checkForDangerFields() {
+    var inputs = $(".input-field--danger")
+        .map(function () {
+            return $(this);
+        }).get();
+
+    //Returning true if all inputs are valid
+    if (inputs.length == 0)
+        return true;
+
+    //Focusing on first empty field
+    var firstDangerInput = inputs[0][0].id;
+    $("#" + firstDangerInput).focus();
+}
