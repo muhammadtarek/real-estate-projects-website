@@ -1,31 +1,4 @@
 ﻿$(window).ready(function () {
-    var formHeight = 0;
-
-    var loginForm = "#login-form";
-    var signUpForm = "#signup-form";
-
-    $(loginForm).css("top", "-435px");
-    $(signUpForm).css("top", "-639px");
-
-    function showForm(formId) {
-        var form = "#" + formId;
-
-        $(form + ", .popup-container").css("display", "block");
-        setTimeout(function () {
-            $(form).css("top", "35px");
-
-        }, 2);
-    }
-
-    function hideForm() {
-        $(loginForm).css("top", "-435px");
-        $(signUpForm).css("top", "-639px");
-
-        setTimeout(function () {
-            $(".form, .popup-container").css("display", "none");
-        }, 260);
-    }
-
     /* ACTION LISENTERS */
     $("#login-btn").click(function () {
         showForm("login-form");
@@ -34,10 +7,6 @@
     $("#signup-btn").click(function () {
         showForm("signup-form");
     });
-
-    $(".close").click(function () {
-        hideForm();
-    })
 
     //Taking the photo from file uploader and preview it
     $("#user-photo").change(function () {
@@ -55,67 +24,14 @@
     });
 
     /*Action lisenters*/
-    $("#btn-signup").click(signUp);
     $("#btn-login").click(login);
 });
 
 /* FUNCTIONS */
-function signUp() {
-    if (checkForEmptyFields("signup") && checkForDangerFields()) {
-        $("#btn-signup").prop("disabled", true);
-        $("#btn-sinup").html("Signing up...");
-
-        var email = getInputValue("signup-email");
-        var name = getInputValue("signup-name");
-        var phone = getInputValue("signup-phone");
-        var password = getInputValue("signup-password");
-        var userrolestring = getInputValue("signup-userrole");
-
-        var userrole = 0;
-        if (userrolestring === "Admin")
-            userrole = 0;
-        else if (userrolestring === "Customer")
-            userrole = 1;
-        else if (userrolestring === "Project Manager")
-            userrole = 2;
-        else if (userrolestring === "Team Leader")
-            userrole = 3;
-        else
-            userrole = 4;
-
-        var bio = getInputValue("signup-bio");
-        var filesSelected = $("#photo-preview").attr('src');
-
-        var datasend = {
-            userPicture: filesSelected,
-            name: name,
-            email: email,
-            password: password,
-            phoneNumber: phone,
-            Desciption: bio,
-            userType: userrole
-        }
-
-        $.post("/welcome/signUp", datasend, function (data) {
-            rec = JSON.parse(data);
-            console.log(rec);
-            if (rec.result.email !== true) {
-                markInputAs("signup-email", DANGER, rec.result.email);
-                $("#btn-signup").prop("disabled", false);  
-            }
-            else {
-                markInputAs("signup-email", SUCCESS, "");
-                var url = "/home/Index";
-                window.location.href = url;
-            }
-        });
-    }
-}
-
 function login() {
     if (checkForEmptyFields("login") && checkForDangerFields()) {
         $("#btn-login").prop("disabled", true);
-        $("#btn-login").html("Loggin in...");
+        $("#btn-login").html("Logging in...");
 
         var email = getInputValue("login-email");
         var password = getInputValue("login-password");
