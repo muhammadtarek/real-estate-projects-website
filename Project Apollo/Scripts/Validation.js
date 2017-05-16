@@ -25,13 +25,13 @@ function validatePassword(password) {
   return re.test(password);
 }
 
-// regex date
-function validateDate(input)
-{
+//Date
+function validateDate(input) {
     var pattern =/^(20)[0-9][0-9]-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/;
     return pattern.test(input);
 }
-// compare Date and Date
+
+//Comparing two dates
 function checkDate(startDate, endDate) {
     start = new Date(startDate);
     start.setHours(0, 0, 0, 0);

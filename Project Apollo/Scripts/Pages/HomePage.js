@@ -87,6 +87,7 @@
         //If he applyied on a project but never sumbited
         $(currentActiveApplyingButton).html("Apply");
         $(currentActiveApplyingButton).attr("disabled", false);
+        $("#btn-applyToProject").attr("disabled", false);
 
         var projectContainer = $(this).parent().parent().parent().parent();
         var projectName = $(projectContainer).find("h4.name")[0].innerHTML;
@@ -97,7 +98,6 @@
         $(currentActiveApplyingButton).attr("disabled", true);
 
         $("#project-name").val(projectName);
-        console.log(projectName);
     });
 
     //Sumbitting applying form
@@ -107,28 +107,32 @@
         var startingDate = $("#project-start-date").val();
         var endingDate = $("#project-delivery-date").val();
         var letter = $("#project-letter").val();
-        if (checkDate(startingDate, endingDate))
-        {
-            markInputAs("project-delivery-date", DANGER, "The starting date must be before ending date");
-        }
-        else{
+
         if (checkForEmptyFields("") && checkForDangerFields) {
-            $.post("/home/applyToProject", {
-                projectId: projectId,
-                applyingLetter: letter,
-                price: price,
-                startDate: startingDate,
-                endDate: endingDate
-            }, function () {
-                showSnackbar("You have applied successfully");
-                $(currentActiveApplyingButton).html("Applied");
-                currentActiveApplyingButton = null;
-                $("#project-price").val("");
-                $("#project-start-date").val("");
-                $("#project-delivery-date").val("");
-                $("#project-letter").val("");
-            });
+            if (checkDate(startingDate, endingDate)) {
+                markInputAs("project-delivery-date", DANGER, "The starting date must be before ending date");
+            } else {
+                $.post("/home/applyToProject", {
+                    projectId: projectId,
+                    applyingLetter: letter,
+                    price: price,
+                    startDate: startingDate,
+                    endDate: endingDate
+                }, function () {
+                    console.log("Fuck");
+                    showSnackbar("You have applied successfully");
+                    $(currentActiveApplyingButton).html("Applied");
+                    currentActiveApplyingButton = null;
+
+                    $("#btn-applyToProject").attr("disabled", true);
+                    $("#project-name").val("");
+                    $("#project-price").val("");
+                    $("#project-start-date").val("");
+                    $("#project-delivery-date").val("");
+                    $("#project-letter").val("");
+                });
             }
+            
         }
     });
 });
