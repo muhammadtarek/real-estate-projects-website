@@ -1,0 +1,6 @@
+﻿<div class="tab-view" tab-view="accept-request">
+    @foreach(Project_Apollo.Models.Requests request in ViewBag.request) {
+        @Requests.Request(request.ID, Project_Apollo.Models.ImageConverter.convertPhotoToString(request.sender.Photo)
+       , request.sender.name, request.project.Name)
+    }
+</div>
