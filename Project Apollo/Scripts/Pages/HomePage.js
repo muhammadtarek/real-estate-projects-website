@@ -107,7 +107,11 @@
         var startingDate = $("#project-start-date").val();
         var endingDate = $("#project-delivery-date").val();
         var letter = $("#project-letter").val();
-
+        if (checkDate(startingDate, endingDate))
+        {
+            markInputAs("project-delivery-date", DANGER, "The starting date must be before ending date");
+        }
+        else{
         if (checkForEmptyFields("") && checkForDangerFields) {
             $.post("/home/applyToProject", {
                 projectId: projectId,
@@ -119,7 +123,12 @@
                 showSnackbar("You have applied successfully");
                 $(currentActiveApplyingButton).html("Applied");
                 currentActiveApplyingButton = null;
+                $("#project-price").val("");
+                $("#project-start-date").val("");
+                $("#project-delivery-date").val("");
+                $("#project-letter").val("");
             });
+            }
         }
     });
 });
