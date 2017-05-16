@@ -14,6 +14,7 @@
             $(projectContainer).remove();
         });
     });
+    //Decline Post
     $(".decline-project-btn").click(function () {
         var projectContainer = $(this).parent().parent().parent().parent();
         var selectedProjectId = $(projectContainer).attr("id");
@@ -22,6 +23,28 @@
         }, function () {
             showSnackbar("Project declined");
             $(projectContainer).remove();
+        });
+    });
+    //Accept Request
+    $(".accept-request-btn").click(function () {
+        var requestContainer = $(this).parent().parent();
+        var selectedRequestId = $(requestContainer).attr("id");
+        $.post("/profile/acceptRequest", {
+            requestID: selectedRequestId,
+        }, function () {
+            showSnackbar("Request Accepted");
+            $(requestContainer).remove();
+        });
+    });
+    //Decline Request
+    $(".decline-request-btn").click(function () {
+        var requestContainer = $(this).parent().parent();
+        var selectedRequestId = $(requestContainer).attr("id");
+        $.post("/profile/deleteRequest", {
+            requestID: selectedRequestId,
+        }, function () {
+            showSnackbar("Request Decline");
+            $(requestContainer).remove();
         });
     });
 });

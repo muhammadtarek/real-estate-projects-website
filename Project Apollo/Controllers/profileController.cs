@@ -216,49 +216,41 @@ namespace Project_Apollo.Controllers {
             return db.userTable.ToList();
         }
 
-        public void acceptRequest(int projectID)
+        public void acceptRequest(int requestID)
         {
             int userID = (int)Session["id"];
-
-            Project proj = db.ProjectTable.Find(projectID);
+            Requests req = db.RequestsTable.Find(requestID);
+            Project proj = db.ProjectTable.Where(p => p.ID==req.project.ID).FirstOrDefault();
 
             if ((int)Session["userRole"] == 3) //TeamLeader
             {
-                
                 proj.teamLeader = db.userTable.Find(userID);                
-                List<Requests> data = db.RequestsTable.Where(x => x.project.ID == projectID && x.requestType == request.teamLeaderRequest).ToList();
+                List<Requests> data = db.RequestsTable.Where(x => x.project.ID == proj.ID).ToList();
                 foreach (Requests request in data)
                 {
                     db.RequestsTable.Remove(request);
                 }
-
             }
             else if((int)Session["userRole"] == 4) //Engineer
             {
                 proj.workers.Add(db.userTable.Find(userID));
-                Requests req = (from x in db.RequestsTable
-                                where x.reciever.ID == userID && x.project.ID == projectID
-                                select x).First();
                 db.RequestsTable.Remove(req);
-
             }
             db.SaveChanges();
-
         }
 
-        public void deleteRequest(int projectID = 6)
+        public void deleteRequest(int requestID)
         {
-            int userID = (int)Session["id"];
-            Requests req = (from x in db.RequestsTable
-                            where x.reciever.ID == userID && x.project.ID == projectID
-                            select x).First();
+            Requests req = db.RequestsTable.Find(requestID);
             db.RequestsTable.Remove(req);
             db.SaveChanges();
         }
 
         public List<Requests> loadRequest()
         {
-            return db.RequestsTable.Where(p => p.reciever.ID == (int)Session["id"]).ToList();
+            int id = (int)Session["id"];
+         
+            return db.RequestsTable.Where(r => r.reciever.ID == id).ToList() ;
         }
 
     }
