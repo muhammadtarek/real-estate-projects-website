@@ -214,8 +214,38 @@ namespace Project_Apollo.Controllers {
 
         public List<User> getUsers()
         {
-            
+
             return db.userTable.ToList();
+        }
+
+        public void acceptRequest(int projectID = 6)
+        {
+            int userID = (int)Session["id"];
+
+            Project proj = db.ProjectTable.Find(projectID);
+
+            if ((int)Session["userRole"] == 3) //TeamLeader
+            {
+                
+                proj.teamLeader = db.userTable.Find(userID);                
+                List<Requests> data = db.RequestsTable.Where(x => x.project.ID == projectID && x.requestType == request.teamLeaderRequest).ToList();
+                foreach (Requests request in data)
+                {
+                    db.RequestsTable.Remove(request);
+                }
+
+            }
+            else if((int)Session["userRole"] == 4) //Engineer
+            {
+                proj.workers.Add(db.userTable.Find(userID));
+                Requests req = (from x in db.RequestsTable
+                                where x.reciever.ID == userID && x.project.ID == projectID
+                                select x).First();
+                db.RequestsTable.Remove(req);
+
+            }
+            db.SaveChanges();
+
         }
 
     }
