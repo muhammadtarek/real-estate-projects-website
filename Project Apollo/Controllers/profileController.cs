@@ -11,7 +11,7 @@ namespace Project_Apollo.Controllers {
 
 		// GET: profile
 		public ActionResult Index() {
-			Session["id"] = 6; //TESTING ONLY
+			Session["id"] = 1; //TESTING ONLY
 			User user = db.userTable.Find((int)Session["id"]);
 
 			//TESTING ONLY
@@ -53,16 +53,12 @@ namespace Project_Apollo.Controllers {
 					ViewBag.tabs = new string[] { "Projects", "Accept request" };
 					ViewBag.tabAttr = new string[] { "projects", "accept-request" };
 					break;
-			}			
-			
-			if (user.Photo == null) {
-				Session["userPhoto"] = "/Public/assets/images/default-user.jpg";
-			} else {
-				var img = ImageConverter.convertPhotoToString(user.Photo);
-				Session["userPhoto"] = img;
 			}
 
-            ViewBag.projects = this.loadAssignedProjects(6);
+			var img = ImageConverter.convertPhotoToString(user.Photo);
+			Session["userPhoto"] = img;
+
+			ViewBag.projects = this.loadAssignedProjects(6);
 			Session["userName"] = user.name;
             return View();
 		}

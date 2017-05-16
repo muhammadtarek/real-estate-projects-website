@@ -21,8 +21,13 @@ namespace Project_Apollo.Models {
         public static string convertPhotoToString(byte[] bytes)
         {
             var img = "";
-            var base64 = Convert.ToBase64String(bytes);
-            img = String.Format("data:image/gif;base64,{0}", base64);
+			if (bytes != null) {
+				var base64 = Convert.ToBase64String(bytes);
+				img = String.Format("data:image/gif;base64,{0}", base64);
+			} else {
+				img = "/Public/assets/images/default-user.jpg";
+			}
+			
             return img;
         }
     }

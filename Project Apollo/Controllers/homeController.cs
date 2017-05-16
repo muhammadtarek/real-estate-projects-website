@@ -20,14 +20,10 @@ namespace Project_Apollo.Controllers {
 			//TESTING ONLY
 			Session["userRole"] = (int)user.UserRole;
 
-			if (user.Photo == null) {
-                Session["userPhoto"] = "/Public/assets/images/default-user.jpg";
-			} else {
-                var img = ImageConverter.convertPhotoToString(user.Photo);
-                Session["userPhoto"] = img;
-			}
+			var img = ImageConverter.convertPhotoToString(user.Photo);
+			Session["userPhoto"] = img;
 
-            Session["userName"] = user.name;
+			Session["userName"] = user.name;
 			return View(this.loadUnassignedProjects());
         }
 

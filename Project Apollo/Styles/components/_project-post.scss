@@ -82,7 +82,9 @@
           }
 
           &.delete-btn,
-          &.edit-btn {
+          &.edit-btn,
+          &.approve-btn,
+          &.decline-btn {
             padding: 8px !important;
             font-size: $default;
             height: 34px;
@@ -103,6 +105,24 @@
 
           &.delete-btn {
             background-image: url(assets/icons/delete.svg);
+
+            &:hover {
+              border-color: $danger-color !important;
+            }
+          }
+
+          &.approve-btn {
+            background-image: url(assets/icons/approve.svg);
+
+            &:hover {
+              border-color: $success-color !important;
+            }
+          }
+
+          &.decline-btn {
+            background-image: url(assets/icons/decline.svg);
+            margin-right: 4px;
+            background-size: 14px !important;
 
             &:hover {
               border-color: $danger-color !important;

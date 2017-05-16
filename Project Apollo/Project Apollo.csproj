@@ -104,9 +104,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Public\assets\icons\approve.svg" />
     <Content Include="Public\assets\icons\arrow_drop_down.svg" />
+    <Content Include="Public\assets\icons\camera-hover.svg" />
+    <Content Include="Public\assets\icons\camera.svg" />
     <Content Include="Public\assets\icons\check_box_black.svg" />
     <Content Include="Public\assets\icons\check_box_outline.svg" />
+    <Content Include="Public\assets\icons\decline.svg" />
+    <Content Include="Public\assets\icons\delete.svg" />
+    <Content Include="Public\assets\icons\edit.svg" />
     <Content Include="Public\assets\icons\logout.svg" />
     <Content Include="Public\assets\icons\radio_button_checked.svg" />
     <Content Include="Public\assets\icons\radio_button_unchecked.svg" />
@@ -117,6 +123,7 @@
     <Content Include="Public\assets\images\picture.jpg" />
     <Content Include="Public\style.min.css" />
     <Content Include="Scripts\Actions\Form.js" />
+    <Content Include="Scripts\Actions\Routing.js" />
     <Content Include="Scripts\Components\InputField.js" />
     <Content Include="Scripts\Components\Tabs.js" />
     <Content Include="Scripts\CreateUser.js" />
