@@ -65,7 +65,7 @@ namespace Project_Apollo.Controllers {
 			return View();
 		}
 
-		public ActionResult ProjectsView() {
+		public ActionResult _ProjectsView() {
 			return PartialView(this.loadAssignedProjects((int)Session["id"]));
 		}
 
