@@ -96,8 +96,10 @@ namespace Project_Apollo.Controllers {
             {
                 Comments comm = new Comments();
                 comm.comment = comment;
-                comm.project.ID = projectId;
-                comm.projectManager.ID = userId;
+                Project proj = db.ProjectTable.Find(projectId);
+                comm.project = proj;
+                User usr = db.userTable.Find(userId);
+                comm.projectManager = usr;
                 db.CommentsTable.Add(comm);
                 db.SaveChanges();
                 return JsonConvert.SerializeObject(new
