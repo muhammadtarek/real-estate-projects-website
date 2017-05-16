@@ -1,16 +1,16 @@
 ﻿$(window).ready(function () {
     //Go to home page
     $("#home-tab").click(function () {
-        // TODO
+        window.location.href = "/home/index";
     });
 
     //Go to profile
     $("#profile-tab").click(function () {
-        // TODO
+        window.location.href = "/profile/index";
     });
 
     //Sign out
     $("#signout-btn").click(function () {
-        // TODO
+        window.location.href = "/welcome/index/1";
     });
 });

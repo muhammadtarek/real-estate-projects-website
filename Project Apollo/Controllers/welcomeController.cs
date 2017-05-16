@@ -12,8 +12,12 @@ namespace Project_Apollo.Controllers {
 	public class WelcomeController : Controller {
 		public DBase db = new DBase();
 		// GET: welcome
-		public ActionResult Index() {
-			ViewBag.currentPage = 0;
+		public ActionResult Index(int ?id) {
+            if(id == 1)
+                Session.Clear();
+            if (Session["id"] != null) 
+                return RedirectToAction("Index", "Home");
+            ViewBag.currentPage = 0;
 			return View();
 		}
 
