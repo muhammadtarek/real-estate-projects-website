@@ -60,15 +60,14 @@
         float: right;
 
         button {
-          position: relative;
-          background: transparent;
-          border: 1px solid transparent !important;
-
           &.apply-btn {
             color: #fff !important;
             background-color: $primary-color;
             border-color: $primary-color;
             font-size: 14px !important;
+            position: relative;
+            background: transparent;
+            border: 1px solid transparent !important;
 
             &:hover {
               border-color: $medium-gray-color !important;
@@ -78,54 +77,6 @@
               color: $medium-gray-color !important;
               border: 1px solid transparent !important;
               background-color: transparent;
-            }
-          }
-
-          &.delete-btn,
-          &.edit-btn,
-          &.approve-btn,
-          &.decline-btn {
-            padding: 8px !important;
-            font-size: $default;
-            height: 34px;
-            width: 34px;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: 18px;
-          }
-
-          &.edit-btn {
-            background-image: url(assets/icons/edit.svg);
-            margin-right: 4px;
-
-            &:hover {
-              border-color: $medium-gray-color !important;
-            }
-          }
-
-          &.delete-btn {
-            background-image: url(assets/icons/delete.svg);
-
-            &:hover {
-              border-color: $danger-color !important;
-            }
-          }
-
-          &.approve-btn {
-            background-image: url(assets/icons/approve.svg);
-
-            &:hover {
-              border-color: $success-color !important;
-            }
-          }
-
-          &.decline-btn {
-            background-image: url(assets/icons/decline.svg);
-            margin-right: 4px;
-            background-size: 14px !important;
-
-            &:hover {
-              border-color: $danger-color !important;
             }
           }
         }

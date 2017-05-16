@@ -6,7 +6,7 @@
     $("#project-name-s").attr("disabled", true);
 
     //Deleting a project post
-    $(".delete-btn").click(function deleteProject() {
+    $(".delete-project-btn").click(function deleteProject() {
         var projectContainer = $(this).parent().parent().parent().parent();
         var projectId = $(projectContainer).attr("id");
 
@@ -16,13 +16,17 @@
             if (success.opertaion) {
                 $("#" + projectId).remove();
                 showSnackbar("Project deleted successfully");
+                $("#project-name").val("");
+                $("#project-description").val("");
+                $("#call-to-action").html("Create Project");
+                $("#customer-form").attr("formaction", "create");
             }
                 
         });
     });
 
     //Editing a project post
-    $(".edit-btn").click(function editProject() {
+    $(".edit-project-btn").click(function editProject() {
         var projectContainer = $(this).parent().parent().parent().parent();
         selectedPostId = $(projectContainer).attr("id");
         $("#customer-form").attr("formAction", "edit");
@@ -100,7 +104,7 @@
     });
 
     //Apply to project
-    $(".apply-btn").click(function applyToProject() {
+    $(".apply-to-project-btn").click(function applyToProject() {
         //If he applyied on a project but never sumbited
         $(currentActiveApplyingButton).html("Apply");
         $(currentActiveApplyingButton).attr("disabled", false);

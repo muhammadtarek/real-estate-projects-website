@@ -4,7 +4,7 @@
     });
     //Deleting current user
     //Approve post
-    $(".approve-btn").click(function () {
+    $(".approve-project-btn").click(function () {
         var projectContainer = $(this).parent().parent().parent().parent();
         var selectedProjectId = $(projectContainer).attr("id");
         $.post("/profile/approveProject", {
@@ -14,7 +14,7 @@
             $(projectContainer).remove();
         });
     });
-    $(".decline-btn").click(function () {
+    $(".decline-project-btn").click(function () {
         var projectContainer = $(this).parent().parent().parent().parent();
         var selectedProjectId = $(projectContainer).attr("id");
         $.post("/profile/declineProject", {

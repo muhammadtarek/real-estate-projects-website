@@ -27,10 +27,10 @@
                 <div class="project-controls">
                     @{
                         if (userType == 2) {
-                            <button class="apply-btn" disabled="@appliedStatus">@(appliedStatus == true ? "Applied" : "Apply")</button>
+                            <button class="icon-btn icon-btn--apply apply-to-project-btn" disabled="@appliedStatus">@(appliedStatus == true ? "Applied" : "Apply")</button>
                         } else if ((userType == 1 && @userId == @ownerId) || userType == 0) {
-                            <button class="edit-btn"></button>
-                            <button class="delete-btn"></button>
+                            <button class="icon-btn icon-btn--edit edit-project-btn"></button>
+                            <button class="icon-btn icon-btn--delete delete-project-btn"></button>
                         }
                     }
 
@@ -145,8 +145,8 @@
                 </div>
 
                 <div class="project-controls">
-                    <button class="approve-btn"></button>
-                    <button class="decline-btn"></button>
+                    <button class="icon-btn icon-btn--approve approve-project-btn"></button>
+                    <button class="icon-btn icon-btn--decline decline-project-btn"></button>
                 </div>
             </div>
 
