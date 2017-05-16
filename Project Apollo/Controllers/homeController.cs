@@ -129,13 +129,6 @@ namespace Project_Apollo.Controllers {
             return arr;
         }
 
-        public object getUsers()
-        {
-            var data = (from usr in db.userTable
-                        select usr).ToList();
-           return data;
-        }
-
         public void setStatus(int projectId, int status)
         {
             var proj = db.ProjectTable.Find(projectId);
