@@ -216,6 +216,7 @@
     <Content Include="Views\Profile\_UserManagment.cshtml" />
     <Content Include="Views\Profile\_PendingProjects.cshtml" />
     <Content Include="Views\Profile\_ProjectsView.cshtml" />
+    <Content Include="Views\Profile\_AcceptRequest.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
