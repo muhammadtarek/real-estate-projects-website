@@ -32,24 +32,24 @@ namespace Project_Apollo.Controllers {
 			//Loading tabs depends on user role
 			switch ((int)Session["userRole"]) {
 				case 0:
-					ViewBag.tabs = new string[2] {"Projects", "User Managment"};
-					ViewBag.tabAttr = new string[2] {"projects" , "user-management" };
+					ViewBag.tabs = new string[] {"Projects", "User Managment", "Pending Posts"};
+					ViewBag.tabAttr = new string[] {"projects", "user-management", "pending-posts"};
 					break;
                 case 1:
-                    ViewBag.tabs = new string[2] { "Projects", "Accept requests" };
-					ViewBag.tabAttr = new string[2] { "projects", "accept-request" };
+                    ViewBag.tabs = new string[] { "Projects", "Accept requests" };
+					ViewBag.tabAttr = new string[] { "projects", "accept-request" };
 					break;
                 case 2:
-                    ViewBag.tabs = new string[3] { "Projects", "Send request", "Accept requests" };
-					ViewBag.tabAttr = new string[3] { "projects", "send-request", "accept-request" };
+                    ViewBag.tabs = new string[] { "Projects", "Send request", "Accept requests" };
+					ViewBag.tabAttr = new string[] { "projects", "send-request", "accept-request" };
 					break;
 				case 3:
 					ViewBag.tabs = new string[] { "Projects", "Accept request" };
-					ViewBag.tabAttr = new string[2] { "projects", "accept-request" };
+					ViewBag.tabAttr = new string[] { "projects", "accept-request" };
 					break;
 				case 4:
 					ViewBag.tabs = new string[] { "Projects", "Accept request" };
-					ViewBag.tabAttr = new string[2] { "projects", "accept-request" };
+					ViewBag.tabAttr = new string[] { "projects", "accept-request" };
 					break;
 			}			
 			
@@ -62,9 +62,17 @@ namespace Project_Apollo.Controllers {
 			}
 
 			Session["userName"] = user.name;
-			return View(this.loadAssignedProjects((int)Session["id"]));
+			return View();
 		}
 
+		public ActionResult ProjectsView() {
+			return PartialView(this.loadAssignedProjects((int)Session["id"]));
+		}
+
+		[ChildActionOnly]
+		public PartialViewResult _UserManagment() {
+			return PartialView(this.loadPendingProjects());
+		}
 
 		public void declineProject(int projectID) {
 			var Result = new HomeController().deleteProject(projectID);
