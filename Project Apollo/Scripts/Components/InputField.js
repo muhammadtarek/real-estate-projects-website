@@ -84,6 +84,10 @@ $("input[type=text], input[type=password]").blur(function () {
                 validationResult = false;
                 errorMessage = "Passwords doesn't match";
             }
+        } else if (validationType === "date")
+        {
+            validationResult = validateDate(inputValue);
+            if (validationResult === false) errorMessage = "Date must be YYYY-MM-DD";
         }
     }
 
