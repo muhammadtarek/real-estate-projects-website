@@ -34,6 +34,8 @@ namespace Project_Apollo.Controllers {
 				case 0:
 					ViewBag.tabs = new string[] {"Projects", "User Managment", "Pending Posts"};
 					ViewBag.tabAttr = new string[] {"projects", "user-management", "pending-posts"};
+					ViewBag.users = this.getUsers();
+					ViewBag.pending = this.loadPendingProjects();
 					break;
                 case 1:
                     ViewBag.tabs = new string[] { "Projects", "Accept requests" };
@@ -53,16 +55,14 @@ namespace Project_Apollo.Controllers {
 					break;
 			}			
 			
-
 			if (user.Photo == null) {
 				Session["userPhoto"] = "/Public/assets/images/default-user.jpg";
 			} else {
 				var img = ImageConverter.convertPhotoToString(user.Photo);
 				Session["userPhoto"] = img;
 			}
+
             ViewBag.projects = this.loadAssignedProjects(6);
-            ViewBag.users = this.getUsers();
-            ViewBag.pending = this.loadPendingProjects();
 			Session["userName"] = user.name;
             return View();
 		}
@@ -71,17 +71,21 @@ namespace Project_Apollo.Controllers {
 		public void declineProject(int projectID) {
 			var Result = new HomeController().deleteProject(projectID);
 		}
+
 		public List<User> getTeamLeaders() {
 			return db.userTable.Where(u => (int)u.UserRole == 3).ToList();
 		}
+
 		public List<User> getJuniorEngineers() {
 			return db.userTable.Where(u => (int)u.UserRole == 4).ToList();
 		}
+
 		public void approveProject(int projectId) {
 			Project p = db.ProjectTable.Find(projectId);
 			p.status = (status)0;
 			db.SaveChanges();
 		}
+
 		public void removeMember(int userId = 1, int projectId = 6) {
 			Project p = db.ProjectTable.Find(projectId);
 			User u = db.userTable.Find(userId);
@@ -94,6 +98,7 @@ namespace Project_Apollo.Controllers {
 			List<Project> projects = db.ProjectTable.Where(x => ((int)x.status) == status).ToList();
 			return projects;
 		}
+
         public void deleteUser(int id)
         {
             User u = db.userTable.Find(id);
@@ -128,6 +133,7 @@ namespace Project_Apollo.Controllers {
             }
             db.SaveChanges();
         }
+
         public void requestTeamLeader(int projectid = 2, int teamLeaderId = 1)
         {
             db.RequestsTable.Add(new Requests
@@ -139,6 +145,7 @@ namespace Project_Apollo.Controllers {
             });
             db.SaveChanges();
         }
+
         public void requestJuniorEngineer(int projectid = 2, int JuniorId = 1)
         {
             db.RequestsTable.Add(new Requests
@@ -150,6 +157,7 @@ namespace Project_Apollo.Controllers {
             });
             db.SaveChanges();
         }
+
         public List<Project> loadAssignedProjects(int userId)
         {
             List<Project> arr = db.ProjectTable.Where(x => ((int)x.status) == 1 && (x.projectManager.ID == userId || x.teamLeader.ID == userId || x.workers.Any(ss => ss.ID == userId) || x.customer.ID == userId)).ToList();
