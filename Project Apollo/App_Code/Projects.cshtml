@@ -125,6 +125,38 @@
     </div>
 }
 
+<!--
+    Pending projects
+-->
+@helper Pending(string userPhoto, string customerName, int userType, string postingTime, string projectName,
+                   string projectDescription, int projectId, int ownerId, int userIds) {
+    <div class="project-cotnainer" id="@projectId" ownderId="@ownerId">
+        <div class="project">
+            <div class="owner-container">
+                <div class="owner-info">
+                    <img src="@userPhoto" width="40" />
+
+                    <div>
+                        <a class="name">@customerName</a>
+                        <label class="time">@postingTime</label>
+                    </div>
+                </div>
+
+                <div class="project-controls">
+                    <button class="apply-btn">Approve</button>
+                    <button class="delete-btn"></button>
+                </div>
+            </div>
+
+
+            <div class="details">
+                <h4 class="name">@projectName</h4>
+                <p class="description">@projectDescription</p>
+            </div>
+        </div>
+    </div>
+}
+
 <!-- 
     Project comment
 -->

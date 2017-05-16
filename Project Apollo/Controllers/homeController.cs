@@ -11,7 +11,7 @@ namespace Project_Apollo.Controllers {
 		DBase db = new DBase();
 		// GET: Home
 		public ActionResult Index() {
-			Session["id"] = 4; //TESTING ONLY
+			Session["id"] = 1; //TESTING ONLY
 			User user = db.userTable.Find((int)Session["id"]);
 			ViewBag.showNav = true;
 			ViewBag.tabs = new string[4] { "Home", "Profile", "FAQ", "Contact us" };
@@ -51,7 +51,8 @@ namespace Project_Apollo.Controllers {
 			db.SaveChanges();
 		}
 
-		public object applyToProject(int userId, int projectId, String applyingLetter, double price, DateTime startDate, DateTime endDate) {
+		public object applyToProject(int projectId, String applyingLetter, double price, DateTime startDate, DateTime endDate) {
+            int userId = (int)Session["id"];
 			var data = (from proj in db.ProjectTable   // query to get the project status before apply
 						where proj.ID == projectId
 						select new { proj.status }).ToArray();
@@ -61,8 +62,8 @@ namespace Project_Apollo.Controllers {
 				apply.applyingLetter = applyingLetter;
 				apply.endDate = endDate;
 				apply.price = price;
-				apply.project.ID = projectId;
-				apply.projectManager.ID = userId;
+				apply.project = db.ProjectTable.Find(projectId);
+				apply.projectManager= db.userTable.Find(userId);
 				apply.startDate = startDate;
 				db.ApplyProjectTable.Add(apply);
 				db.SaveChanges();
@@ -129,13 +130,6 @@ namespace Project_Apollo.Controllers {
         {
             var arr = db.ProjectTable.Where(x => ((int)x.status) == 2).ToList();
             return arr;
-        }
-
-        public object getUsers()
-        {
-            var data = (from usr in db.userTable
-                        select usr).ToList();
-           return data;
         }
 
         public void setStatus(int projectId, int status)

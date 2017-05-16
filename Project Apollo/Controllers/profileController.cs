@@ -11,7 +11,7 @@ namespace Project_Apollo.Controllers {
 
 		// GET: profile
 		public ActionResult Index() {
-			Session["id"] = 1; //TESTING ONLY
+			Session["id"] = 6; //TESTING ONLY
 			User user = db.userTable.Find((int)Session["id"]);
 
 			//TESTING ONLY
@@ -32,28 +32,29 @@ namespace Project_Apollo.Controllers {
 			//Loading tabs depends on user role
 			switch ((int)Session["userRole"]) {
 				case 0:
-					ViewBag.tabs = new string[2] {"Projects", "User Managment"};
-					ViewBag.tabAttr = new string[2] {"projects" , "user-management" };
+					ViewBag.tabs = new string[] {"Projects", "User Managment", "Pending Posts"};
+					ViewBag.tabAttr = new string[] {"projects", "user-management", "pending-posts"};
+					ViewBag.users = this.getUsers();
+					ViewBag.pending = this.loadPendingProjects();
 					break;
                 case 1:
-                    ViewBag.tabs = new string[2] { "Projects", "Accept requests" };
-					ViewBag.tabAttr = new string[2] { "projects", "accept-request" };
+                    ViewBag.tabs = new string[] { "Projects", "Accept requests" };
+					ViewBag.tabAttr = new string[] { "projects", "accept-request" };
 					break;
                 case 2:
-                    ViewBag.tabs = new string[3] { "Projects", "Send request", "Accept requests" };
-					ViewBag.tabAttr = new string[3] { "projects", "send-request", "accept-request" };
+                    ViewBag.tabs = new string[] { "Projects", "Send request", "Accept requests" };
+					ViewBag.tabAttr = new string[] { "projects", "send-request", "accept-request" };
 					break;
 				case 3:
 					ViewBag.tabs = new string[] { "Projects", "Accept request" };
-					ViewBag.tabAttr = new string[2] { "projects", "accept-request" };
+					ViewBag.tabAttr = new string[] { "projects", "accept-request" };
 					break;
 				case 4:
 					ViewBag.tabs = new string[] { "Projects", "Accept request" };
-					ViewBag.tabAttr = new string[2] { "projects", "accept-request" };
+					ViewBag.tabAttr = new string[] { "projects", "accept-request" };
 					break;
 			}			
 			
-
 			if (user.Photo == null) {
 				Session["userPhoto"] = "/Public/assets/images/default-user.jpg";
 			} else {
@@ -61,25 +62,30 @@ namespace Project_Apollo.Controllers {
 				Session["userPhoto"] = img;
 			}
 
+            ViewBag.projects = this.loadAssignedProjects(6);
 			Session["userName"] = user.name;
-			return View(this.loadAssignedProjects((int)Session["id"]));
+            return View();
 		}
 
 
 		public void declineProject(int projectID) {
 			var Result = new HomeController().deleteProject(projectID);
 		}
+
 		public List<User> getTeamLeaders() {
 			return db.userTable.Where(u => (int)u.UserRole == 3).ToList();
 		}
+
 		public List<User> getJuniorEngineers() {
 			return db.userTable.Where(u => (int)u.UserRole == 4).ToList();
 		}
+
 		public void approveProject(int projectId) {
 			Project p = db.ProjectTable.Find(projectId);
 			p.status = (status)0;
 			db.SaveChanges();
 		}
+
 		public void removeMember(int userId = 1, int projectId = 6) {
 			Project p = db.ProjectTable.Find(projectId);
 			User u = db.userTable.Find(userId);
@@ -87,11 +93,12 @@ namespace Project_Apollo.Controllers {
 			db.SaveChanges();
 		}
 
-		public object loadPendingProjects() {
+		public List<Project> loadPendingProjects() {
 			int status = 3;
 			List<Project> projects = db.ProjectTable.Where(x => ((int)x.status) == status).ToList();
-			return View(projects);
+			return projects;
 		}
+
         public void deleteUser(int id)
         {
             User u = db.userTable.Find(id);
@@ -126,6 +133,7 @@ namespace Project_Apollo.Controllers {
             }
             db.SaveChanges();
         }
+
         public void requestTeamLeader(int projectid = 2, int teamLeaderId = 1)
         {
             db.RequestsTable.Add(new Requests
@@ -137,6 +145,7 @@ namespace Project_Apollo.Controllers {
             });
             db.SaveChanges();
         }
+
         public void requestJuniorEngineer(int projectid = 2, int JuniorId = 1)
         {
             db.RequestsTable.Add(new Requests
@@ -148,9 +157,10 @@ namespace Project_Apollo.Controllers {
             });
             db.SaveChanges();
         }
-        public object loadAssignedProjects(int userId)
+
+        public List<Project> loadAssignedProjects(int userId)
         {
-            var arr = db.ProjectTable.Where(x => ((int)x.status) == 1 && (x.projectManager.ID == userId || x.teamLeader.ID == userId || x.workers.Any(ss => ss.ID == userId) || x.customer.ID == userId)).ToList();
+            List<Project> arr = db.ProjectTable.Where(x => ((int)x.status) == 1 && (x.projectManager.ID == userId || x.teamLeader.ID == userId || x.workers.Any(ss => ss.ID == userId) || x.customer.ID == userId)).ToList();
             return arr;
         }
 
@@ -204,6 +214,12 @@ namespace Project_Apollo.Controllers {
             //proj.applied.Clear();
 
             db.SaveChanges();
+        }
+
+        public List<User> getUsers()
+        {
+            
+            return db.userTable.ToList();
         }
 
     }

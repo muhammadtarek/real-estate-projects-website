@@ -4,18 +4,18 @@
             <img src="~/Public/assets/images/logo-dark.png" width="40" />
 
             <div class="right-part">
-                <div class="tab">
+                <div class="tab" id="home-tab">
                     <a>Home</a>
                 </div>
 
-                <div class="tab tab-picture">
+                <div class="tab tab-picture" id="profile-tab">
                     <a>
                         <img src=@Session["userPhoto"] width="25" />
                         <span>@Session["userName"]</span>
                     </a>
                 </div>
 
-                <button class="logout-btn"></button>
+                <button class="logout-btn" id="signout-btn"></button>
             </div>
         </div>
 

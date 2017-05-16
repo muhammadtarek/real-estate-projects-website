@@ -4,7 +4,8 @@
         <a id="add-user" style="float: right;">Add new user</a>
     </div>
 
-    @Users.UserRow(1, (String)Session["userPhoto"], "Muhammad Tarek", "Admin", "muhammadtarek96@gmail.com")
-    @Users.UserRow(1, (String)Session["userPhoto"], "Muhammad Tarek", "Admin", "muhammadtarek96@gmail.com")
-    @Users.UserRow(1, (String)Session["userPhoto"], "Muhammad Tarek", "Admin", "muhammadtarek96@gmail.com")
+    @{foreach (Project_Apollo.Models.User user in ViewBag.users) {
+            @Users.UserRow(user.ID, Project_Apollo.Models.ImageConverter.convertPhotoToString(user.Photo), user.name, "Admin", user.Email)
+        }
+    }
 </div>
