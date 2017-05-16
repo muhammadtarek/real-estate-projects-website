@@ -46,12 +46,10 @@ namespace Project_Apollo.Controllers {
 					ViewBag.tabAttr = new string[] { "projects", "send-request", "accept-request" };
 					break;
 				case 3:
+                case 4:
 					ViewBag.tabs = new string[] { "Projects", "Accept request" };
 					ViewBag.tabAttr = new string[] { "projects", "accept-request" };
-					break;
-				case 4:
-					ViewBag.tabs = new string[] { "Projects", "Accept request" };
-					ViewBag.tabAttr = new string[] { "projects", "accept-request" };
+                    ViewBag.requests = this.loadRequest();
 					break;
 			}
 
@@ -256,6 +254,11 @@ namespace Project_Apollo.Controllers {
                             select x).First();
             db.RequestsTable.Remove(req);
             db.SaveChanges();
+        }
+
+        public List<Requests> loadRequest()
+        {
+            return db.RequestsTable.Where(p => p.reciever.ID == (int)Session["id"]).ToList();
         }
 
     }
