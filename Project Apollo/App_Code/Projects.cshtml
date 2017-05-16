@@ -44,21 +44,23 @@
             </div>
         </div>
 
-        @if (comments.Count() != 0) {
-            <div class="comments-container">
-                @{  if (userType == 2) {
-                        <div class="comment-input">
-                            <img src="@userPhoto" width="35" />
-                            <input placeholder="Write a comment..." />
-                        </div>}
+        <div class="comments-container">
+            @{  if (userType == 2) {
+                <div class="comment-input">
+                    <img src="@userPhoto" width="35" />
+                    <input placeholder="Write a comment..." class="comment-field"/>
+                </div>
                 }
+            }
 
-                @foreach (var comment in comments) {
+            @if (comments.Count() != 0) {
+                foreach (var comment in comments) {
                     @Projects.Comment(comment.projectManager.ID, Project_Apollo.Models.ImageConverter.convertPhotoToString(comment.projectManager.Photo),
                    comment.projectManager.name,
                    comment.comment)
                 }
-            </div>  }
+            }
+            </div>  
     </div>
 }
 

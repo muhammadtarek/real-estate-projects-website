@@ -84,34 +84,17 @@ namespace Project_Apollo.Controllers {
 			db.SaveChanges();
 		}
 
-        public object writeComment(int userId, int projectId, String comment)
+        public void writeComment(int projectId, String comment)
         {
-            var data = (from apply in db.ApplyProjectTable   // query to get the project status before apply
-                        where apply.project.ID == projectId
-                        select apply).ToArray();
-            if (data.Length > 0)
-            {
-                Comments comm = new Comments();
-                comm.comment = comment;
-                Project proj = db.ProjectTable.Find(projectId);
-                comm.project = proj;
-                User usr = db.userTable.Find(userId);
-                comm.projectManager = usr;
-                db.CommentsTable.Add(comm);
-                db.SaveChanges();
-                return JsonConvert.SerializeObject(new
-                {
-                    operation = true
-                });
-            }
-            else
-            {
-                return JsonConvert.SerializeObject(new
-                {
-                    operation = false
-                });
-            }
-        }
+			Comments comm = new Comments();
+			comm.comment = comment;
+			Project proj = db.ProjectTable.Find(projectId);
+			comm.project = proj;
+			User usr = db.userTable.Find((int)Session["id"]);
+			comm.projectManager = usr;
+			db.CommentsTable.Add(comm);
+			db.SaveChanges();
+		}
         public object loadUnassignedProjects()
         {
             var arr = db.ProjectTable.Where(x => ((int)x.status) == 0).ToList();

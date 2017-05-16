@@ -1,6 +1,7 @@
 ﻿$(window).ready(function () {
     var selectedPostId;
     var currentActiveApplyingButton;
+    var url = "/home/Index";
 
     $("#project-name-s").attr("disabled", true);
 
@@ -53,7 +54,6 @@
                     $("#project-name").val("");
                     $("#project-description").val("");
                     showSnackbar("Project created successfully");
-                    var url = "/home/Index";
                     window.location.href = url;
                 });
             }
@@ -82,7 +82,22 @@
     });
 
     //Writing comment on posh
-    // TODO
+    $(".comment-field").keyup(function (event) {
+        if (event.keyCode == 13) {
+            var projectContainer = $(this).parent().parent().parent();
+            var currentProjectId = $(projectContainer).attr("id");
+            var newComment = $(this).val();
+
+            if ($(this).val.length !== 0) {
+                $.post("/home/writeComment", {
+                    projectId: currentProjectId,
+                    comment: newComment
+                }, function () {
+                    window.location.href = url;
+                });
+            }
+        }
+    });
 
     //Apply to project
     $(".apply-btn").click(function applyToProject() {
@@ -135,10 +150,6 @@
         }
     });
 });
-
-function createComment(comment) {
-    // TODO
-}
 
 function clearFormFields() {
     $("#project-name-s").val("");
