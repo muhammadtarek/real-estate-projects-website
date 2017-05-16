@@ -218,7 +218,7 @@ namespace Project_Apollo.Controllers {
             return db.userTable.ToList();
         }
 
-        public void acceptRequest(int projectID = 6)
+        public void acceptRequest(int projectID)
         {
             int userID = (int)Session["id"];
 
@@ -246,6 +246,16 @@ namespace Project_Apollo.Controllers {
             }
             db.SaveChanges();
 
+        }
+
+        public void deleteRequest(int projectID = 6)
+        {
+            int userID = (int)Session["id"];
+            Requests req = (from x in db.RequestsTable
+                            where x.reciever.ID == userID && x.project.ID == projectID
+                            select x).First();
+            db.RequestsTable.Remove(req);
+            db.SaveChanges();
         }
 
     }
