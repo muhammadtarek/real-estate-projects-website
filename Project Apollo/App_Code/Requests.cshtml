@@ -2,8 +2,8 @@
     Projects requests
 -->
 @helper Request(int requestId, string senderPhoto, string senderName,string reqestedProject) { 
-    <div class="card" id="@requestId">
-        <img src="@senderPhoto"/>
+    <div class="request-row card" id="@requestId">
+        <img src="@senderPhoto" width="30"/>
         <label>@senderPhoto requested you to work on @reqestedProject's project</label>
         <div class="controls">
             <button class="icon-btn icon-btn--approve accept-request-btn"></button>
