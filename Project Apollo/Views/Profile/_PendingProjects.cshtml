@@ -1,0 +1,7 @@
+﻿<div class="tab-view" tab-view="pending-posts">
+    @{ foreach(Project_Apollo.Models.Project project in ViewBag.pending) { 
+           <p>@project.Name</p>
+    @Projects.Pending(Project_Apollo.Models.ImageConverter.convertPhotoToString(project.customer.Photo), project.customer.name, (int)Session["userRole"], project.createDate.ToString(),
+                                         project.Name, project.Description, project.ID, project.customer.ID, (int)Session["id"])
+    }}
+</div>

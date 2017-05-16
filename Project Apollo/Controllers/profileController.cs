@@ -11,7 +11,7 @@ namespace Project_Apollo.Controllers {
 
 		// GET: profile
 		public ActionResult Index() {
-			Session["id"] = 1; //TESTING ONLY
+			Session["id"] = 6; //TESTING ONLY
 			User user = db.userTable.Find((int)Session["id"]);
 
 			//TESTING ONLY
@@ -60,19 +60,13 @@ namespace Project_Apollo.Controllers {
 				var img = ImageConverter.convertPhotoToString(user.Photo);
 				Session["userPhoto"] = img;
 			}
-
+            ViewBag.projects = this.loadAssignedProjects(6);
+            ViewBag.users = this.getUsers();
+            ViewBag.pending = this.loadPendingProjects();
 			Session["userName"] = user.name;
-			return View();
+            return View();
 		}
 
-		public ActionResult ProjectsView() {
-			return PartialView(this.loadAssignedProjects((int)Session["id"]));
-		}
-
-		[ChildActionOnly]
-		public PartialViewResult _UserManagment() {
-			return PartialView(this.loadPendingProjects());
-		}
 
 		public void declineProject(int projectID) {
 			var Result = new HomeController().deleteProject(projectID);
@@ -95,10 +89,10 @@ namespace Project_Apollo.Controllers {
 			db.SaveChanges();
 		}
 
-		public object loadPendingProjects() {
+		public List<Project> loadPendingProjects() {
 			int status = 3;
 			List<Project> projects = db.ProjectTable.Where(x => ((int)x.status) == status).ToList();
-			return View(projects);
+			return projects;
 		}
         public void deleteUser(int id)
         {
@@ -156,9 +150,9 @@ namespace Project_Apollo.Controllers {
             });
             db.SaveChanges();
         }
-        public object loadAssignedProjects(int userId)
+        public List<Project> loadAssignedProjects(int userId)
         {
-            var arr = db.ProjectTable.Where(x => ((int)x.status) == 1 && (x.projectManager.ID == userId || x.teamLeader.ID == userId || x.workers.Any(ss => ss.ID == userId) || x.customer.ID == userId)).ToList();
+            List<Project> arr = db.ProjectTable.Where(x => ((int)x.status) == 1 && (x.projectManager.ID == userId || x.teamLeader.ID == userId || x.workers.Any(ss => ss.ID == userId) || x.customer.ID == userId)).ToList();
             return arr;
         }
 
@@ -212,6 +206,12 @@ namespace Project_Apollo.Controllers {
             //proj.applied.Clear();
 
             db.SaveChanges();
+        }
+
+        public List<User> getUsers()
+        {
+            
+            return db.userTable.ToList();
         }
 
     }

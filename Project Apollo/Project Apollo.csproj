@@ -208,7 +208,7 @@
     <Content Include="Styles\components\_footer.scss" />
     <Content Include="Views\Profile\_UserManagment.cshtml" />
     <Content Include="Views\Profile\_PendingProjects.cshtml" />
-    <Content Include="Views\Profile\ProjectsView.cshtml" />
+    <Content Include="Views\Profile\_ProjectsView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
