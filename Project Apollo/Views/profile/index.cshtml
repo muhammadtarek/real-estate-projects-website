@@ -1,5 +1,4 @@
-﻿@model IEnumerable<Project_Apollo.Models.Project>
-@{
+﻿@{
     if ((int)Session["userRole"] == 0 || (int)Session["userRole"] == 2 || (int)Session["userRole"] == 3) {
         //Admin, project manager or customer
         Layout = "~/Views/Shared/Layouts/_HighProfile.cshtml";
@@ -9,20 +8,11 @@
     }
 }
 
-<div class="tab-view tab-view--active" tab-view="projects">
-    @if ((int)Session["userRole"] == 0 || (int)Session["userRole"] == 2 || (int)Session["userRole"] == 3) {
-        @Html.Partial("~/Views/Profile/_UserCard.cshtml")
-    }
-
-    @{foreach (Project_Apollo.Models.Project p in Model) {
-            @Projects.Assigned(Project_Apollo.Models.ImageConverter.convertPhotoToString(p.customer.Photo), p.customer.name, p.createDate.ToString(), p.Name,
-                p.Description, p.ID, (int)p.status, p.startDate.ToString(), p.endDate.ToString(), Project_Apollo.Models.ImageConverter.convertPhotoToString(p.projectManager.Photo), Project_Apollo.Models.ImageConverter.convertPhotoToString(p.teamLeader.Photo), p.workers.ToList());
-        }
-    }
-</div>
+@Html.Partial("ProjectsView")
 
 <!-- Admin -->
 @if((int)Session["userRole"] == 0) {
-    @Html.Partial("_UserManagment")
+    //@Html.Partial("_UserManagment")
+    //@Html.Partial("_PendingProjects")
 }
 

@@ -1,8 +1,8 @@
 ﻿<!--
     User row
 -->
-@helper UserRow(int userId, string userPhoto, string userName, string userRole, string userEmail) {
-    <div class="user-row card">
+@helper UserRow(int userId, string userPhoto, string userName, String userRole, string userEmail) {
+    <div class="user-row card" id="@userId">
         <div class="row-container">
             <img src="@userPhoto"  width="45" />
             <div class="about-user">

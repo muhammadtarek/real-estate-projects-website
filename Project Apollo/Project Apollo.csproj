@@ -104,7 +104,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Public\app.min.js" />
     <Content Include="Public\assets\icons\arrow_drop_down.svg" />
     <Content Include="Public\assets\icons\check_box_black.svg" />
     <Content Include="Public\assets\icons\check_box_outline.svg" />
@@ -208,6 +207,8 @@
     <Content Include="Styles\components\_user-row.scss" />
     <Content Include="Styles\components\_footer.scss" />
     <Content Include="Views\Profile\_UserManagment.cshtml" />
+    <Content Include="Views\Profile\_PendingProjects.cshtml" />
+    <Content Include="Views\Profile\ProjectsView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
