@@ -104,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Public\app.min.js" />
     <Content Include="Public\assets\icons\arrow_drop_down.svg" />
     <Content Include="Public\assets\icons\check_box_black.svg" />
     <Content Include="Public\assets\icons\check_box_outline.svg" />
