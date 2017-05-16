@@ -1,13 +1,13 @@
 ﻿<!--
     User row
 -->
-@helper UserRow(int userId, string userPhoto, string userName, String userRole, string userEmail) {
+@helper UserRow(int userId, string userPhoto, string userName, int userRole, string userEmail) {
     <div class="user-row card" id="@userId">
         <div class="row-container">
             <img src="@userPhoto"  width="45" />
             <div class="about-user">
                 <label>@userName</label>
-                <span> - @userRole</span>
+                <span> - @Enum.GetName(typeof(Project_Apollo.Models.userRole), userRole)</span>
                 <br />
                 <label style="margin-bottom: 0px;">@userEmail</label>
             </div>

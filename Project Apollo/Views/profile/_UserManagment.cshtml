@@ -5,7 +5,7 @@
     </div>
 
     @{foreach (Project_Apollo.Models.User user in ViewBag.users) {
-            @Users.UserRow(user.ID, Project_Apollo.Models.ImageConverter.convertPhotoToString(user.Photo), user.name, "Admin", user.Email)
+            @Users.UserRow(user.ID, Project_Apollo.Models.ImageConverter.convertPhotoToString(user.Photo), user.name, (int) user.UserRole, user.Email)
         }
     }
 </div>

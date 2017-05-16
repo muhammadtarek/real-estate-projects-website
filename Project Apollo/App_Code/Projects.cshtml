@@ -68,7 +68,7 @@
     Profile page projects
 -->
 @helper Assigned(string userPhoto, string customerName, string postingTime, string projectName,
-                   string projectDescription, int projectId,int Status ,String stratDate,String endDate ,string managerPhoto, string leaderPhoto , List<Project_Apollo.Models.User> memberPhotos) {
+                   string projectDescription, int projectId, int Status ,String stratDate,String endDate ,string managerPhoto, string leaderPhoto , List<Project_Apollo.Models.User> memberPhotos) {
     <div class="project-cotnainer" id="@projectId">
         <div class="project">
             <div class="owner-container">
@@ -90,7 +90,7 @@
                 <div class="about">
                     <div class="row">
                         <label>Project Status:</label>
-                        <span>@Status</span>
+                        <span>@Enum.GetName(typeof(Project_Apollo.Models.status), Status)</span>
                     </div>
 
                     <div class="row">
