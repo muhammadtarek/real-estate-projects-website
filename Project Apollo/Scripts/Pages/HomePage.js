@@ -2,6 +2,8 @@
     var selectedPostId;
     var currentActiveApplyingButton;
 
+    $("#project-name-s").attr("disabled", true);
+
     //Deleting a project post
     $(".delete-btn").click(function deleteProject() {
         var projectContainer = $(this).parent().parent().parent().parent();
@@ -88,6 +90,7 @@
         $(currentActiveApplyingButton).html("Apply");
         $(currentActiveApplyingButton).attr("disabled", false);
         $("#btn-applyToProject").attr("disabled", false);
+        clearFormFields();
 
         var projectContainer = $(this).parent().parent().parent().parent();
         var projectName = $(projectContainer).find("h4.name")[0].innerHTML;
@@ -97,11 +100,12 @@
         $(currentActiveApplyingButton).html("Applying...");
         $(currentActiveApplyingButton).attr("disabled", true);
 
-        $("#project-name").val(projectName);
+        $("#project-name-s").val(projectName);
     });
 
     //Sumbitting applying form
     $("#btn-applyToProject").click(function sumbitForm() {
+        $("#btn-applyToProject").attr("disabled", true);
         var projectId = selectedPostId;
         var price = $("#project-price").val();
         var startingDate = $("#project-start-date").val();
@@ -111,6 +115,7 @@
         if (checkForEmptyFields("") && checkForDangerFields) {
             if (checkDate(startingDate, endingDate)) {
                 markInputAs("project-delivery-date", DANGER, "The starting date must be before ending date");
+                $("#btn-applyToProject").attr("disabled", false);
             } else {
                 $.post("/home/applyToProject", {
                     projectId: projectId,
@@ -123,13 +128,7 @@
                     showSnackbar("You have applied successfully");
                     $(currentActiveApplyingButton).html("Applied");
                     currentActiveApplyingButton = null;
-
-                    $("#btn-applyToProject").attr("disabled", true);
-                    $("#project-name").val("");
-                    $("#project-price").val("");
-                    $("#project-start-date").val("");
-                    $("#project-delivery-date").val("");
-                    $("#project-letter").val("");
+                    clearFormFields();
                 });
             }
             
@@ -139,4 +138,12 @@
 
 function createComment(comment) {
     // TODO
+}
+
+function clearFormFields() {
+    $("#project-name-s").val("");
+    $("#project-price").val("");
+    $("#project-start-date").val("");
+    $("#project-delivery-date").val("");
+    $("#project-letter").val("");
 }
