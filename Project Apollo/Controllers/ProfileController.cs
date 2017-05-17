@@ -11,7 +11,7 @@ namespace Project_Apollo.Controllers {
 
 		// GET: profile
 		public ActionResult Index() {
-			Session["id"] = 4; //TESTING ONLY
+			Session["id"] = 8; //TESTING ONLY
 			User user = db.userTable.Find((int)Session["id"]);
 
 			//TESTING ONLY
@@ -40,6 +40,7 @@ namespace Project_Apollo.Controllers {
                 case 1:
                     ViewBag.tabs = new string[] { "Projects", "Project Managers Requests" };
 					ViewBag.tabAttr = new string[] { "projects", "project-manager-requests" };
+                    ViewBag.pmRequest = this.loadApplyer();
 					break;
                 case 2:
                     ViewBag.tabs = new string[] { "Projects", "Send request", "Accept requests" };
@@ -253,6 +254,26 @@ namespace Project_Apollo.Controllers {
             return db.RequestsTable.Where(r => r.reciever.ID == id).ToList() ;
         }
 
+        public List<ApplyProject> loadApplyer()
+        {
+            int id = (int)Session["id"];
+            List<Project> projects = db.ProjectTable.Where(p => p.customer.ID == id).ToList();
+            List<ApplyProject> requests = new List<ApplyProject>();
+            foreach(Project p in projects)
+            {
+                requests.AddRange(db.ApplyProjectTable.Where(a=>a.project.ID == p.ID).ToList());
+            }
+            return requests;
+        }
+
+        public void declineApplyer(int PM_ID ,int projectID)
+        {
+            User pm = db.userTable.Find(PM_ID);
+            Project proj = db.ProjectTable.Find(projectID);
+            ApplyProject applier = proj.applied.First(x => x.projectManager == pm);
+            db.ApplyProjectTable.Remove(applier);
+            db.SaveChanges();
+        }
     }
 
 }

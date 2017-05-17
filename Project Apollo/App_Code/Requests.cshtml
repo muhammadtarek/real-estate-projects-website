@@ -15,9 +15,9 @@
 <!--
     Project Manager Requests    
 -->
-@helper ProjectManagerRequest(int requestId, int projectId, string managerPhoto, string managerName, string projectName, string price, string startingDate,
+@helper ProjectManagerRequest(int pmId, int projectId, string managerPhoto, string managerName, string projectName, string price, string startingDate,
     string endingDate, string letter) {
-    <div class="request-row card" id="@requestId" project-id="@projectId">
+    <div class="request-row card" id="@pmId" project-id="@projectId">
         <div class="info">
             <img src="@managerPhoto" width="40" />
             <label>@managerName requested to work on @projectName</label>

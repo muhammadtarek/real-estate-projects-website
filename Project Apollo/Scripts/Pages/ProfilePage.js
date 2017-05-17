@@ -47,4 +47,31 @@
             $(requestContainer).remove();
         });
     });
+    //Accept Request PM
+    $(".accept-request-btn").click(function () {
+        var applyContainer = $(this).parent().parent().parent();
+        var pmId = $(applyContainer).attr("id");
+        var projectId = $(applyContainer).attr("project-id");
+        $.post("/profile/Customer_assignProjectToPM", {
+            PM_ID: pmId,
+            projectID: projectId
+        }, function () {
+            showSnackbar("Request Accepted");
+            $(applyContainer).remove();
+            //$(applyContainer).attr("project-id");
+        });
+    });
+    //decline Request PM
+    $(".decline-request-btn").click(function () {
+        var applyContainer = $(this).parent().parent().parent();
+        var pmId = $(applyContainer).attr("id");
+        var projectId = $(applyContainer).attr("project-id");
+        $.post("/profile/declineApplyer", {
+            PM_ID: pmId,
+            projectID: projectId
+        }, function () {
+            showSnackbar("Request Declined");
+            $(applyContainer).remove();
+        });
+    });
 });
