@@ -218,8 +218,9 @@
     <Content Include="Views\Profile\_ProjectsView.cshtml" />
     <Content Include="Views\Profile\_ProjectsInvitations.cshtml" />
     <Content Include="App_Code\Requests.cshtml" />
-    <Content Include="Styles\components\_request-row.scss" />
+    <Content Include="Styles\components\_invitation-row.scss" />
     <Content Include="Views\Profile\_ProjectManagersRequests.cshtml" />
+    <Content Include="Styles\components\_request-row.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
