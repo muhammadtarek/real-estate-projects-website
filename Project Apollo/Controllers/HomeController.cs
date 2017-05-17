@@ -121,21 +121,5 @@ namespace Project_Apollo.Controllers {
             }
         }
 
-        public void leaveProject(int userId = 1, int projectId = 12)
-        {            
-            Project proj = db.ProjectTable.Find(projectId);
-            proj.status = (status)0;
-            proj.startDate = null;
-            proj.endDate = null;
-            db.Entry(proj).Reference("projectManager").CurrentValue = null;
-            db.Entry(proj).Reference("teamLeader").CurrentValue = null;
-            proj.price = null;
-            proj.workers.Clear();
-            if (TryUpdateModel(proj))
-            {
-                db.SaveChanges();
-            }
-        }
-
     }
 }

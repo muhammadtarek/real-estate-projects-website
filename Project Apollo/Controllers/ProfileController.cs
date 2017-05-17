@@ -81,7 +81,7 @@ namespace Project_Apollo.Controllers {
 			db.SaveChanges();
 		}
 
-		public void removeMember(int userId = 1, int projectId = 6) {
+		public void removeMember(int userId = 1, int projectId = 6) {//JE
 			Project p = db.ProjectTable.Find(projectId);
 			User u = db.userTable.Find(userId);
 			p.workers.Remove(u);
@@ -167,14 +167,14 @@ namespace Project_Apollo.Controllers {
             db.SaveChanges();
         }
 
-        public void Te_LeaveProject(int projectId)
+        public void Te_LeaveProject(int projectId)//TL
         {
             Project proj = db.ProjectTable.Find(projectId);
             db.Entry(proj).Reference("teamLeader").CurrentValue = null;
             db.SaveChanges();
         }
 
-        public void Je_LeaveProject(int JE_ID, int projectId)
+        public void Je_LeaveProject(int JE_ID, int projectId)//JE
         {
             removeEngineerFromProject(JE_ID, projectId);
         }
@@ -273,6 +273,34 @@ namespace Project_Apollo.Controllers {
             ApplyProject applier = proj.applied.First(x => x.projectManager == pm);
             db.ApplyProjectTable.Remove(applier);
             db.SaveChanges();
+        }
+
+        public void leaveProjectPm(int projectId)
+        {
+            Project proj = db.ProjectTable.Find(projectId);
+            proj.status = (status)0;
+            proj.startDate = null;
+            proj.endDate = null;
+            db.Entry(proj).Reference("projectManager").CurrentValue = null;
+            db.Entry(proj).Reference("teamLeader").CurrentValue = null;
+            proj.price = null;
+            proj.workers.Clear();
+            if (TryUpdateModel(proj))
+            {
+                db.SaveChanges();
+            }
+        }
+
+        public void leaveProject(int projectId)
+        {
+            int id = (int)Session["id"];
+            userRole role = (userRole)Session["userRole"];
+            if (role == userRole.projectManager)
+                this.leaveProjectPm(projectId);
+            else if (role == userRole.teamLeader)
+                this.Te_LeaveProject(projectId);
+            else if (role == userRole.juniorEngineer)
+                this.Je_LeaveProject(id, projectId);
         }
     }
 
