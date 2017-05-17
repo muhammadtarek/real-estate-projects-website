@@ -74,4 +74,15 @@
             $(applyContainer).remove();
         });
     });
+    //leave project
+    $(".leave-project-btn").click(function () {
+        var applyContainer = $(this).parent().parent().parent().parent();
+        var projectId = $(applyContainer).attr("id");
+        $.post("/profile/leaveProject", {
+            projectId: projectId
+        }, function () {
+            showSnackbar("Leaved Success");
+            $(applyContainer).remove();
+        });
+    });
 });
