@@ -43,8 +43,8 @@ namespace Project_Apollo.Controllers {
                     ViewBag.pmRequest = this.loadApplyer();
 					break;
                 case 2:
-                    ViewBag.tabs = new string[] { "Projects", "Send request", "Accept requests" };
-					ViewBag.tabAttr = new string[] { "projects", "send-request", "accept-request" };
+                    ViewBag.tabs = new string[] { "Projects", "Send Invitations" };
+					ViewBag.tabAttr = new string[] { "projects", "send-invitations" };
 					break;
 				case 3:
                 case 4:

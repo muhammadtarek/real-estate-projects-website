@@ -221,6 +221,7 @@
     <Content Include="Styles\components\_invitation-row.scss" />
     <Content Include="Views\Profile\_ProjectManagersRequests.cshtml" />
     <Content Include="Styles\components\_request-row.scss" />
+    <Content Include="Views\Profile\_SendInvitations.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
