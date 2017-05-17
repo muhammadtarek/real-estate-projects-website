@@ -37,7 +37,7 @@
         <div class="comments-container">
             @if (userType == 2) {
                 <div class="comment-input">
-                    <img src="@userPhoto" width="35" />
+                    <img src=@Session["userPhoto"] width="35" />
                     <input placeholder="Write a comment..." class="comment-field"/>
                 </div>
             }
