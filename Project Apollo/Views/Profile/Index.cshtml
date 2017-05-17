@@ -16,9 +16,14 @@
     @Html.Partial("_PendingProjects")
 }
 
-<!-- Project Managers -->
+<!-- Customers -->
 @if((int)Session["userRole"] == 1) {
     @Html.Partial("_ProjectManagersRequests")
+}
+
+<!-- Project Managers -->
+@if ((int)Session["userRole"] == 2) {
+    @Html.Partial("_SendInvitations")
 }
 
 <!-- Team leaders and junior engineers -->
