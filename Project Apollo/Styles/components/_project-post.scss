@@ -116,6 +116,31 @@
             margin-right: 15px;
           }
 
+          .removable {
+            cursor: pointer;
+            display: inline-block;
+
+            &:hover {
+              &:before {
+                content: "";
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                display: inline-flex;
+                position: absolute;
+                background-color: rgba(249,78,78, 0.4);
+                background-image: url(assets/icons/delete-white.svg);
+                background-position: center;
+                background-size: 15px;
+                background-repeat: no-repeat;
+              }
+
+              img {
+                border: 2px solid $danger-color;
+              }
+            }
+          }
+
           img {
             border-radius: 50%;
             border: 2px solid #fff;
@@ -136,7 +161,7 @@
               top: 7px;
             }
 
-            img {
+            .removable {
               margin-left: -10px;
               border: 2px solid #fff;
             }
