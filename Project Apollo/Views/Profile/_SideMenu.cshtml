@@ -1,0 +1,13 @@
+﻿<div class="card">
+    <ul class="side-menu">
+        @{
+            var counter = 0;
+            foreach (var tab in ViewBag.tabs) {
+                <li class='nav-tab @(counter == 0?"tab-active":"")' tab="@ViewBag.tabAttr[counter]">
+                    @tab
+                </li>
+                counter++;
+            }
+        }
+    </ul>
+</div>

@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Profile";
+}
+@Html.Partial("~/Views/Shared/Components/_Snackbar.cshtml")
+@Html.Partial("~/Views/Shared/Components/_Header.cshtml")
+<div class="app">
+    <div class="app-container" style="margin-top: 125px;">
+        <div class="no-padding">
+            <div class="col-md-7">
+                @RenderBody()
+            </div>
+            <div class="col-md-5">
+                @Html.Partial("~/Views/Profile/_UserCard.cshtml")
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Partial("~/Views/Shared/Components/_Footer.cshtml")
+
+<!-- JavaScript Files -->
+<script src="~/Scripts/Components/Snackbar.js"></script>
+<script src="~/Scripts/Components/Tabs.js"></script>
+<script src="~/Scripts/Pages/ProfilePage.js"></script>

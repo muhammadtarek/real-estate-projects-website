@@ -1,0 +1,18 @@
+﻿<div class="card project-form" id="customer-form" formaction="create">
+    <div class="header">
+        Create a new project
+    </div>
+
+    <div class="form-container">
+        <img src="@Session["userPhoto"]" width="40" />
+
+        <div class="project-details">
+            <input type="text" placeholder="Project name" id="project-name"/>
+            <textarea placeholder="Describe your project..." onkeyup="auto_grow(this)" id="project-description"></textarea>
+        </div>
+
+        <div class="actions">
+            <button class="btn-primary" id="call-to-action">Create project</button>
+        </div>
+    </div>
+</div>

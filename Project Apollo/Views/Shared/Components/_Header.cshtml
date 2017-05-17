@@ -1,0 +1,38 @@
+﻿<header class="@(@ViewBag.showNav == true ? "no-bottom-padding" : "")">
+    <div class="container-width">
+        <div class="col-sm-12">
+            <img src="~/Public/assets/images/logo-dark.png" width="40" />
+
+            <div class="right-part">
+                <div class="tab" id="home-tab">
+                    <a>Home</a>
+                </div>
+
+                <div class="tab tab-picture" id="profile-tab">
+                    <a>
+                        <img src=@Session["userPhoto"] width="25" />
+                        <span>@Session["userName"]</span>
+                    </a>
+                </div>
+
+                <button class="logout-btn" id="signout-btn"></button>
+            </div>
+        </div>
+
+        @if (ViewBag.showNav == true) {
+            <div class="nav-container col-sm-12">
+                <ul class="nav nav-top">
+                    @if (ViewBag.showNav == true) {
+                        var counter = 0;
+                        foreach (var tab in ViewBag.tabs) {
+                        <li class='nav-tab @(counter == 0?"tab-active":"")' tab="@ViewBag.tabAttr[counter]">
+                            @tab
+                        </li>
+                        counter++;
+                        }
+                    }
+                </ul>
+            </div>
+        }
+    </div>
+</header>
