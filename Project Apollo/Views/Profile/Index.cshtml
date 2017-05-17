@@ -17,11 +17,11 @@
 }
 
 <!-- Project Managers -->
-@if((int)Session["id"] == 2) {
+@if((int)Session["userRole"] == 1) {
     @Html.Partial("_ProjectManagersRequests")
 }
 
 <!-- Team leaders and junior engineers -->
-@if((int)Session["id"] > 2) {
+@if((int)Session["userRole"] >= 3) {
     @Html.Partial("_ProjectsInvitations")
 }

@@ -1,4 +1,8 @@
 ﻿<div class="tab-view" tab-view="project-manager-requests">
-    @Requests.ProjectManagerRequest(1, 1,(string)Session["userPhoto"], "Muhammad Tarek", "Not a Hot dog app", "5000", "11/2017",
-    "11/2017", "Imagine if there an app in the market")
+    @if (ViewBag.pmRequest != null) {
+        foreach (Project_Apollo.Models.ApplyProject req in  ViewBag.pmRequest) {
+            @Requests.ProjectManagerRequest(req.ID, req.project.ID, Project_Apollo.Models.ImageConverter.convertPhotoToString(req.projectManager.Photo), req.projectManager.name, req.project.Name, req.price.ToString(), req.startDate.ToString("dd/MM/yyyy"),
+                    req.endDate.ToString("dd/MM/yyyy"), req.applyingLetter)
+        }
+    }
 </div>
