@@ -266,6 +266,14 @@ namespace Project_Apollo.Controllers {
             return requests;
         }
 
+        public void declineApplyer(int PM_ID ,int projectID)
+        {
+            User pm = db.userTable.Find(PM_ID);
+            Project proj = db.ProjectTable.Find(projectID);
+            ApplyProject applier = proj.applied.First(x => x.projectManager == pm);
+            db.ApplyProjectTable.Remove(applier);
+            db.SaveChanges();
+        }
     }
 
 }

@@ -1,7 +1,7 @@
 ﻿<div class="tab-view" tab-view="project-manager-requests">
     @if (ViewBag.pmRequest != null) {
         foreach (Project_Apollo.Models.ApplyProject req in  ViewBag.pmRequest) {
-            @Requests.ProjectManagerRequest(req.ID, req.project.ID, Project_Apollo.Models.ImageConverter.convertPhotoToString(req.projectManager.Photo), req.projectManager.name, req.project.Name, req.price.ToString(), req.startDate.ToString("dd/MM/yyyy"),
+            @Requests.ProjectManagerRequest(req.projectManager.ID, req.project.ID, Project_Apollo.Models.ImageConverter.convertPhotoToString(req.projectManager.Photo), req.projectManager.name, req.project.Name, req.price.ToString(), req.startDate.ToString("dd/MM/yyyy"),
                     req.endDate.ToString("dd/MM/yyyy"), req.applyingLetter)
         }
     }
