@@ -95,20 +95,20 @@
                     <div class="row">
                         <label>Project Manager:</label>
                         <div class="removable">
-                            <img src="@managerPhoto" class="@((int)Session["userRole"] == 1 ? "remove-manager" : "")" width="30" />
+                            <img src="@managerPhoto" width="30" />
                         </div>
                     </div>
 
                     <div class="row">
                         <label>Team Members:&nbsp</label>
-                        <div class="removable">
+                        <div class="@((int)Session["userRole"] == 2 ? "removable" : "")">
                             <img src="@leaderPhoto" class="@((int)Session["userRole"] == 2 ? "remove-leader" : "")" width="30" />
                         </div>
                         
 
                         <div class="members">
                             @foreach(Project_Apollo.Models.User photo in memberPhotos) { 
-                                <div class="removable">
+                                <div class="@((int)Session["userRole"] == 2 ? "removable" : "")">
                                     <img src="@Project_Apollo.Models.ImageConverter.convertPhotoToString(photo.Photo)" class="@((int)Session["userRole"] == 3 ? "remove-engineer" : "")" width="30" />
                                 </div>
                             }
