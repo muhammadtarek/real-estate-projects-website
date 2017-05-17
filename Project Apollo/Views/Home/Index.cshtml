@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Project_Apollo.Models.Project>
+@{
+    Layout = "~/Views/Shared/Layouts/_HomeLayout.cshtml";
+}
+
+<div class="app-container" style="margin-top: 125px;">
+    <div class="col-sm-12">
+        <div class="col-md-5 no-padding">
+            @if ((int)Session["userRole"] == 0 || (int)Session["userRole"] == 1) {
+                @Html.Partial("_CreateProjectForm")
+            } else {
+                   @Html.Partial("_ApplyToProjectForm")
+            }
+
+        </div>
+
+        <div class="col-md-7" style="padding-bottom: 40px;">
+            @{ if (Model != null) {
+                    foreach (var project in Model) {
+                    @Projects.Unassigned(Project_Apollo.Models.ImageConverter.convertPhotoToString(project.customer.Photo), project.customer.name, (int)Session["userRole"], project.createDate.ToString(),
+                                         project.Name, project.Description, project.ID, project.customer.ID, (int)Session["id"], project.applied, project.comments)
+                    }
+                }
+            }
+
+        </div>
+
+    </div>
+</div>
