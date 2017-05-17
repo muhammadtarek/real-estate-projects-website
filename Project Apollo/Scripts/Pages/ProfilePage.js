@@ -95,11 +95,16 @@
     //Remove team leader
     $(".remove-leader").parent().click(function () {
         var projectID = $(this).attr("project-id");
+        var image = $(this).find("img")[0]
+        var imageContainer = $(this);
+
         $.post("/profile/Te_LeaveProject", {
             projectId: projectID
         }, function () {
-            showSnackbar("Remove TeamLeader Success");
-            $(this).parent().remove();
+            $(imageContainer).removeClass("removable");
+            $(image).attr("src", "/Public/assets/images/default-user.jpg");
+            $(image).removeClass("remove-leader");
+            showSnackbar("Successfully removed team leader");
         });
     });
 
@@ -107,12 +112,15 @@
     $(".remove-engineer").parent().click(function () {
         var projectID = $(this).attr("project-id");
         var memberID = $(this).attr("user-id");
+        var image = $(this).find("img")[0]
+        var imageContainer = $(this);
+
         $.post("/profile/Je_LeaveProject", {
             JE_ID : memberID,
             projectId: projectID
         }, function () {
-            showSnackbar("Remove TeamLeader Success");
-            $(this).parent().remove();
+            $(imageContainer).remove();
+            showSnackbar("Successfully removed junior engineer");
         });
     });
 });

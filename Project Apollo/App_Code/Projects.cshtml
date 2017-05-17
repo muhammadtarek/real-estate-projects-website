@@ -101,8 +101,8 @@
 
                     <div class="row">
                         <label>Team Members:&nbsp</label>
-                        <div class="@((int)Session["userRole"] == 2 ? "removable" : "")" project-id="@projectId">
-                            <img src="@leaderPhoto" class="@((int)Session["userRole"] == 2 ? "remove-leader" : "")" width="30" />
+                        <div class="@((int)Session["userRole"] == 2 && leaderPhoto != null ? "removable" : "")" project-id="@projectId">
+                            <img src="@(leaderPhoto != null ? @leaderPhoto : "/Public/assets/images/default-user.jpg")" class="@((int)Session["userRole"] == 2 && leaderPhoto != null ? "remove-leader" : "")" width="30" />
                         </div>
                         
 
