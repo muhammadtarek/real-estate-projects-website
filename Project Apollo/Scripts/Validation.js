@@ -85,4 +85,5 @@ function checkForDangerFields() {
     //Focusing on first empty field
     var firstDangerInput = inputs[0][0].id;
     $("#" + firstDangerInput).focus();
+    return false;
 }

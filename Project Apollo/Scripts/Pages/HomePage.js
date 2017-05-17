@@ -124,17 +124,15 @@
 
     //Sumbitting applying form
     $("#btn-applyToProject").click(function sumbitForm() {
-        $("#btn-applyToProject").attr("disabled", true);
+        //$("#btn-applyToProject").attr("disabled", true);
         var projectId = selectedPostId;
         var price = $("#project-price").val();
         var startingDate = $("#project-start-date").val();
         var endingDate = $("#project-delivery-date").val();
         var letter = $("#project-letter").val();
-
-        if (checkForEmptyFields("") && checkForDangerFields) {
+        if (!checkForEmptyFields("") && checkForDangerFields()) {
             if (checkDate(startingDate, endingDate)) {
                 markInputAs("project-delivery-date", DANGER, "The starting date must be before ending date");
-                $("#btn-applyToProject").attr("disabled", false);
             } else {
                 $.post("/home/applyToProject", {
                     projectId: projectId,
@@ -148,6 +146,7 @@
                     $(currentActiveApplyingButton).html("Applied");
                     currentActiveApplyingButton = null;
                     clearFormFields();
+                    $("#btn-applyToProject").attr("disabled", false);
                 });
             }
             
