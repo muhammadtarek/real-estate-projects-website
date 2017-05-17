@@ -57,7 +57,7 @@ namespace Project_Apollo.Controllers {
 			var img = ImageConverter.convertPhotoToString(user.Photo);
 			Session["userPhoto"] = img;
 
-			ViewBag.projects = this.loadAssignedProjects(6);
+			ViewBag.projects = this.loadAssignedProjects((int)Session["id"]);
 			Session["userName"] = user.name;
             return View();
 		}
@@ -97,36 +97,101 @@ namespace Project_Apollo.Controllers {
         public void deleteUser(int id)
         {
             User u = db.userTable.Find(id);
+
             if (u.UserRole == (userRole)1) // customer
             {
                 foreach (Project p in u.ownProject.ToList())
                 {
                     db.ProjectTable.Remove(p);
                 }
+                List<Reports> data = (from x in db.ReportsTable
+                                      where x.customer.ID == id
+                                      select x).ToList();
+                foreach (Reports r in data)
+                {
+                    db.ReportsTable.Remove(r);
+                }                
             }
             else if (u.UserRole == (userRole)2)//projectManager
             {
-                foreach (Project p in u.manageProject.ToList())
+                List<Project> projects = (from x in db.ProjectTable
+                                       where x.projectManager.ID == id
+                                       select x).ToList();
+                foreach (Project p in projects)
                 {
-                    db.Entry(p).Reference("projectManager").CurrentValue = null;
+                    Project proj = db.ProjectTable.Find(p.ID);
+                    proj.status = (status)0;
+                    proj.startDate = null;
+                    proj.endDate = null;
+                    db.Entry(proj).Reference("projectManager").CurrentValue = null;
+                    db.Entry(proj).Reference("teamLeader").CurrentValue = null;
+                    proj.price = null;
+                    proj.workers.Clear();
+                }
+                List<Feedback> feedbacks = (from x in db.FeedbackTable
+                                       where x.projectManager.ID == id
+                                       select x).ToList();
+                foreach (Feedback f in feedbacks)
+                {
+                    db.FeedbackTable.Remove(f);
+                }
+                List<Qualifications> qualifications = (from x in db.qualificationsTable
+                                              where x.user.ID == id
+                                              select x).ToList();
+                foreach (Qualifications q in qualifications)
+                {
+                    db.qualificationsTable.Remove(q);
+                }
+                List<Reports> reports = (from x in db.ReportsTable
+                                              where x.projectManager.ID == id
+                                              select x).ToList();
+                foreach (Reports r in reports)
+                {
+                    db.ReportsTable.Remove(r);
                 }
             }
             else if (u.UserRole == (userRole)3)//teamLeader
             {
                 foreach (Project p in u.leadProject.ToList())
                 {
-                    db.Entry(p).Reference("teamLeader").CurrentValue = null;
+                    Project proj = db.ProjectTable.Find(p.ID);
+                    db.Entry(proj).Reference("teamLeader").CurrentValue = null;
+                }
+                List<Feedback> feedbacks = (from x in db.FeedbackTable
+                                       where x.teamLeader.ID == id
+                                       select x).ToList();
+                foreach (Feedback f in feedbacks)
+                {
+                    db.FeedbackTable.Remove(f);
+                }
+                List<Qualifications> qulaifications = (from x in db.qualificationsTable
+                                              where x.user.ID == id
+                                              select x).ToList();
+                foreach (Qualifications q in qulaifications)
+                {
+                    db.qualificationsTable.Remove(q);
                 }
             }
-            else if (u.UserRole == (userRole)3)//juniorEngineer
+            else if (u.UserRole == (userRole)4)//juniorEngineer
             {
-
+                var data = (from x in db.FeedbackTable
+                            where x.juniorEngineering.ID == id
+                            select x).ToList();
+                foreach (Feedback f in data)
+                {
+                    db.FeedbackTable.Remove(f);
+                }
+                var qulaifications = (from x in db.qualificationsTable
+                             where x.user.ID == id
+                             select x).ToList();
+                foreach (Qualifications q in qulaifications)
+                {
+                    db.qualificationsTable.Remove(q);
+                }
             }
-            foreach (Qualifications q in u.Qualifications.ToList())
-            {
-                db.qualificationsTable.Remove(q);
-            }
+            db.userTable.Remove(u);
             db.SaveChanges();
+
         }
 
         public void requestTeamLeader(int projectid = 2, int teamLeaderId = 1)

@@ -101,15 +101,15 @@
 
                     <div class="row">
                         <label>Team Members:&nbsp</label>
-                        <div class="@((int)Session["userRole"] == 2 ? "removable" : "")">
+                        <div class="@((int)Session["userRole"] == 2 ? "removable" : "")" project-id="@projectId">
                             <img src="@leaderPhoto" class="@((int)Session["userRole"] == 2 ? "remove-leader" : "")" width="30" />
                         </div>
                         
 
                         <div class="members">
                             @foreach(Project_Apollo.Models.User photo in memberPhotos) { 
-                                <div class="@((int)Session["userRole"] == 2 ? "removable" : "")">
-                                    <img src="@Project_Apollo.Models.ImageConverter.convertPhotoToString(photo.Photo)" class="@((int)Session["userRole"] == 3 ? "remove-engineer" : "")" width="30" />
+                                <div class="@(((int)Session["userRole"] == 2|(int)Session["userRole"] == 3) ? "removable" : "")" user-id="@photo.ID" project-id="@projectId">
+                                    <img src="@Project_Apollo.Models.ImageConverter.convertPhotoToString(photo.Photo)" class="@(((int)Session["userRole"] == 3 |(int)Session["userRole"] == 2 )? "remove-engineer" : "")" width="30" />
                                 </div>
                             }
                         </div>
