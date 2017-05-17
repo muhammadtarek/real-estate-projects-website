@@ -141,7 +141,6 @@
                     startDate: startingDate,
                     endDate: endingDate
                 }, function () {
-                    console.log("Fuck");
                     showSnackbar("You have applied successfully");
                     $(currentActiveApplyingButton).html("Applied");
                     currentActiveApplyingButton = null;
