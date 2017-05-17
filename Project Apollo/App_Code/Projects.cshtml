@@ -61,6 +61,12 @@
         <div class="project">
             <div class="owner-container">
                 @Projects.OwnerInfo(userPhoto, customerName, postingTime)
+
+                @if ((int)Session["userRole"] > 1) {
+                    <div class="project-controls">
+                        <button class="leave-project-btn">Leave</button>
+                    </div>
+                }
             </div>
 
 
