@@ -136,5 +136,13 @@ namespace Project_Apollo.Controllers {
                 db.SaveChanges();
             }
         }
+
+        public List<ApplyProject> loadApplyer()
+        {
+            int id = (int)Session["id"];
+            List<Project> projects = db.ProjectTable.Where(p => p.customer.ID == id).ToList();
+            List<ApplyProject> requests = db.ApplyProjectTable.Where(r => projects.Any(p => p.ID == r.project.ID)).ToList();
+            return requests;
+        }
     }
 }
