@@ -367,6 +367,19 @@ namespace Project_Apollo.Controllers {
             else if (role == userRole.juniorEngineer)
                 this.Je_LeaveProject(id, projectId);
         }
+        public Boolean checkInvitation (int projectID , int recieverID)
+        {
+            var data = (from x in db.RequestsTable
+                        where x.reciever.ID == recieverID && x.project.ID == projectID
+                        select x).ToList();
+            if(data.Count > 0)
+            {
+                return false;
+            }else
+            {
+                return true;
+            }
+        }
     }
 
 }
