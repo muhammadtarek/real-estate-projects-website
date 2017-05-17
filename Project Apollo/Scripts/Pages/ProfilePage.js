@@ -85,4 +85,26 @@
             $(applyContainer).remove();
         });
     });
+    //remove-leader
+    $(".remove-leader").parent().click(function () {
+        var projectID = $(this).attr("project-id");
+        $.post("/profile/Te_LeaveProject", {
+            projectId: projectID
+        }, function () {
+            showSnackbar("Remove TeamLeader Success");
+            $(this).remove();
+        });
+    });
+    //remove-Member
+    $(".remove-engineer").parent().click(function () {
+        var projectID = $(this).attr("project-id");
+        var memberID = $(this).attr("user-id");
+        $.post("/profile/Je_LeaveProject", {
+            JE_ID : memberID,
+            projectId: projectID
+        }, function () {
+            showSnackbar("Remove TeamLeader Success");
+            $(this).remove();
+        });
+    });
 });

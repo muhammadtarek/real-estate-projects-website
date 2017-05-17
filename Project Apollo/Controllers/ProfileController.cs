@@ -57,7 +57,7 @@ namespace Project_Apollo.Controllers {
 			var img = ImageConverter.convertPhotoToString(user.Photo);
 			Session["userPhoto"] = img;
 
-			ViewBag.projects = this.loadAssignedProjects(6);
+			ViewBag.projects = this.loadAssignedProjects((int)Session["id"]);
 			Session["userName"] = user.name;
             return View();
 		}
