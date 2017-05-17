@@ -1,13 +1,52 @@
 ﻿<!--
-    Projects requests
+    Projects invitation requests
 -->
-@helper Request(int requestId, string senderPhoto, string senderName,string reqestedProject) { 
-    <div class="request-row card" id="@requestId">
-        <img src="@senderPhoto" width="30"/>
+@helper ProjectInvitaion(int requestId, string senderPhoto, string senderName,string reqestedProject) { 
+    <div class="invitation-row card" id="@requestId">
+        <img src="@senderPhoto" width="40"/>
         <label>@senderName requested you to work on @reqestedProject's project</label>
         <div class="controls">
-            <button class="icon-btn icon-btn--approve accept-request-btn"></button>
-            <button class="icon-btn icon-btn--decline decline-request-btn"></button>
+            <button class="icon-btn icon-btn--approve accept-invitation-btn"></button>
+            <button class="icon-btn icon-btn--decline decline-invitation-btn"></button>
+        </div>
+    </div>
+}
+
+<!--
+    Project Manager Requests    
+-->
+@helper ProjectManagerRequest(int requestId, int projectId,string managerPhoto, string managerName, string projectName,string price, string startingDate,
+    string endingDate, string letter) {
+    <div class="request-row card" id="@requestId" project-id="@projectId">
+        <div class="info">
+            <img src="@managerPhoto" width="40" />
+            <label>@managerName requested to work on @projectName</label>
+
+            <div class="controls">
+                <button class="icon-btn icon-btn--approve accept-request-btn"></button>
+                <button class="icon-btn icon-btn--decline decline-request-btn"></button>
+            </div>
+        </div>
+        <div class="details">
+            <div class="row">
+                <label>Requested Price:</label>
+                <span>@price</span>
+            </div>
+
+            <div class="row">
+                <label>Start Date:</label>
+                <span>@startingDate</span>
+            </div>
+
+            <div class="row">
+                <label>End Date:</label>
+                <span>@endingDate</span>
+            </div>
+
+            <div class="row">
+                <label>Message:</label>
+                <span>@letter</span>
+            </div>
         </div>
     </div>
 }

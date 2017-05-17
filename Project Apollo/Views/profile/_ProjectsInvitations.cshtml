@@ -1,0 +1,7 @@
+﻿<div class="tab-view" tab-view="project-invitations">
+    @if (ViewBag.requests != null){
+    foreach(Project_Apollo.Models.Requests request in ViewBag.requests) {
+        @Requests.ProjectInvitaion(request.ID, Project_Apollo.Models.ImageConverter.convertPhotoToString(request.sender.Photo)
+       , request.sender.name, request.project.Name)
+    }}
+</div>

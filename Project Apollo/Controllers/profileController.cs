@@ -38,8 +38,8 @@ namespace Project_Apollo.Controllers {
 					ViewBag.pending = this.loadPendingProjects();
 					break;
                 case 1:
-                    ViewBag.tabs = new string[] { "Projects", "Accept requests" };
-					ViewBag.tabAttr = new string[] { "projects", "accept-request" };
+                    ViewBag.tabs = new string[] { "Projects", "Project Managers Requests" };
+					ViewBag.tabAttr = new string[] { "projects", "project-manager-requests" };
 					break;
                 case 2:
                     ViewBag.tabs = new string[] { "Projects", "Send request", "Accept requests" };
@@ -47,8 +47,8 @@ namespace Project_Apollo.Controllers {
 					break;
 				case 3:
                 case 4:
-					ViewBag.tabs = new string[] { "Projects", "Accept request" };
-					ViewBag.tabAttr = new string[] { "projects", "accept-request" };
+					ViewBag.tabs = new string[] { "Projects", "Project Invitations" };
+					ViewBag.tabAttr = new string[] { "projects", "project-invitations" };
                     ViewBag.requests = this.loadRequest();
 					break;
 			}

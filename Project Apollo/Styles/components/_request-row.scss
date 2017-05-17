@@ -1,19 +1,29 @@
 ﻿.request-row {
-  cursor: default;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 
-  img {
-    display: inline-block;
-    vertical-align: top !important;
+  .info {
+
+    img {
+      display: inline-block;
+      vertical-align: top !important;
+    }
+
+    label {
+      max-width: 379px;
+      margin-bottom: 0 !important;
+      margin-left: 15px;
+    }
+
+    .controls {
+      float: right;
+    }
   }
 
-  label {
-    max-width: 389px;
-    margin-bottom: 0 !important;
-    margin-left: 15px;
-  }
-
-  .controls {
-    float: right;
+  .details {
+    margin-top: 15px;
+    .row {
+      margin: 0 !important;
+      margin-bottom: 3px;
+    }
   }
 }

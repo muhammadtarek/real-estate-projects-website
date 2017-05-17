@@ -16,7 +16,12 @@
     @Html.Partial("_PendingProjects")
 }
 
+<!-- Project Managers -->
+@if((int)Session["id"] == 2) {
+    @Html.Partial("_ProjectManagersRequests")
+}
+
 <!-- Team leaders and junior engineers -->
 @if((int)Session["id"] > 2) {
-    @Html.Partial("_Requests")
+    @Html.Partial("_ProjectInvitations")
 }

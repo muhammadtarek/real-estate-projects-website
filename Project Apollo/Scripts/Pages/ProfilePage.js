@@ -26,7 +26,7 @@
         });
     });
     //Accept Request
-    $(".accept-request-btn").click(function () {
+    $(".accept-invitation-btn").click(function () {
         var requestContainer = $(this).parent().parent();
         var selectedRequestId = $(requestContainer).attr("id");
         $.post("/profile/acceptRequest", {
@@ -37,7 +37,7 @@
         });
     });
     //Decline Request
-    $(".decline-request-btn").click(function () {
+    $(".decline-invitation-btn").click(function () {
         var requestContainer = $(this).parent().parent();
         var selectedRequestId = $(requestContainer).attr("id");
         $.post("/profile/deleteRequest", {
