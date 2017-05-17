@@ -14,6 +14,7 @@
             $(projectContainer).remove();
         });
     });
+
     //Decline Post
     $(".decline-project-btn").click(function () {
         var projectContainer = $(this).parent().parent().parent().parent();
@@ -25,6 +26,7 @@
             $(projectContainer).remove();
         });
     });
+
     //Accept Request
     $(".accept-invitation-btn").click(function () {
         var requestContainer = $(this).parent().parent();
@@ -36,6 +38,7 @@
             $(requestContainer).remove();
         });
     });
+
     //Decline Request
     $(".decline-invitation-btn").click(function () {
         var requestContainer = $(this).parent().parent();
@@ -47,6 +50,7 @@
             $(requestContainer).remove();
         });
     });
+
     //Accept Request PM
     $(".accept-request-btn").click(function () {
         var applyContainer = $(this).parent().parent().parent();
@@ -61,6 +65,7 @@
             //$(applyContainer).attr("project-id");
         });
     });
+
     //decline Request PM
     $(".decline-request-btn").click(function () {
         var applyContainer = $(this).parent().parent().parent();
@@ -74,6 +79,7 @@
             $(applyContainer).remove();
         });
     });
+
     //leave project
     $(".leave-project-btn").click(function () {
         var applyContainer = $(this).parent().parent().parent().parent();
@@ -85,17 +91,19 @@
             $(applyContainer).remove();
         });
     });
-    //remove-leader
+
+    //Remove team leader
     $(".remove-leader").parent().click(function () {
         var projectID = $(this).attr("project-id");
         $.post("/profile/Te_LeaveProject", {
             projectId: projectID
         }, function () {
             showSnackbar("Remove TeamLeader Success");
-            $(this).remove();
+            $(this).parent().remove();
         });
     });
-    //remove-Member
+
+    //Remove team member
     $(".remove-engineer").parent().click(function () {
         var projectID = $(this).attr("project-id");
         var memberID = $(this).attr("user-id");
@@ -104,7 +112,7 @@
             projectId: projectID
         }, function () {
             showSnackbar("Remove TeamLeader Success");
-            $(this).remove();
+            $(this).parent().remove();
         });
     });
 });

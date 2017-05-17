@@ -116,10 +116,12 @@
             margin-right: 15px;
           }
 
-          .removable {
+          div {
             cursor: pointer;
             display: inline-block;
+          }
 
+          .removable {
             &:hover {
               &:before {
                 content: "";

@@ -11,7 +11,7 @@ namespace Project_Apollo.Controllers {
 
 		// GET: profile
 		public ActionResult Index() {
-			Session["id"] = 8; //TESTING ONLY
+			Session["id"] = 4; //TESTING ONLY
 			User user = db.userTable.Find((int)Session["id"]);
 
 			//TESTING ONLY
