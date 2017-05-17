@@ -59,7 +59,8 @@
         display: inline-block !important;
         float: right;
 
-        .apply-to-project-btn {
+        .apply-to-project-btn,
+        .leave-project-btn {
           color: #fff !important;
           background-color: $primary-color !important;
           border-color: $primary-color;
