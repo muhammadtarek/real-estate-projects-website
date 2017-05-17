@@ -1,0 +1,19 @@
+﻿.request-row {
+  cursor: default;
+  margin-bottom: 10px;
+
+  img {
+    display: inline-block;
+    vertical-align: top !important;
+  }
+
+  label {
+    max-width: 389px;
+    margin-bottom: 0 !important;
+    margin-left: 15px;
+  }
+
+  .controls {
+    float: right;
+  }
+}

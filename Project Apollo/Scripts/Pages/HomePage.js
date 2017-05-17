@@ -115,7 +115,7 @@
         var projectName = $(projectContainer).find("h4.name")[0].innerHTML;
         selectedPostId = $(projectContainer).attr("id");
 
-        currentActiveApplyingButton = $(projectContainer).find(".apply-btn")[0];
+        currentActiveApplyingButton = $(projectContainer).find(".apply-to-project-btn")[0];
         $(currentActiveApplyingButton).html("Applying...");
         $(currentActiveApplyingButton).attr("disabled", true);
 

@@ -15,19 +15,12 @@
     <div class="project-cotnainer" id="@projectId" ownderId="@ownerId">
         <div class="project">
             <div class="owner-container">
-                <div class="owner-info">
-                    <img src="@userPhoto" width="40" />
-
-                    <div>
-                        <a class="name">@customerName</a>
-                        <label class="time">@postingTime</label>
-                    </div>
-                </div>
+                @Projects.OwnerInfo(userPhoto, customerName, postingTime)
 
                 <div class="project-controls">
                     @{
                         if (userType == 2) {
-                            <button class="icon-btn icon-btn--apply apply-to-project-btn" disabled="@appliedStatus">@(appliedStatus == true ? "Applied" : "Apply")</button>
+                            <button class="apply-to-project-btn" disabled="@appliedStatus">@(appliedStatus == true ? "Applied" : "Apply")</button>
                         } else if ((userType == 1 && @userId == @ownerId) || userType == 0) {
                             <button class="icon-btn icon-btn--edit edit-project-btn"></button>
                             <button class="icon-btn icon-btn--delete delete-project-btn"></button>
@@ -37,30 +30,25 @@
                 </div>
             </div>
 
-
-            <div class="details">
-                <h4 class="name">@projectName</h4>
-                <p class="description">@projectDescription</p>
-            </div>
+            @Projects.ProjectDetails(projectName, projectDescription)
         </div>
 
+        @if (comments.Count() != 0 || userType == 2) {
         <div class="comments-container">
-            @{  if (userType == 2) {
+            @if (userType == 2) {
                 <div class="comment-input">
                     <img src="@userPhoto" width="35" />
                     <input placeholder="Write a comment..." class="comment-field"/>
                 </div>
-                }
             }
 
-            @if (comments.Count() != 0) {
-                foreach (var comment in comments) {
+                @foreach (var comment in comments) {
                     @Projects.Comment(comment.projectManager.ID, Project_Apollo.Models.ImageConverter.convertPhotoToString(comment.projectManager.Photo),
-                   comment.projectManager.name,
-                   comment.comment)
+                        comment.projectManager.name,
+                        comment.comment)
                 }
-            }
             </div>  
+        }
     </div>
 }
 
@@ -68,18 +56,11 @@
     Profile page projects
 -->
 @helper Assigned(string userPhoto, string customerName, string postingTime, string projectName,
-                   string projectDescription, int projectId, int Status ,String stratDate,String endDate ,string managerPhoto, string leaderPhoto , List<Project_Apollo.Models.User> memberPhotos) {
+                   string projectDescription, int projectId, int Status , string stratDate, string endDate ,string managerPhoto, string leaderPhoto , List<Project_Apollo.Models.User> memberPhotos) {
     <div class="project-cotnainer" id="@projectId">
         <div class="project">
             <div class="owner-container">
-                <div class="owner-info">
-                    <img src="@userPhoto" width="40" />
-
-                    <div>
-                        <a class="name">@customerName</a>
-                        <label class="time">@postingTime</label>
-                    </div>
-                </div>
+                @Projects.OwnerInfo(userPhoto, customerName, postingTime)
             </div>
 
 
@@ -135,14 +116,7 @@
     <div class="project-cotnainer" id="@projectId" ownderId="@ownerId">
         <div class="project">
             <div class="owner-container">
-                <div class="owner-info">
-                    <img src="@userPhoto" width="40" />
-
-                    <div>
-                        <a class="name">@customerName</a>
-                        <label class="time">@postingTime</label>
-                    </div>
-                </div>
+                @Projects.OwnerInfo(userPhoto, customerName, postingTime)
 
                 <div class="project-controls">
                     <button class="icon-btn icon-btn--approve approve-project-btn"></button>
@@ -150,11 +124,7 @@
                 </div>
             </div>
 
-
-            <div class="details">
-                <h4 class="name">@projectName</h4>
-                <p class="description">@projectDescription</p>
-            </div>
+            @Projects.ProjectDetails(projectName, projectDescription)
         </div>
     </div>
 }
@@ -171,5 +141,26 @@
             <label class="comment-text">@comment</label>
         </div>
 
+    </div>
+}
+
+<!--
+    Owner Info
+-->
+@helper OwnerInfo(string userPhoto, string customerName, string postingTime) {
+    <div class="owner-info">
+        <img src="@userPhoto" width="40" />
+
+        <div>
+            <a class="name">@customerName</a>
+            <label class="time">@postingTime</label>
+        </div>
+    </div>
+}
+
+@helper ProjectDetails(string projectName, string projectDescription) {
+    <div class="details">
+        <h4 class="name">@projectName</h4>
+        <p class="description">@projectDescription</p>
     </div>
 }
