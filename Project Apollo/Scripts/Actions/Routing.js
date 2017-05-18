@@ -11,6 +11,6 @@
 
     //Sign out
     $("#signout-btn").click(function () {
-        window.location.href = "/welcome/index/1";
+        window.location.href = "/welcome/signOut";
     });
 });

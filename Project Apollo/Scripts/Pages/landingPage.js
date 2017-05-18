@@ -8,21 +8,6 @@
         showForm("signup-form");
     });
 
-    //Taking the photo from file uploader and preview it
-    $("#user-photo").change(function () {
-      var file = document.querySelector('input[type=file]').files[0];
-      var reader = new FileReader();
-      console.log("Triggered");
-
-      reader.addEventListener("load", function () {
-        $("#photo-preview").attr('src', reader.result);
-      }, false);
-
-      if (file) {
-        reader.readAsDataURL(file);
-      }
-    });
-
     /*Action lisenters*/
     $("#btn-login").click(login);
 });

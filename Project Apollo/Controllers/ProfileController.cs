@@ -12,6 +12,8 @@ namespace Project_Apollo.Controllers {
 
 		// GET: profile
 		public ActionResult Index() {
+			if (Session["id"] == null)
+				return RedirectToAction("Index", "Welcome");
 			//Choosing layout depends on user role
 			if ((int)Session["userRole"] == 0 || (int)Session["userRole"] == 2 || (int)Session["userRole"] == 3) {
 				//If the user is admin, customer or project manager

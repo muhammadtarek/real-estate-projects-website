@@ -11,6 +11,8 @@ namespace Project_Apollo.Controllers {
 		DBase db = new DBase();
 		// GET: Home
 		public ActionResult Index() {
+			if (Session["id"] == null)
+				return RedirectToAction("Index", "Welcome");
 			ViewBag.showNav = true;
 			ViewBag.tabs = new string[] { "Home","FAQ", "Contact us" };
 			ViewBag.tabAttr = new string[] { "home", "faq", "contact-us" };

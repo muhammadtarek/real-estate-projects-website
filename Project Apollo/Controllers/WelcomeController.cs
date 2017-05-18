@@ -12,13 +12,16 @@ namespace Project_Apollo.Controllers {
 	public class WelcomeController : Controller {
 		public DBase db = new DBase();
 		// GET: welcome
-		public ActionResult Index(int ?id) {
-            if(id == 1)
-                Session.Clear();
+		public ActionResult Index() {
             if (Session["id"] != null) 
                 return RedirectToAction("Index", "Home");
             ViewBag.currentPage = 0;
 			return View();
+		}
+
+		public ActionResult signOut() {
+			Session.Clear();
+			return RedirectToAction("Index", "Welcome");
 		}
 
 		public Object login(string email, string password) {
@@ -110,6 +113,20 @@ namespace Project_Apollo.Controllers {
 				user.Photo = userPicture !=null ? ImageConverter.convertPhotoToBytes(userPicture):null;
 				db.userTable.Add(user);
 				db.SaveChanges();
+				if (Session["id"] != null) {
+					return JsonConvert.SerializeObject(new {
+						result = new {
+							email = true,
+							nav = false
+						},
+						user = new {
+							id = user.ID,
+							name = user.name,
+							userRole = userType,
+							userPhoto = user.Photo
+						}
+					});
+				}
                 Session["id"] = user.ID;
 				Session["userRole"] = (int)user.UserRole;
 				var img = ImageConverter.convertPhotoToString(user.Photo);
@@ -120,7 +137,8 @@ namespace Project_Apollo.Controllers {
 				Session["userDescription"] = user.Description;
 				return JsonConvert.SerializeObject(new {
 					result = new {
-						email = true
+						email = true,
+						nav = true
 					},
 					user = new {
 						id = user.ID,

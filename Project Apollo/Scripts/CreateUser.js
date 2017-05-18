@@ -1,4 +1,19 @@
-﻿function signUp() {
+﻿//Taking the photo from file uploader and preview it
+$("#user-photo").change(function () {
+    var file = document.querySelector('input[type=file]').files[0];
+    var reader = new FileReader();
+    console.log("Triggered");
+
+    reader.addEventListener("load", function () {
+        $("#photo-preview").attr('src', reader.result);
+    }, false);
+
+    if (file) {
+        reader.readAsDataURL(file);
+    }
+});
+
+function signUp() {
     if (checkForEmptyFields("signup") && checkForDangerFields()) {
         $("#btn-signup").prop("disabled", true);
 
@@ -43,7 +58,11 @@
             else {
                 $("#btn-sinup").html("Signing up...");
                 markInputAs("signup-email", SUCCESS, "");
-                var url = "/home/Index";
+                var url;
+                if (rec.result.nav)
+                    url = "/home/Index";
+                else
+                    url = "/profile/index"
                 window.location.href = url;
             }
         });
