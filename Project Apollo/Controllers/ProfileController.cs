@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace Project_Apollo.Controllers {
@@ -354,6 +355,43 @@ namespace Project_Apollo.Controllers {
 				this.requestJuniorEngineer(projectId, userId);
 			return true;
 		}
-    }
+
+		public ActionResult getStatisticalDiagrams() {
+			int userId = (int)Session["id"];
+			List<String> listx = db.qualificationsTable.Where(u => (u.user.ID) == userId).Select(x => x.qialificationName).ToList();
+			List<String> listy = db.qualificationsTable.Where(u => (u.user.ID) == userId).Select(x => (x.percentage).ToString()).ToList();
+
+			int No_projects = 0;
+
+			string[] userrole = db.userTable.Where(u => (u.ID) == userId).Select(x => x.UserRole.ToString()).ToArray();
+
+			if (userrole[0].Equals("projectManager")) {
+				No_projects = (db.ProjectTable.Where(p => (p.projectManager.ID) == userId && (int)p.status == 2)).Count();
+			} else if (userrole[0].Equals("teamLeader")) {
+				No_projects = (db.ProjectTable.Where(p => (p.teamLeader.ID) == userId && (int)p.status == 2)).Count();
+			} else //jonuirEngineering
+			  {
+				User junior = db.userTable.Find(userId);
+				foreach (var x in junior.Projects) {
+					if ((int)x.status == 2)
+						No_projects++;
+				}
+			}
+
+
+			listx.Add("No.Projects");
+			listy.Add(No_projects + "");
+
+
+
+			Chart mychart = new Chart(width: 600, height: 400)
+				.AddTitle("Qualification").AddSeries(
+				name: userrole[0],
+				xValue: listx,
+				yValues: listy).Write();
+
+			return null;
+		}
+	}
 
 }

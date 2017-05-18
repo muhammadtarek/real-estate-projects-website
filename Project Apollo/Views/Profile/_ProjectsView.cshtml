@@ -1,6 +1,7 @@
 ﻿<div class="tab-view tab-view--active" tab-view="projects">
     @if ((int)Session["userRole"] == 0 || (int)Session["userRole"] == 2 || (int)Session["userRole"] == 3) {
         @Html.Partial("~/Views/Profile/_UserCard.cshtml")
+        @Html.Partial("~/Views/Profile/_StatisticalDiagram.cshtml")
     }
     @{foreach (Project_Apollo.Models.Project p in ViewBag.projects) {
             @Projects.Assigned(Project_Apollo.Models.ImageConverter.convertPhotoToString(p.customer.Photo), p.customer.name, p.createDate.ToString("dd/MM/yyyy"), p.Name,
