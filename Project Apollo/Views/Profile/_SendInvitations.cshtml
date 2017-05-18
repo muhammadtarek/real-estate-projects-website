@@ -1,0 +1,16 @@
+﻿<div class="tab-view" tab-view="send-invitations">
+    <div style="margin-bottom: 10px;">
+        <div style="margin-bottom: 10px;">
+            @Components.ProjectsField("project", "Invite to project:", "Select", ViewBag.projects)
+        </div>
+        <label>Team Leaders</label>
+        @foreach (Project_Apollo.Models.User user in ViewBag.teamLeaders) {
+            @Users.InvitionRow(user.ID, Project_Apollo.Models.ImageConverter.convertPhotoToString(user.Photo), user.name)
+        }
+        
+        <label>Junior Engineers</label>
+        @foreach (Project_Apollo.Models.User user in ViewBag.juniorEng) {
+            @Users.InvitionRow(user.ID, Project_Apollo.Models.ImageConverter.convertPhotoToString(user.Photo), user.name)
+        }
+    </div>
+</div>

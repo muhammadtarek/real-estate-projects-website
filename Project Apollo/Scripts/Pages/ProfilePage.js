@@ -123,4 +123,19 @@
             showSnackbar("Successfully removed junior engineer");
         });
     });
+
+    //Invite to porject
+    $(".invite-to-project").click(function () {
+        var selectedProjectId = $("#project").attr("selected-id");
+        var userId = $(this).parent().parent().attr("id");
+        $.post("/profile/request", {
+            projectId: selectedProjectId,
+            userId: userId
+        }, function (result) {
+            if (result == "True")
+                showSnackbar("Successfully Invited");
+            else
+                showSnackbar("Already Invited");
+        });
+    });
 });

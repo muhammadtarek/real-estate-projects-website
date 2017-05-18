@@ -33,3 +33,19 @@
         <label class="error-message"></label>
     </div>
 }
+
+<!-- DROPDOWN COMPONENT -->
+@helper ProjectsField(string id, string inputName, string placeholder, List<Project_Apollo.Models.Project> projects) {
+    <div class="input-field skip">
+        <label>@inputName</label>
+        <input class="dropdown-input" id="@id" type="text" placeholder="@placeholder" readonly selected-id=""/>
+        <i class="material-icons dropdown-arrow">arrow_drop_down</i>
+        <ul class="dropdown">
+            @{  foreach (Project_Apollo.Models.Project item in projects) {
+                    <li project-id="@item.ID">@item.Name</li>
+}
+            }
+        </ul>
+        <label class="error-message"></label>
+    </div>
+}

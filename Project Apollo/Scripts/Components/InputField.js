@@ -111,7 +111,9 @@ $(".dropdown li").click(function () {
     var inputParent = $(this).parent().parent();
     $(inputParent).children('input').val($(this).text());
     hideDropdown(inputParent);
-    markInputAs(inputParent, SUCCESS, errorMessage)
+    $(inputParent).children('input').attr("selected-id", $(this).attr("project-id"));
+    if (!$(".dropdown-input").attr("selected-id"))
+        markInputAs(inputParent, SUCCESS, errorMessage);
 });
 
 /*
