@@ -163,10 +163,10 @@ namespace Project_Apollo.Controllers {
 				}
 			} else if (u.UserRole == (userRole)4)//juniorEngineer
 			  {
-				var data = (from x in db.FeedbackTable
+				List<Feedback> feedbacks = (from x in db.FeedbackTable
 							where x.juniorEngineering.ID == id
 							select x).ToList();
-				foreach (Feedback f in data) {
+				foreach (Feedback f in feedbacks) {
 					db.FeedbackTable.Remove(f);
 				}
 				var qulaifications = (from x in db.qualificationsTable
