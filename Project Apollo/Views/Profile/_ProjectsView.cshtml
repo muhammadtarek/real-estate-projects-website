@@ -3,9 +3,17 @@
         @Html.Partial("~/Views/Profile/_UserCard.cshtml")
         @Html.Partial("~/Views/Profile/_StatisticalDiagram.cshtml")
     }
+    <label>Current Project</label>
     @{foreach (Project_Apollo.Models.Project p in ViewBag.projects) {
             @Projects.Assigned(Project_Apollo.Models.ImageConverter.convertPhotoToString(p.customer.Photo), p.customer.name, p.createDate.ToString("dd/MM/yyyy"), p.Name,
                 p.Description, p.ID, (int)p.status, p.startDate.ToString(), p.endDate.ToString(), Project_Apollo.Models.ImageConverter.convertPhotoToString(p.projectManager.Photo), 
+                (p.teamLeader == null ? null : Project_Apollo.Models.ImageConverter.convertPhotoToString(p.teamLeader.Photo)), p.workers.ToList());
+        }
+    }
+    <label>Delievred Project</label>
+    @{foreach (Project_Apollo.Models.Project p in ViewBag.deliverdProject) {
+            @Projects.Assigned(Project_Apollo.Models.ImageConverter.convertPhotoToString(p.customer.Photo), p.customer.name, p.createDate.ToString("dd/MM/yyyy"), p.Name,
+                p.Description, p.ID, (int)p.status, p.startDate.ToString(), p.endDate.ToString(), Project_Apollo.Models.ImageConverter.convertPhotoToString(p.projectManager.Photo),
                 (p.teamLeader == null ? null : Project_Apollo.Models.ImageConverter.convertPhotoToString(p.teamLeader.Photo)), p.workers.ToList());
         }
     }

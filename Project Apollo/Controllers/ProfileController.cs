@@ -12,15 +12,6 @@ namespace Project_Apollo.Controllers {
 
 		// GET: profile
 		public ActionResult Index() {
-			Session["id"] = 4; //TESTING ONLY
-			User user = db.userTable.Find((int)Session["id"]);
-
-			//TESTING ONLY
-			Session["userRole"] = (int)user.UserRole;
-			Session["userPhoneNumber"] = user.Mobile;
-			Session["userEmail"] = user.Email;
-			Session["userDescription"] = user.Description;
-
 			//Choosing layout depends on user role
 			if ((int)Session["userRole"] == 0 || (int)Session["userRole"] == 2 || (int)Session["userRole"] == 3) {
 				//If the user is admin, customer or project manager
@@ -57,11 +48,8 @@ namespace Project_Apollo.Controllers {
 					break;
 			}
 
-			var img = ImageConverter.convertPhotoToString(user.Photo);
-			Session["userPhoto"] = img;
-
 			ViewBag.projects = this.loadAssignedProjects((int)Session["id"]);
-			Session["userName"] = user.name;
+			ViewBag.deliverdProject = this.loadDeliverdProjects((int)Session["id"]);
 			return View();
 		}
 
@@ -207,6 +195,10 @@ namespace Project_Apollo.Controllers {
 			return arr;
 		}
 
+		public List<Project> loadDeliverdProjects(int userId) {
+			List<Project> arr = db.ProjectTable.Where(x => x.status == status.deliverd && (x.projectManager.ID == userId || x.teamLeader.ID == userId || x.workers.Any(ss => ss.ID == userId) || x.customer.ID == userId)).ToList();
+			return arr;
+		}
 		public void removeEngineerFromProject(int engineerId = 2, int projectId = 2) {
 			Project proj = db.ProjectTable.Find(projectId);
 			var engineer = proj.workers.First(x => x.ID == engineerId);
@@ -258,7 +250,7 @@ namespace Project_Apollo.Controllers {
 
 		public List<User> getUsers() {
 
-			return db.userTable.ToList();
+			return db.userTable.Where(p=>p.UserRole != userRole.admin).ToList();
 		}
 
 		public void acceptRequest(int requestID) {

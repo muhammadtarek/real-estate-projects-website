@@ -11,19 +11,10 @@ namespace Project_Apollo.Controllers {
 		DBase db = new DBase();
 		// GET: Home
 		public ActionResult Index() {
-			Session["id"] = 4; //TESTING ONLY
-			User user = db.userTable.Find((int)Session["id"]);
 			ViewBag.showNav = true;
-			ViewBag.tabs = new string[4] { "Home", "Profile", "FAQ", "Contact us" };
-			ViewBag.tabAttr = new string[4] { "home", "profile", "faq", "contact-us" };
+			ViewBag.tabs = new string[] { "Home","FAQ", "Contact us" };
+			ViewBag.tabAttr = new string[] { "home", "faq", "contact-us" };
 
-			//TESTING ONLY
-			Session["userRole"] = (int)user.UserRole;
-
-			var img = ImageConverter.convertPhotoToString(user.Photo);
-			Session["userPhoto"] = img;
-
-			Session["userName"] = user.name;
 			return View(this.loadUnassignedProjects());
         }
 

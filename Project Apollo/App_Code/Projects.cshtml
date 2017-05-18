@@ -62,7 +62,7 @@
             <div class="owner-container">
                 @Projects.OwnerInfo(userPhoto, customerName, postingTime)
 
-                @if ((int)Session["userRole"] > 1) {
+                @if ((int)Session["userRole"] > 1 && Status != (int) Project_Apollo.Models.status.deliverd) {
                     <div class="project-controls">
                         <button class="leave-project-btn">Leave</button>
                     </div>

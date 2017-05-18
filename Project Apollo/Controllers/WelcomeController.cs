@@ -28,12 +28,17 @@ namespace Project_Apollo.Controllers {
 
 			if (data.Length != 0 && password.Equals(data[0].Password)) // if email & password TRUE
 			{
-				ViewBag.id = data[0].ID;
-				ViewBag.name = data[0].name;
-				ViewBag.userRole = data[0].UserRole;
-				ViewBag.userPhoto = data[0].Photo;
                 Session["id"] = data[0].ID;
-                return JsonConvert.SerializeObject(new {
+				User user = db.userTable.Find(Session["id"]);
+				Session["userRole"] = (int)user.UserRole;
+				var img = ImageConverter.convertPhotoToString(user.Photo);
+				Session["userPhoto"] = img;
+				Session["userName"] = user.name;
+				Session["userPhoneNumber"] = user.Mobile;
+				Session["userEmail"] = user.Email;
+				Session["userDescription"] = user.Description;
+
+				return JsonConvert.SerializeObject(new {
 					Result = new {
 						Email = true,
 						password = true
@@ -74,6 +79,7 @@ namespace Project_Apollo.Controllers {
 					}
 				});
 			}
+			
 			return null;
 		}
 
@@ -105,7 +111,14 @@ namespace Project_Apollo.Controllers {
 				db.userTable.Add(user);
 				db.SaveChanges();
                 Session["id"] = user.ID;
-                return JsonConvert.SerializeObject(new {
+				Session["userRole"] = (int)user.UserRole;
+				var img = ImageConverter.convertPhotoToString(user.Photo);
+				Session["userPhoto"] = img;
+				Session["userName"] = user.name;
+				Session["userPhoneNumber"] = user.Mobile;
+				Session["userEmail"] = user.Email;
+				Session["userDescription"] = user.Description;
+				return JsonConvert.SerializeObject(new {
 					result = new {
 						email = true
 					},

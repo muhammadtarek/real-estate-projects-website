@@ -3,6 +3,17 @@
         showForm("signup-form");
     });
     //Deleting current user
+    $(".delete-user-btn").click(function () {
+        var rowParent = $(this).parent().parent().parent();
+        var userId = $(rowParent).attr("id");
+        $.post("/profile/deleteUser", {
+            id: userId,
+        }, function () {
+            showSnackbar("User deleted.");
+            rowParent.remove();
+        });
+    });
+
     //Approve post
     $(".approve-project-btn").click(function () {
         var projectContainer = $(this).parent().parent().parent().parent();
